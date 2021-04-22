@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import Status from 'http-status';
 import { Router } from 'express';
 
@@ -7,66 +8,71 @@ export default ({
   putUseCase,
   deleteUseCase,
   logger,
-  response: { Success, Fail }
+  response: { Success, Fail },
 }: any) => {
   const router = Router();
 
  // router.use(auth.authenticate())
 
   router
-    .get('/', (req, res) => {
+    .get('/', (req: any, res: any) => {
       getUseCase
         .all(req, res)
         .then((data: any) => {
-          res.status(Status.OK).json(Success(data))
+          res.status(Status.OK).json(Success(data));
         })
-        .catch((error: { message: any; }) => {
-          logger.error(error) // we still need to log every error for debugging
+        .catch((error: { message: any }) => {
+          logger.error(error);
           res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
+            Fail(error.message),
+);
+        });
+    });
 
   router
-    .post('/', (req, res) => {
+    .post('/', (req: any, res: any) => {
       postUseCase
         .create({ body: req.body })
         .then((data: any) => {
-          res.status(Status.OK).json(Success(data))
+          res.status(Status.OK).json(Success(data));
         })
-        .catch((error: { message: any; }) => {
-          logger.error(error) // we still need to log every error for debugging
+        .catch((error: { message: any }) => {
+          logger.error(error);
           res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
+            Fail(error.message),
+);
+        });
+    });
 
   router
-    .put('/:id', (req, res) => {
+    .put('/:id', (req: any, res: any) => {
       putUseCase
-        .update({ id: req.params.id, body: req.body })
+        .update({ body: req.body, id: req.params.id })
         .then((data: any) => {
-          res.status(Status.OK).json(Success(data))
+          res.status(Status.OK).json(Success(data));
         })
-        .catch((error: { message: any; }) => {
-          logger.error(error) // we still need to log every error for debugging
+        .catch((error: { message: any }) => {
+          logger.error(error);
           res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
+            Fail(error.message),
+);
+        });
+    });
 
   router
-    .delete('/:id', (req, res) => {
+    .delete('/:id', (req: any, res: any) => {
       deleteUseCase
         .remove({ id: req.params.id })
         .then((data: any) => {
-          res.status(Status.OK).json(Success(data))
+          res.status(Status.OK).json(Success(data));
         })
-        .catch((error: { message: any; }) => {
-          logger.error(error) // we still need to log every error for debugging
+        .catch((error: { message: any }) => {
+          logger.error(error);
           res.status(Status.BAD_REQUEST).json(
-            Fail(error.message))
-        })
-    })
-  return router
-}
+            Fail(error.message),
+);
+        });
+    });
+
+  return router;
+};

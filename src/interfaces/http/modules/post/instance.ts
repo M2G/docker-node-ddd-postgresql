@@ -1,21 +1,25 @@
+import container from '../../../../container';
+import {
+ get, post, put, remove,
+} from '../../../../app/post';
 
-const container = require('../../../../container') // we have to get the DI
-const { get, post, put, remove } = require('../../../../app/post')
+export default () => {
+  const { cradle } = container;
+  const {
+ repository: {
+    postRepository,
+    },
+  } = cradle;
 
-module.exports = () => {
-  const { repository: {
-    postRepository
-  } } = container.cradle
-
-  const getUseCase = get({ postRepository })
-  const postUseCase = post({ postRepository })
-  const putUseCase = put({ postRepository })
-  const deleteUseCase = remove({ postRepository })
+  const getUseCase = get({ postRepository });
+  const postUseCase = post({ postRepository });
+  const putUseCase = put({ postRepository });
+  const deleteUseCase = remove({ postRepository });
 
   return {
+    deleteUseCase,
     getUseCase,
     postUseCase,
     putUseCase,
-    deleteUseCase
-  }
-}
+  };
+};

@@ -18,9 +18,15 @@
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/models/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/post/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/repositories/post/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/post/transform.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/router.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +80,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
-      <workItem from="1619027369845" duration="21570000" />
+      <workItem from="1619027369845" duration="23788000" />
     </task>
     <servers />
   </component>

@@ -1,13 +1,15 @@
-const container = require('../../../../container')
-const router = require('./router')
-const instance = require('./instance')
+import container from '../../../../container';
+import router from './router';
+import instance from './instance';
 
-module.exports = () => {
-  const { logger, response: { Success, Fail } } = container.cradle
-  const app = instance()
+export default () => {
+  const { logger, response: { Success, Fail } } = container.cradle;
+  const app = instance();
 
   return {
     app,
-    router: router({ logger, response: { Success, Fail }, ...app })
-  }
-}
+    router: router(
+      { logger, response: { Fail, Success }, ...app },
+      ),
+  };
+};
