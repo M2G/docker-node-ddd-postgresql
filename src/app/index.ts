@@ -5,7 +5,7 @@
  * memcache
  * express server
  */
-module.exports = ({ server, database }) => {
+export default ({ server, database }: any) => {
   return {
     start: () =>
       Promise

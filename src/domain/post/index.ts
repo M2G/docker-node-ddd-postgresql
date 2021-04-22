@@ -1,6 +1,3 @@
+import Post from './post';
 
-const Post = require('./post')
-
-module.exports = {
-  Post
-}
+export default Post;

@@ -1,9 +1,9 @@
 /**
-  * function for getter company.
+  * function for getter post.
   */
-module.exports = ({ postRepository }) => {
+export default ({ postRepository }: any) => {
   // code for getting all the items
-  const remove = ({ id }) => {
+  const remove = ({ id }: any) => {
     return Promise
       .resolve()
       .then(() =>

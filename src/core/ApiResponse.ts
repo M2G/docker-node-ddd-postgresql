@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { Response } from 'express';
 // Helper code for the API consumer to understand the error and handle is accordingly
 enum StatusCode {
   SUCCESS = '10000',

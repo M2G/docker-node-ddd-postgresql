@@ -1,7 +1,7 @@
 /**
   * function for getter post.
   */
-module.exports = ({ postRepository }) => {
+export default ({ postRepository }: any) => {
   const all = () => {
     return Promise
       .resolve()

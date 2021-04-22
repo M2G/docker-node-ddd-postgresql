@@ -1,14 +1,14 @@
 /**
- * this file will hold all the get use-case for company domain
+ * this file will hold all the get use-case for post domain
  */
-const { Post } = require('../../domain/post')
+import Post from '../../domain/post';
 
 /**
-  * function for getter company.
+  * function for getter post.
   */
-module.exports = ({ postRepository }) => {
+export default ({ postRepository }: any) => {
   // code for getting all the items
-  const create = ({ body }) => {
+  const create = ({ body }: any) => {
     return Promise
       .resolve()
       .then(() => {
