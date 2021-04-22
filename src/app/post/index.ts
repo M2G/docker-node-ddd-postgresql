@@ -1,11 +1,12 @@
+/*eslint-disable*/
 import get from './get';
 import post from './post';
 import put from './put';
 import remove from './delete';
 
-module.exports = {
+export {
   get,
   post,
   put,
-  remove
-}
+  remove,
+};

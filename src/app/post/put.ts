@@ -1,3 +1,4 @@
+/*eslint-disable*/
 /**
  * this file will hold all the get use-case for post domain
  */
@@ -15,10 +16,9 @@ export default ({ postRepository }: any) => {
         await postRepository.update(post, {
           where: { id }
         })
-
-        resolve(post)
+        resolve(post);
       } catch (error) {
-        reject(error)
+        reject(error);
       }
     })
   }

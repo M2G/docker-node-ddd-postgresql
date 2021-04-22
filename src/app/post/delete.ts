@@ -1,3 +1,4 @@
+/*eslint-disable*/
 /**
   * function for getter post.
   */
@@ -14,7 +15,7 @@ export default ({ postRepository }: any) => {
         })
       )
       .catch((error) => {
-        throw new Error(error)
+        throw new Error(error);
       })
   }
 

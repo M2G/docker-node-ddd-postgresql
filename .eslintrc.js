@@ -74,6 +74,8 @@ module.exports = {
     "@typescript-eslint/quotes": 0,
     "@typescript-eslint/restrict-template-expressions": 0,
     "@typescript-eslint/unbound-method": 1,
+    "@typescript-eslint/no-unsafe-assignment": 1,
+    "@typescript-eslint/explicit-module-boundary-types": 0
   },
   settings: {
     "html/html-extensions": [".html"],

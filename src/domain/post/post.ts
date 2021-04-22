@@ -1,3 +1,4 @@
+/* eslint-disable */
 import t from 'tcomb';
 import { compose } from 'ramda';
 import cleanData from '../helper';

@@ -1,9 +1,11 @@
+/*eslint-disable*/
 import container from './container';
-const app = container.resolve('app')
+
+const app: any = container.resolve('app');
 
 app
   .start()
-  .catch((error) => {
-    app.logger.error(error.stack)
-    process.exit()
-  })
+  .catch((error: any) => {
+    app.logger.error(error.stack);
+    process.exit();
+  });

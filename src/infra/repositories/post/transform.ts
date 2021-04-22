@@ -1,6 +1,5 @@
 import Post from '../../../domain/post';
 
-const toEntity = Post
+const toEntity = Post;
 
 export default toEntity;
-

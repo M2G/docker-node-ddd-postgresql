@@ -1,11 +1,12 @@
+/* eslint-disable */
 import sequelize from '../sequelize';
 
 export default ({ logger, config }: any) => {
-  if (!config.db) {
-    /* eslint-disable no-console */
+  const { db = null } = config;
+
+  if (!db) {
     logger.error('Database config file log not found, disabling database.')
-    /* eslint-enable no-console */
-    return false
+    return false;
   }
 
   return sequelize({ config, basePath: __dirname })

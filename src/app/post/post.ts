@@ -1,3 +1,4 @@
+/*eslint-disable*/
 /**
  * this file will hold all the get use-case for post domain
  */
@@ -12,13 +13,13 @@ export default ({ postRepository }: any) => {
     return Promise
       .resolve()
       .then(() => {
-        const post = Post(body)
-        return postRepository.create(post)
+        const post = Post(body);
+        return postRepository.create(post);
       })
       .catch((error) => {
-        throw new Error(error)
-      })
-  }
+        throw new Error(error);
+      });
+  };
 
   return {
     create

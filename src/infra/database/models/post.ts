@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default function (sequelize: any, DataTypes: any) {
   return sequelize.define('test_tb', {
     id: {
@@ -26,8 +27,7 @@ export default function (sequelize: any, DataTypes: any) {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate() {
-      }
+      associate() {}
     }
   })
-}
+};

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { createContainer, asValue, asFunction } from 'awilix';
 // you can do this
 import app from './app';
