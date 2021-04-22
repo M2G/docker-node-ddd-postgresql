@@ -1,13 +1,12 @@
 /*eslint-disable*/
-const fs = require('fs')
+import fs from 'fs';
 const winston = require('winston');
 
 if (!fs.existsSync(`logs`)) {
   fs.mkdirSync(`logs`)
 }
 
-module.exports = ({ config }: any) => {
-  // eslint-disable-next-line new-cap
+export default ({ config }: any) => {
   return new winston.createLogger({
     transports: [
       new winston.transports.Console(),

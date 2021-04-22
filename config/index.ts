@@ -1,7 +1,7 @@
-require('dotenv').load()
+require('dotenv').load();
 
-const fs = require('fs')
-const path = require('path')
+import fs from 'fs';
+import path from 'path';
 
 function loadDbConfig () {
   if (fs.existsSync(path.join(__dirname, './database.js'))) {
@@ -20,4 +20,4 @@ const config = Object.assign({
   db: dbConfig
 }, envConfig)
 
-module.exports = config;
+export default config;

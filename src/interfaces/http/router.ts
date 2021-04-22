@@ -1,14 +1,11 @@
-// const statusMonitor = require('express-status-monitor')
-/*eslint-disable*/
-
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Router } from 'express';
 import { partialRight } from 'ramda';
 
-import controller = require('./utils/create_controller')
-const httpLogger = require('./middlewares/http_logger')
-// const errorHandler = require('./middlewares/error_handler')
+import controller from './utils/create_controller';
+import httpLogger from './middlewares/http_logger';
+import errorHandler from './middlewares/error_handler';
 
 export default ({ config, logger, database }: any) => {
   const router = Router();
@@ -38,5 +35,5 @@ export default ({ config, logger, database }: any) => {
 
  router.use(partialRight(errorHandler, [logger, config]))
 
-  return router
+  return router;
 }

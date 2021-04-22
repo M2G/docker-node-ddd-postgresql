@@ -1,18 +1,17 @@
-const { createContainer, asValue, asFunction } = require('awilix')
+import { createContainer, asValue, asFunction } from 'awilix';
 // you can do this
-const app = require('./app')
-const server = require('./interfaces/http/server')
-const router = require('./interfaces/http/router')
+import app from './app';
+import server from './interfaces/http/server';
+import router from './interfaces/http/router';
 // const auth = require('./interfaces/http/auth')
-const config = require('../config')
-const logger = require('./infra/logging/logger')
-const database = require('./infra/database')
+import config from '../config';
+import logger  from './infra/logging/logger';
+import database from './infra/database';
 // const jwt = require('./infra/jwt')
-const response = require('./infra/support/response')
-const date = require('./infra/support/date')
-const repository = require('./infra/repositories')
+import response from './infra/support/response';
+import repository from './infra/repositories';
 
-const container = createContainer()
+const container = createContainer();
 
 // SYSTEM
 container
@@ -22,12 +21,9 @@ container
     router: asFunction(router).singleton(),
     logger: asFunction(logger).singleton(),
     database: asFunction(database).singleton(),
-    // auth: asFunction(auth).singleton(),
-    // jwt: asFunction(jwt).singleton(),
     response: asFunction(response).singleton(),
-    date: asFunction(date).singleton(),
     config: asValue(config),
     repository: asFunction(repository).singleton()
   })
 
-module.exports = container
+export default container;

@@ -1,9 +1,9 @@
-const morgan = require('morgan')
+import morgan from 'morgan';
 
-module.exports = (logger) => {
+export default (logger: { info: (arg0: any) => void; }) => {
   return morgan('common', {
     stream: {
-      write: (message) => {
+      write: (message: string | any[]) => {
         logger.info(message.slice(0, -1))
       }
     }

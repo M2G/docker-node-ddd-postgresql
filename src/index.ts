@@ -1,4 +1,4 @@
-const container = require('./src/container')
+import container from './container';
 const app = container.resolve('app')
 
 app

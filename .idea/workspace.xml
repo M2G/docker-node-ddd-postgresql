@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/docker-compose.dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.staging.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.test.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/helper.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/helper.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/post/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/post/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/models/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/post/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/post/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/post/transform.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/support/date.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/support/response.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/support/response.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/logging/logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/logging/logger.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/utils/create_controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/utils/create_controller.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,24 +33,29 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/interfaces/http/middlewares" />
+    <property name="js.linters.configure.manually.selectedeslint" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.eslint" value="$PROJECT_DIR$/node_modules/eslint" />
+    <property name="node.js.selected.package.standard" value="$PROJECT_DIR$/node_modules/standard" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/interfaces/http/middlewares" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src/interfaces/http/middlewares" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
@@ -72,11 +67,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
-      <workItem from="1619027369845" duration="16819000" />
+      <workItem from="1619027369845" duration="18239000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
