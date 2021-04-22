@@ -1,6 +1,6 @@
-const Post = require('./post')
+import Post from './post';
 
-module.exports = ({ database }) => {
+export default ({ database }: any) => {
   const postModel = database.models.test_tb
 
   return {

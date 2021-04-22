@@ -1,6 +1,6 @@
-const { toEntity } = require('./transform')
+import toEntity from './transform';
 
-module.exports = ({ model }: any) => {
+export default ({ model }: any) => {
   const getAll = (...args: any[]) =>
     model.findAll(...args).then((entity: { dataValues: any }[]) =>
       entity.map((data: { dataValues: any }) => {

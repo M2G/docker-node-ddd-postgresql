@@ -1,12 +1,9 @@
-
-const { complement, compose, isNil, pickBy } = require('ramda')
+import { complement, compose, isNil, pickBy } from 'ramda';
 
 const notNull = compose(complement(isNil))
 /**
  * we need to remove undefined array means not required data.
  */
-const cleanData = (entity) => pickBy(notNull, entity)
+const cleanData = (entity: any) => pickBy(notNull, entity)
 
-module.exports = {
-  cleanData
-}
+export default cleanData;

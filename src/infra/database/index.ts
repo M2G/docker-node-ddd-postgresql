@@ -1,6 +1,6 @@
-const sequelize = require('../sequelize')
+import sequelize from '../sequelize';
 
-module.exports = ({ logger, config }) => {
+module.exports = ({ logger, config }: any) => {
   if (!config.db) {
     /* eslint-disable no-console */
     logger.error('Database config file log not found, disabling database.')

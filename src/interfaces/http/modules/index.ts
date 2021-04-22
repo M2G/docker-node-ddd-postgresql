@@ -1,8 +1,8 @@
-const Status = require('http-status')
-const { Router } = require('express')
+import Status from 'http-status';
+import { Router } from 'express';
 
-module.exports = () => {
-  const router = Router()
+export default () => {
+  const router = Router();
 
   router.get('/', (req, res) => {
     res.status(Status.OK).json({ status: 'API working' })

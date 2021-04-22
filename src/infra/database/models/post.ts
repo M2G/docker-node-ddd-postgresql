@@ -1,5 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
-  const Post = sequelize.define('test_tb', {
+export default function (sequelize: any, DataTypes: any) {
+  return sequelize.define('test_tb', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -26,9 +26,8 @@ module.exports = function (sequelize, DataTypes) {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate () {}
+      associate() {
+      }
     }
   })
-
-  return Post
 }

@@ -1,6 +1,6 @@
-const { assoc } = require('ramda')
+import { assoc } from 'ramda';
 
-module.exports = ({ config }) => {
+export default ({ config }: any) => {
   const defaultResponse = (success = true) => {
     return {
       success,
@@ -9,7 +9,7 @@ module.exports = ({ config }) => {
     }
   }
 
-  const Success = (data) => {
+  const Success = (data: any) => {
     return assoc(
       'data',
       data,
@@ -17,7 +17,7 @@ module.exports = ({ config }) => {
     )
   }
 
-  const Fail = (data) => {
+  const Fail = (data: any) => {
     return assoc(
       'error',
       data,

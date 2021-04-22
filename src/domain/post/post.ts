@@ -1,6 +1,6 @@
-const t = require('tcomb')
-const { compose } = require('ramda')
-const { cleanData } = require('../helper')
+import t from 'tcomb';
+import { compose } from 'ramda';
+import cleanData from '../helper';
 
 const Post = t.struct({
   id: t.maybe(t.Integer),
@@ -10,7 +10,7 @@ const Post = t.struct({
   // updatedAt: t.maybe(t.Date)
 })
 
-module.exports = compose(
+export default compose(
   cleanData,
   Post
 )

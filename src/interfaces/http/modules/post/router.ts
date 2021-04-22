@@ -1,15 +1,15 @@
-const Status = require('http-status')
-const { Router } = require('express')
+import Status from 'http-status';
+import { Router } from 'express';
 
-module.exports = ({
+export default ({
   getUseCase,
   postUseCase,
   putUseCase,
   deleteUseCase,
   logger,
   response: { Success, Fail }
-}) => {
-  const router = Router()
+}: any) => {
+  const router = Router();
 
  // router.use(auth.authenticate())
 
@@ -17,10 +17,10 @@ module.exports = ({
     .get('/', (req, res) => {
       getUseCase
         .all(req, res)
-        .then(data => {
+        .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
-        .catch((error) => {
+        .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message))
@@ -31,10 +31,10 @@ module.exports = ({
     .post('/', (req, res) => {
       postUseCase
         .create({ body: req.body })
-        .then(data => {
+        .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
-        .catch((error) => {
+        .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message))
@@ -45,10 +45,10 @@ module.exports = ({
     .put('/:id', (req, res) => {
       putUseCase
         .update({ id: req.params.id, body: req.body })
-        .then(data => {
+        .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
-        .catch((error) => {
+        .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message))
@@ -59,10 +59,10 @@ module.exports = ({
     .delete('/:id', (req, res) => {
       deleteUseCase
         .remove({ id: req.params.id })
-        .then(data => {
+        .then((data: any) => {
           res.status(Status.OK).json(Success(data))
         })
-        .catch((error) => {
+        .catch((error: { message: any; }) => {
           logger.error(error) // we still need to log every error for debugging
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message))

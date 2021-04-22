@@ -1,7 +1,6 @@
-const { Post } = require('../../../domain/post')
+import Post from '../../../domain/post';
 
 const toEntity = Post
 
-module.exports = {
-  toEntity
-}
+export default toEntity;
+

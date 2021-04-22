@@ -1,22 +1,17 @@
 // const statusMonitor = require('express-status-monitor')
 /*eslint-disable*/
-// @ts-ignore
-const cors = require('cors')
-// @ts-ignore
-const bodyParser = require('body-parser')
-// @ts-ignore
-// const compression = require('compression')
 
-const { Router } = require('express')
-// @ts-ignore
-const { partialRight } = require('ramda')
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import { Router } from 'express';
+import { partialRight } from 'ramda';
 
-const controller = require('./utils/create_controller')
-// const httpLogger = require('./middlewares/http_logger')
+import controller = require('./utils/create_controller')
+const httpLogger = require('./middlewares/http_logger')
 // const errorHandler = require('./middlewares/error_handler')
 
-module.exports = ({ config, logger, database }) => {
-  const router = Router()
+export default ({ config, logger, database }: any) => {
+  const router = Router();
 
   /* istanbul ignore if */
   if (config.env === 'development') {
@@ -25,7 +20,7 @@ module.exports = ({ config, logger, database }) => {
 
   /* istanbul ignore if */
   if (config.env !== 'test') {
-    // router.use(httpLogger(logger))
+    router.use(httpLogger(logger))
   }
 
   router
@@ -41,7 +36,7 @@ module.exports = ({ config, logger, database }) => {
   router.use('/', controller('index'))
   router.use(`/api/posts`, controller('post').router)
 
-  // router.use(partialRight(errorHandler, [logger, config]))
+ router.use(partialRight(errorHandler, [logger, config]))
 
   return router
 }
