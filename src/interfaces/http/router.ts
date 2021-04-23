@@ -12,6 +12,8 @@ export default ({ config, logger, database }: any) => {
   // console.log('database', database);
   const router = Router();
 
+  console.log('config', config)
+
   if (config.env !== 'test') {
     router.use(httpLogger(logger));
   }
