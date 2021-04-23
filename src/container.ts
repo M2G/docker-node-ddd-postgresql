@@ -15,7 +15,6 @@ import database from './infra/database';
 
 const container = createContainer();
 
-console.log('config', config)
 // SYSTEM
 container
   .register({

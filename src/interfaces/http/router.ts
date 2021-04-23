@@ -3,19 +3,18 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Router } from 'express';
 import { partialRight } from 'ramda';
-import controller from './utils/create_controller';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
+import * as index from '../http/modules';
+import * as post from '../http/modules/post';
 
-export default async ({ config, logger, database }: any) => {
+export default ({ config, logger, database }: any) => {
   // console.log('database', database);
-
   const router = Router();
 
   if (config.env !== 'test') {
     router.use(httpLogger(logger));
   }
-
   router
     .use(cors({
       allowedHeaders: ['Content-Type', 'Authorization'],
@@ -32,10 +31,9 @@ export default async ({ config, logger, database }: any) => {
     }))
     .use(bodyParser.json());
 
-    console.log(':::::::::::::', controller('index'))
 
-  // router.use('/', );
-  // router.use(`/api/posts`, controller('post').router);
+  router.use('/', index.default());
+  router.use(`/api/posts`, post.default().router);
   router.use(partialRight(errorHandler, [logger, config]));
 
   return router;
