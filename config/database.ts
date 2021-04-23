@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   development: {
     version: 'v1',
     host: 'db',
