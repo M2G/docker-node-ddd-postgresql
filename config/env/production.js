@@ -1,4 +1,3 @@
-
 module.exports = {
   version: process.env.APP_VERSION,
   port: process.env.PORT || 4000,

@@ -8,32 +8,33 @@ import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 
 export default ({ config, logger, database }: any) => {
+  console.log('database', database);
+
   const router = Router();
 
-  /* istanbul ignore if */
-  if (config.env === 'development') {
-    // router.use(statusMonitor())
-  }
-
-  /* istanbul ignore if */
   if (config.env !== 'test') {
-    router.use(httpLogger(logger))
+    router.use(httpLogger(logger));
   }
 
   router
     .use(cors({
-      origin: [
-        'http://localhost:8080'
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      methods: [
+        'GET',
+        'POST',
+        'PUT',
+        'DELETE',
       ],
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      allowedHeaders: ['Content-Type', 'Authorization']
+      origin: [
+        'http://localhost:8080',
+      ],
+
     }))
-    .use(bodyParser.json())
+    .use(bodyParser.json());
 
-  router.use('/', controller('index'))
-  router.use(`/api/posts`, controller('post').router)
-
- router.use(partialRight(errorHandler, [logger, config]))
+  router.use('/', controller('index'));
+  router.use(`/api/posts`, controller('post').router);
+  router.use(partialRight(errorHandler, [logger, config]));
 
   return router;
-}
+};

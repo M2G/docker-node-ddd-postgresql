@@ -1,4 +1,3 @@
-
 import container from './container';
 
 const app: any = container.resolve('app');

@@ -2,31 +2,113 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/database.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/env/development.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/env/production.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/env/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/database.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/database.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/config/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/delete.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/delete.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/delete.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/delete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/delete.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/delete.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/get.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/get.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/get.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/get.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/get.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/post.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/post.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/post.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/post.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/put.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/put.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/put.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/put.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/app/post/put.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/app/post/put.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/container.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/container.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/container.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/container.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/ApiError.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/core/ApiError.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/ApiError.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/core/ApiError.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/ApiResponse.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/core/ApiResponse.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/ApiResponse.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/core/ApiResponse.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/Logger.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/Logger.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/core/Logger.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/helper.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/helper.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/helper.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/helper.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/post/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/post/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/post/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/post/post.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/post.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/post/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/domain/post/post.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/post.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/models/post.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/models/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/models/post.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/logging/logger.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/logging/logger.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/logging/logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/logging/logger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/logging/logger.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/logging/logger.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/post/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/post/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/post/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/post/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/post/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/post/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/post/transform.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/post/transform.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/post/transform.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/post/transform.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/repositories/post/transform.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/repositories/post/transform.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/sequelize/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/sequelize/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/sequelize/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/sequelize/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/sequelize/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/sequelize/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/support/date.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/support/date.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/support/date.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/support/response.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/support/response.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/support/response.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/support/response.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/support/response.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/support/response.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/index.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/instance.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/instance.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/instance.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/instance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/instance.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/instance.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/router.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/router.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/modules/post/router.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/router.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/router.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/router.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/router.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/server.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/server.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/server.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/server.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/env/development.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/production.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/env/production.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/env/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/env/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/delete.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/get.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/put.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/post/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/post/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/post/post.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/models/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/post/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/repositories/post/transform.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/post/transform.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/error_handler.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/middlewares/http_logger.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/instance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +129,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build/config" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -64,11 +146,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/build/config" />
+      <recent name="$PROJECT_DIR$/build/config/env" />
+      <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/interfaces/http/middlewares" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
@@ -80,7 +165,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
-      <workItem from="1619027369845" duration="23788000" />
+      <workItem from="1619027369845" duration="31688000" />
     </task>
     <servers />
   </component>
