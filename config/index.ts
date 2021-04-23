@@ -1,4 +1,3 @@
-require('dotenv').load();
 import * as env from './env';
 import * as database from './database';
 

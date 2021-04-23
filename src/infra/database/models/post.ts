@@ -1,6 +1,5 @@
 /* eslint-disable */
-//@ts-ignore
-export default function (sequelize, DataTypes) {
+export default function (sequelize: any, DataTypes: any) {
   return sequelize.define('test_tb', {
     id: {
       type: DataTypes.INTEGER,
