@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import { assoc } from 'ramda';
 
 export default ({ config }: any) => {

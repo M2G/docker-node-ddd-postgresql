@@ -1,8 +1,8 @@
+/*eslint-disable*/
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Router } from 'express';
 import { partialRight } from 'ramda';
-
 import controller from './utils/create_controller';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';

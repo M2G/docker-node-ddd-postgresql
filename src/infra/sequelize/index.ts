@@ -1,16 +1,18 @@
 /*eslint-disable*/
-const fs = require('fs')
-const path = require('path')
-const Sequelize = require('sequelize')
-//@ts-ignore
-module.exports = ({ config, basePath }) => {
+import fs from 'fs';
+import path from 'path';
+import { Sequelize } from 'sequelize';
+
+export default ({ config, basePath }: any) => {
 
   // console.log('config', config)
+  // @ts-ignore
   // @ts-ignore
   const sequelize = new Sequelize(
     // config.db.url,
     // we have to remove the depraction warning
     // https://github.com/sequelize/sequelize/issues/8417
+    //@ts-ignore
     process.env.MYSQL_DATABASE,
     process.env.MYSQL_USER,
     process.env.MYSQL_PASSWORD,
@@ -32,7 +34,7 @@ module.exports = ({ config, basePath }) => {
     db.models[model.name] = model
   })
 
-  Object.keys(db.models).forEach(key => {
+  Object.keys(db.models).forEach((key) => {
     if ('associate' in db.models[key]) {
       db.models[key].associate(db.models)
     }

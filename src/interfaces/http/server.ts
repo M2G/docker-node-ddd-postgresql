@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import express from 'express';
 
 export default ({ config, router, logger }: any) => {

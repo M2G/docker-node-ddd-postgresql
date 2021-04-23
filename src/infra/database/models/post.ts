@@ -1,6 +1,6 @@
 /* eslint-disable */
 //@ts-ignore
-module.exports = function (sequelize, DataTypes) {
+export default function (sequelize, DataTypes) {
   const Post = sequelize.define('test_tb', {
     id: {
       type: DataTypes.INTEGER,
