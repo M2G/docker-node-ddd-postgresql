@@ -1,7 +1,7 @@
 /* eslint-disable */
 //@ts-ignore
 export default function (sequelize, DataTypes) {
-  const Post = sequelize.define('test_tb', {
+  return sequelize.define('test_tb', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -28,9 +28,8 @@ export default function (sequelize, DataTypes) {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate() {}
+      associate() {
+      }
     }
   });
-
-  return Post;
 };
