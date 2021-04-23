@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import Sequelize from 'sequelize';
+/*eslint-disable*/
+const fs = require('fs')
+const path = require('path')
+const Sequelize = require('sequelize')
+//@ts-ignore
+module.exports = ({ config, basePath }) => {
 
-export default ({ config, basePath }: any) => {
-
-  console.log('config', config)
-
+  // console.log('config', config)
   // @ts-ignore
   const sequelize = new Sequelize(
     // config.db.url,

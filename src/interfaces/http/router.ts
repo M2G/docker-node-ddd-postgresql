@@ -8,7 +8,7 @@ import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 
 export default ({ config, logger, database }: any) => {
-  console.log('database', database);
+  // console.log('database', database);
 
   const router = Router();
 

@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/database.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/env/development.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/env/production.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/env/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/config/database.d.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/config/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/database.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/config/database.js.map" beforeDir="false" />
@@ -52,12 +46,12 @@
       <change beforePath="$PROJECT_DIR$/build/src/domain/post/post.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/post.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/domain/post/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/post.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/domain/post/post.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/domain/post/post.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/models/post.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/index.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.d.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/models/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/database/models/post.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/src/infra/database/models/post.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/infra/logging/logger.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/logging/logger.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/infra/logging/logger.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/logging/logger.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/infra/logging/logger.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/infra/logging/logger.js.map" afterDir="false" />
@@ -100,15 +94,13 @@
       <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/build/src/interfaces/http/utils/create_controller.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/env/development.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/production.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/env/production.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/env/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/build/config/env/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interfaces/http/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,12 +139,13 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/build/config" />
+      <recent name="$PROJECT_DIR$/src/infra/database/models" />
       <recent name="$PROJECT_DIR$/build/config/env" />
       <recent name="$PROJECT_DIR$/config" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src/interfaces/http/middlewares" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/infra/database" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
@@ -165,7 +158,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
-      <workItem from="1619027369845" duration="31688000" />
+      <workItem from="1619027369845" duration="33641000" />
     </task>
     <servers />
   </component>

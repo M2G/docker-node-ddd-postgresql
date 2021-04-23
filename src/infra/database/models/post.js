@@ -1,6 +1,7 @@
 /* eslint-disable */
-export default function (sequelize: any, DataTypes: any) {
-  return sequelize.define('test_tb', {
+//@ts-ignore
+module.exports = function (sequelize, DataTypes) {
+  const Post = sequelize.define('test_tb', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -29,5 +30,7 @@ export default function (sequelize: any, DataTypes: any) {
     classMethods: {
       associate() {}
     }
-  })
+  });
+
+  return Post;
 };
