@@ -7,7 +7,7 @@ import controller from './utils/create_controller';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 
-export default ({ config, logger, database }: any) => {
+export default async ({ config, logger, database }: any) => {
   // console.log('database', database);
 
   const router = Router();
@@ -32,8 +32,10 @@ export default ({ config, logger, database }: any) => {
     }))
     .use(bodyParser.json());
 
-  router.use('/', controller('index'));
-  router.use(`/api/posts`, controller('post').router);
+    console.log(':::::::::::::', controller('index'))
+
+  // router.use('/', );
+  // router.use(`/api/posts`, controller('post').router);
   router.use(partialRight(errorHandler, [logger, config]));
 
   return router;

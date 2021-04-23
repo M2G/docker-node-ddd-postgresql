@@ -7,7 +7,7 @@ export default () => {
 
   router.get('/', (req: any, res: any) => {
     res.status(Status.OK).json({ status: 'API working' });
-  })
+  });
 
   return router;
 };
