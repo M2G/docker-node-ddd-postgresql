@@ -6,11 +6,12 @@ Domain driven design (DDD) is an approach to software design that values simplic
 
 By isolating domain code away from all other concerns of the system like infrastructure, security, transportation, serialization etc; the complexity of the system grows only as large as the complexity of the business or problem domain itself.
 
-## Features
+## Build with
 * Docker
-* NodeJS (+14)
+* NodeJS
 * Typescript
-
+* Sequelize ORM
+* MySQL
 ---
 
 ## Features
@@ -25,7 +26,7 @@ By isolating domain code away from all other concerns of the system like infrast
 - [x] Badges (coverage, up-to-date dependencies)
 - [] GraphQL API
 - [] GraphQL playground
-
+- [] Code refactor
 ---
 
 ## Run locally
