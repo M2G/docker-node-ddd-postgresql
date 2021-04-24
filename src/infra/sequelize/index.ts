@@ -21,7 +21,7 @@ export default ({ config, basePath }: any) => {
   const dir = path.join(basePath, './models');
   fs.readdirSync(dir)
     .filter((file) => {
-      return (file.indexOf('.') !== 0) && (file.slice(-3) === '.js');
+      return (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js');
     })
     .forEach(file => {
     const modelDir = path.join(dir, file);
@@ -33,7 +33,7 @@ export default ({ config, basePath }: any) => {
     console.log('model', model)
 
     db.models[model.name] = model;
-  })
+  });
 
   Object.keys(db.models).forEach((key) => {
     if ('associate' in db.models[key]) {
