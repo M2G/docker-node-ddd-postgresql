@@ -19,12 +19,16 @@ export default ({ config, basePath }: any) => {
   }
 
   const dir = path.join(basePath, './models');
-  fs.readdirSync(dir).forEach(file => {
+  fs.readdirSync(dir)
+    .filter((file) => {
+      return (file.indexOf('.') !== 0) && (file.slice(-3) === '.js');
+    })
+    .forEach(file => {
     const modelDir = path.join(dir, file);
     //@see https://github.com/sequelize/express-example/issues/99
     // Sequelize v5 -> v6
     // const model = sequelize.import(modelDir)
-    const model = require(modelDir?.split(".")?.[0] + '.js')(sequelize, DataTypes)
+    const model = require(modelDir)(sequelize, DataTypes)
 
     console.log('model', model)
 
