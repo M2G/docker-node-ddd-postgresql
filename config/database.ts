@@ -6,7 +6,10 @@ export default {
         password: 'docker',
         database: 'test_db',
         port: 3306,
-        dialect: "mysql"
+        dialect: "mysql",
+        dialectOptions: {
+          charset: 'utf8',
+        }
     },
     staging: {
         version: 'v1',
@@ -15,7 +18,10 @@ export default {
         password: 'docker',
         database: 'test_db',
         port: 3306,
-        dialect: "mysql"
+        dialect: "mysql",
+      dialectOptions: {
+        charset: 'utf8',
+      }
     },
     production: {
         version: 'v1',
@@ -24,7 +30,10 @@ export default {
         password: 'docker',
         database: 'test_db',
         port: 3306,
-        dialect: "mysql"
+        dialect: "mysql",
+      dialectOptions: {
+        charset: 'utf8',
+      }
     },
     test: {
         version: 'v1',
@@ -33,6 +42,9 @@ export default {
         password: 'docker',
         database: 'test_db',
         port: 3306,
-        dialect: "mysql"
+        dialect: "mysql",
+      dialectOptions: {
+        charset: 'utf8',
+      }
     }
 };

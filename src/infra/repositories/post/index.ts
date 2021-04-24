@@ -6,12 +6,12 @@ export default ({ model }: any) => {
     model.findAll(...args).then((entity: { dataValues: any }[]) =>
       entity?.map((data: { dataValues: any }) => {
         const { dataValues } = data || {};
-        return toEntity(dataValues);
+        return new toEntity(dataValues);
       })
     )
 
   const create = (...args: any[]) =>
-    model.create(...args).then(({ dataValues }: any) => toEntity(dataValues));
+    model.create(...args).then(({ dataValues }: any) => new toEntity(dataValues));
 
   const update = (...args: any[]) =>
     model.update(...args);

@@ -12,7 +12,7 @@ export default ({ postRepository }: any) => {
   const update = ({ id, body }: any) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const post = Post(body)
+        const post = new Post(body)
         await postRepository.update(post, {
           where: { id }
         })
@@ -20,7 +20,7 @@ export default ({ postRepository }: any) => {
       } catch (error) {
         reject(error);
       }
-    })
+    });
   }
 
   return {

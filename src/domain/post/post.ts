@@ -1,17 +1,15 @@
 /* eslint-disable */
-import t from 'tcomb';
-import { compose } from 'ramda';
-import cleanData from '../helper';
+// import t from 'tcomb';
+// @ts-ignore
+import { attributes } from 'structure';
 
-const Post = t.struct({
-  id: t.maybe(t.Integer),
-  title: t.String,
-  content: t.String,
+const Post = attributes({
+  id: Number,
+  title: String,
+  content: String,
   // createdAt: t.maybe(t.Date),
   // updatedAt: t.maybe(t.Date)
-})
+})(class Post {});
 
-export default compose(
-  cleanData,
-  Post
-)
+export default Post;
+

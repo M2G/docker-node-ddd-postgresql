@@ -5,6 +5,7 @@ import { Router } from 'express';
 import { partialRight } from 'ramda';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
+// controller
 import * as index from '../http/modules';
 import * as post from '../http/modules/post';
 

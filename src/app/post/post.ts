@@ -13,7 +13,8 @@ export default ({ postRepository }: any) => {
     return Promise
       .resolve()
       .then(() => {
-        const post = Post(body);
+        // @ts-ignore
+        const post = new Post(body);
         return postRepository.create(post);
       })
       .catch((error) => {
