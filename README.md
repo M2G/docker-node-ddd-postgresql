@@ -11,6 +11,29 @@ By isolating domain code away from all other concerns of the system like infrast
 * NodeJS (+14)
 * Typescript
 
+---
+
+## Features
+
+- [x] Auth functionality (Signup, Login)
+- [x] JWT Authentication
+- [x] REST API
+- [x] Dependency injection
+- [x] Configs via environmental variables
+- [x] Sequelize with Postgres implementation
+- [x] Unit tests
+- [x] Badges (coverage, up-to-date dependencies)
+- [] GraphQL API
+- [] GraphQL playground
+
+---
+
+## Run locally
+
+
+
+---
+
 ## Getting Started
 
 Run in development:
