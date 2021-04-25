@@ -9,8 +9,7 @@ export default ({ config, basePath }: any) => {
     process.env.MYSQL_DATABASE || '',
     process.env.MYSQL_USER || '',
     process.env.MYSQL_PASSWORD || '',
-    { ...config.db }
-)
+    { ...config.db })
 
   const db = {
     sequelize,
@@ -18,12 +17,12 @@ export default ({ config, basePath }: any) => {
     models: {}
   }
 
-  const dir = path.join(basePath, './models');
+  const dir: string = path.join(basePath, './models');
   fs.readdirSync(dir)
-    .filter((file) => {
+    .filter((file: string) => {
       return (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js');
     })
-    .forEach(file => {
+    .forEach((file: string) => {
     const modelDir = path.join(dir, file);
     //@see https://github.com/sequelize/express-example/issues/99
     // Sequelize v5 -> v6

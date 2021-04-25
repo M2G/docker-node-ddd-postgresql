@@ -19,6 +19,7 @@ services:
       - ${PORT}:${PORT}
     volumes:
       - .:/app
+      - .:/app/node_modules/bcrypt
     command: npm run watch
     depends_on:
       - db

@@ -52,6 +52,7 @@
     "assert": "^1.4.1",
     "await-to-ts": "^1.0.6",
     "awilix": "^4.3.3",
+    "bcrypt": "^5.0.1",
     "body-parser": "1.18.3",
     "concurrently": "^6.0.2",
     "cors": "2.8.5",

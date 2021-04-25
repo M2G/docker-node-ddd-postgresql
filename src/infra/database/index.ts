@@ -8,5 +8,5 @@ export default ({ logger, config }: any) => {
     return false;
   }
 
-  return sequelize({ config, basePath: __dirname })
-}
+  return sequelize({ config, basePath: __dirname });
+};

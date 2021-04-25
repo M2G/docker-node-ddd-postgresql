@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import container from '../../../../container';
 import {
  get, post, put, remove,

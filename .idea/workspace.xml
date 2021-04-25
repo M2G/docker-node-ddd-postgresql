@@ -2,8 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/infra/encryption/encryption.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/encryption/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/jwt/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/infra/jwt/jwt.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/post/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/post/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +34,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infra/database/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -41,11 +51,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/infra/database/models" />
       <recent name="$PROJECT_DIR$/src/infra/sequelize" />
       <recent name="$PROJECT_DIR$/config/env" />
       <recent name="$PROJECT_DIR$/build/config" />
-      <recent name="$PROJECT_DIR$/build/config/env" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/infra/database" />
@@ -61,7 +71,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
-      <workItem from="1619027369845" duration="59664000" />
+      <workItem from="1619027369845" duration="66766000" />
     </task>
     <servers />
   </component>

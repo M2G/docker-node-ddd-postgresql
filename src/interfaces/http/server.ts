@@ -4,13 +4,13 @@ import express from 'express';
 export default ({ config, router, logger }: any) => {
   const app = express();
 
-  app.disable('x-powered-by')
+  app.disable('x-powered-by');
  //  app.use(auth.initialize())
   app.use(router);
 
   return {
     app,
-    start: () => new Promise((resolve) => {
+    start: () => new Promise(() => {
       const http = app.listen(config.port, () => {
         // @ts-ignore
         const { port } = http.address()
