@@ -1,7 +1,8 @@
 /*eslint-disable*/
+const table = "test_tb";
 //@ts-ignore
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('test_tb', {
+  return sequelize.define(table, {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,

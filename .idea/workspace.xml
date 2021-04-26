@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/auth.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/delete.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/get.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/post/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/post/put.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/post.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
-      <workItem from="1619027369845" duration="70450000" />
+      <workItem from="1619027369845" duration="72264000" />
     </task>
     <servers />
   </component>
