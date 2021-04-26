@@ -9,8 +9,8 @@ import Post from '../../domain/post';
   */
 export default ({ postRepository }: any) => {
   // code for getting all the items
-  const create = ({ body }: any) => {
-    return Promise
+  const create = ({ body }: any) =>
+    Promise
       .resolve()
       .then(() => {
         // @ts-ignore
@@ -20,7 +20,6 @@ export default ({ postRepository }: any) => {
       .catch((error) => {
         throw new Error(error);
       });
-  };
 
   return {
     create

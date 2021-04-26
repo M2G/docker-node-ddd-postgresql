@@ -3,8 +3,8 @@
   * function for getter post.
   */
 export default ({ postRepository }: any) => {
-  const all = () => {
-    return Promise
+  const all = () =>
+     Promise
       .resolve()
       .then(() =>
         postRepository.getAll({
@@ -17,7 +17,6 @@ export default ({ postRepository }: any) => {
       .catch(error => {
         throw new Error(error)
       })
-  }
 
   return {
     all

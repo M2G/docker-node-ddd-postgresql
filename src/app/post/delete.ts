@@ -4,8 +4,8 @@
   */
 export default ({ postRepository }: any) => {
   // code for getting all the items
-  const remove = ({ id }: any) => {
-    return Promise
+  const remove = ({ id }: any) =>
+    Promise
       .resolve()
       .then(() =>
         postRepository.update({
@@ -17,7 +17,6 @@ export default ({ postRepository }: any) => {
       .catch((error) => {
         throw new Error(error);
       })
-  }
 
   return {
     remove

@@ -9,8 +9,8 @@ import Post from '../../domain/post';
   */
 export default ({ postRepository }: any) => {
   // code for getting all the items
-  const update = ({ id, body }: any) => {
-    return new Promise(async (resolve, reject) => {
+  const update = ({ id, body }: any) =>
+    new Promise(async (resolve, reject) => {
       try {
         const post = new Post(body)
         await postRepository.update(post, {
@@ -21,7 +21,6 @@ export default ({ postRepository }: any) => {
         reject(error);
       }
     });
-  }
 
   return {
     update
