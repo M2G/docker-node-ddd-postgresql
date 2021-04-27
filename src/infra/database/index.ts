@@ -4,7 +4,7 @@ import sequelize from '../sequelize';
 export default ({ logger, config }: any) => {
   const { db = null } = config;
   if (!db) {
-    logger.error('Database config file log not found, disabling database.')
+    logger.error('Database config file log not found, disabling database.');
     return false;
   }
 

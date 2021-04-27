@@ -11,7 +11,8 @@ export default ({ model }: any) => {
     )
 
   const create = (...args: any[]) =>
-    model.create(...args).then(({ dataValues }: any) => new toEntity(dataValues));
+    model.create(...args).then(({ dataValues }: any) =>
+      new toEntity(dataValues));
 
   const update = (...args: any[]) =>
     model.update(...args);

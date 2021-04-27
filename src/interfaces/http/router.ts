@@ -22,7 +22,7 @@ export default ({ config, logger, database }: any) => {
     .use(cors({
       allowedHeaders: ['Content-Type', 'Authorization'],
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      origin: ['http://localhost:8080'],
+      origin: ['http://localhost:3000'],
 
     }))
     .use(bodyParser.json());
