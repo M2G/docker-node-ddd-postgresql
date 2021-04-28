@@ -27,9 +27,8 @@ export default ({ config, logger, database }: any) => {
     }))
     .use(bodyParser.json());
 
-
   router.use('/', index.default());
-  router.use(`/api/posts`, post.default().router);
+  router.use('/api/posts', post.default().router);
   router.use(partialRight(errorHandler, [logger, config]));
 
   return router;

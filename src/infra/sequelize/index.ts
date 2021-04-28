@@ -18,11 +18,9 @@ export default ({ config, basePath }: any) => {
   }
 
   const dir: string = path.join(basePath, './models');
-  fs.readdirSync(dir)
-    .filter((file: string) => {
+  fs.readdirSync(dir)?.filter((file: string) => {
       return (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js');
-    })
-    .forEach((file: string) => {
+    })?.forEach((file: string) => {
     const modelDir = path.join(dir, file);
     //@see https://github.com/sequelize/express-example/issues/99
     // Sequelize v5 -> v6
@@ -34,7 +32,7 @@ export default ({ config, basePath }: any) => {
     db.models[model.name] = model;
   });
 
-  Object.keys(db.models).forEach((key) => {
+  Object.keys(db.models)?.forEach((key) => {
     if ('associate' in db.models[key]) {
       db.models[key].associate(db.models)
     }

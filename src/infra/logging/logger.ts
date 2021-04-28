@@ -2,8 +2,8 @@
 import fs from 'fs';
 const winston = require('winston');
 
-if (!fs.existsSync(`logs`)) {
-  fs.mkdirSync(`logs`);
+if (!fs.existsSync('logs')) {
+  fs.mkdirSync('logs');
 }
 
 export default ({ config }: any) =>
