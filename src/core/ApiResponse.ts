@@ -26,12 +26,10 @@ abstract class ApiResponse {
   ) {}
 
   protected prepare<T extends ApiResponse>(res: Response, response: T): Response {
-   // @ts-ignore
     return res.status(this.status).json(ApiResponse.sanitize(response));
   }
 
   public send(res: Response): Response {
-    // @ts-ignore
     return this.prepare<ApiResponse>(res, this);
   }
 
@@ -60,9 +58,7 @@ export class NotFoundResponse extends ApiResponse {
   }
 
   send(res: Response): Response {
-    // @ts-ignore
    this.url = res.req?.originalUrl;
-    // @ts-ignore
     return super.prepare<NotFoundResponse>(res, this);
   }
 }
@@ -104,13 +100,11 @@ export class FailureMsgResponse extends ApiResponse {
 }
 
 export class SuccessResponse<T> extends ApiResponse {
-  // @ts-ignore
   constructor(message: string, private data: T) {
     super(StatusCode.SUCCESS, ResponseStatus.SUCCESS, message);
   }
 
   send(res: Response): Response {
-    // @ts-ignore
     return super.prepare<SuccessResponse<T>>(res, this);
   }
 }
@@ -123,9 +117,7 @@ export class AccessTokenErrorResponse extends ApiResponse {
   }
 
   send(res: Response): Response {
-    // @ts-ignore
     res.setHeader('instruction', this.instruction);
-    // @ts-ignore
     return super.prepare<AccessTokenErrorResponse>(res, this);
   }
 }
@@ -137,7 +129,6 @@ export class TokenRefreshResponse extends ApiResponse {
   }
 
   send(res: Response): Response {
-    // @ts-ignore
     return super.prepare<TokenRefreshResponse>(res, this);
   }
 }
