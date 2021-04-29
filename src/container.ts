@@ -4,11 +4,11 @@ import { createContainer, asValue, asFunction } from 'awilix';
 import app from './app';
 import server from './interfaces/http/server';
 import router from './interfaces/http/router';
-// import auth from './interfaces/http/auth';
 import config from '../config';
 
 import logger from './infra/logging/logger';
 // import jwt from './infra/jwt';
+// import auth from './interfaces/http/auth';
 import response from './infra/support/response';
 import repository from './infra/repositories';
 import database from './infra/database';

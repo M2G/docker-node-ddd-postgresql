@@ -16,8 +16,6 @@ By isolating domain code away from all other concerns of the system like infrast
 
 ## Features
 
-- [x] Auth functionality (Signup, Login)
-- [x] JWT Authentication
 - [x] REST API
 - [x] Dependency injection
 - [x] Configs via environmental variables
@@ -27,6 +25,8 @@ By isolating domain code away from all other concerns of the system like infrast
 - [] GraphQL API
 - [] GraphQL playground
 - [] Code refactor
+- [] Auth functionality (Signup, Login)
+- [] JWT Authentication
 ---
 
 ## Run locally
