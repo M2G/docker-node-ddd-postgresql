@@ -1,7 +1,6 @@
 /* eslint-disable*/
+import Status from 'http-status';
 import { Router } from 'express';
-import { SuccessResponse } from '../../../../core/ApiResponse';
-import { BadRequestError } from '../../../../core/ApiError';
 
 export default ({
   getUseCase,
@@ -20,11 +19,13 @@ export default ({
       getUseCase
         .all(req, res)
         .then((data: any) => {
-          return new SuccessResponse('success', data).send(res);
+          res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: any }) => {
           logger.error(error);
-          return new BadRequestError(error.message);
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message),
+);
         });
     });
 
@@ -33,11 +34,13 @@ export default ({
       postUseCase
         .create({ body: req.body })
         .then((data: any) => {
-          return new SuccessResponse('success', data).send(res);
+          res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: any }) => {
           logger.error(error);
-          return new BadRequestError(error.message);
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message),
+);
         });
     });
 
@@ -46,11 +49,13 @@ export default ({
       putUseCase
         .update({ body: req.body, id: req.params.id })
         .then((data: any) => {
-          return new SuccessResponse('success', data).send(res);
+          res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: any }) => {
           logger.error(error);
-          return new BadRequestError(error.message);
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message),
+);
         });
     });
 
@@ -59,11 +64,13 @@ export default ({
       deleteUseCase
         .remove({ id: req.params.id })
         .then((data: any) => {
-          return new SuccessResponse('success', data).send(res);
+          res.status(Status.OK).json(Success(data));
         })
         .catch((error: { message: any }) => {
           logger.error(error);
-          return new BadRequestError(error.message);
+          res.status(Status.BAD_REQUEST).json(
+            Fail(error.message),
+);
         });
     });
 
