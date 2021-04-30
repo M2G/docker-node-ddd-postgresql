@@ -54,6 +54,7 @@ module.exports = {
     "sort-imports": 0,
     "implicit-arrow-linebreak": 0,
 
+    "import/no-cycle": 1,
     "import/extensions": "off",
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,

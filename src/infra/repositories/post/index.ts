@@ -10,18 +10,25 @@ export default ({ model }: any) => {
       })
     )
 
+  const findById = (...args: any[]) =>
+    model.findByPk(...args)
+      .then(({ dataValues }: any) => new toEntity(dataValues))
+      .catch((error: string | undefined) => { throw new Error(error) })
+
   const create = (...args: any[]) =>
     model.create(...args).then(({ dataValues }: any) =>
       new toEntity(dataValues));
 
   const update = (...args: any[]) =>
-    model.update(...args);
+    model.update(...args)
+      .catch((error: string | undefined) => { throw new Error(error) })
 
   const destroy = (...args: any[]) =>
     model.destroy(...args)
 
   return {
     getAll,
+    findById,
     create,
     update,
     destroy

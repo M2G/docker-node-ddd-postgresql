@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-cycle
 import container from '../../../../container';
 import {
- get, post, put, remove
+ get, getOne, post, put, remove
 } from '../../../../app/post';
 
 export default () => {
@@ -13,12 +12,14 @@ export default () => {
   } = cradle;
 
   const getUseCase = get({postRepository});
+  const getOneUseCase = getOne({postRepository});
   const postUseCase = post({postRepository});
   const putUseCase = put({postRepository});
   const deleteUseCase = remove({postRepository});
 
   return {
     deleteUseCase,
+    getOneUseCase,
     getUseCase,
     postUseCase,
     putUseCase
