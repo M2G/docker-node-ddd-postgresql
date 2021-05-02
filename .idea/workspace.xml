@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.ts" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/fill_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="15272000" />
+      <workItem from="1619750211208" duration="18109000" />
     </task>
     <servers />
   </component>

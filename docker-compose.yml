@@ -28,12 +28,13 @@ services:
     image: postgres:13.2
     restart: always
     environment:
+      - POSTGRES_DB=test_tb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DBNAME=test
-      - POSTGRES_DBUSER=test
-      - POSTGRES_DBPASS=test
-      - POSTGRES_DBHOST=test
+      - DB_SCHEMA=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=postgres
     logging:
       options:
         max-size: 10m
@@ -50,8 +51,8 @@ services:
     cap_add:
       - SYS_NICE
 
-#  redis:
-#    image: redis:alpine
-#    container_name: cache
-#    ports:
-#      - 6379:6379
+  redis:
+    image: redis:alpine
+    container_name: cache
+    ports:
+      - ${HOST_PORT_REDIS}:${CONTAINER_PORT_REDIS}

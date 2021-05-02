@@ -6,9 +6,9 @@ import { Sequelize, DataTypes } from 'sequelize';
 export default ({ config, basePath }: any) => {
   // console.log('config', config)
   const sequelize = new Sequelize(
-    process.env.MYSQL_DATABASE || '',
-    process.env.MYSQL_USER || '',
-    process.env.MYSQL_PASSWORD || '',
+    process.env.DB_SCHEMA || 'postgres',
+    process.env.DB_USER || 'postgres',
+    process.env.DB_PASSWORD || '',
     { ...config.db })
 
   const db = {

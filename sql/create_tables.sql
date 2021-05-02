@@ -1,3 +1,7 @@
+-- Dumping database structure for test_table
+CREATE DATABASE IF NOT EXISTS test_db;
+USE test_db;
+
 -- Creation of product table
 CREATE TABLE IF NOT EXISTS product (
   product_id INT NOT NULL,
