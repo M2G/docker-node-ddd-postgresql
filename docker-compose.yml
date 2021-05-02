@@ -33,12 +33,15 @@ services:
       - POSTGRES_DBNAME=test
       - POSTGRES_DBUSER=test
       - POSTGRES_DBPASS=test
+      - POSTGRES_DBHOST=test
     logging:
       options:
         max-size: 10m
         max-file: 3
     ports:
       - 5438:5432
+    ports:
+      - ${HOST_PORT}:${CONTAINER_PORT}
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
@@ -48,3 +51,9 @@ services:
       - seccomp:unconfined
     cap_add:
       - SYS_NICE
+
+#  redis:
+#    image: redis:alpine
+#    container_name: cache
+#    ports:
+#      - 6379:6379
