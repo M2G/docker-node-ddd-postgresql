@@ -2,7 +2,7 @@
   "name": "docker-node-ddd-mysql-typescript",
   "version": "0.0.1",
   "description": "Docker, NodeJS, MySQL, Typescript with Domain Driven Design",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -1,32 +1,18 @@
 /*eslint-disable*/
-const table = "test_tb";
+const table = "country";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) =>
   sequelize.define(table, {
-    id: {
+    country_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
-    title: {
-      type: DataTypes.STRING,
+    country_name: {
+      type: DataTypes.STRING(450),
       allowNull: false
     },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    /*
-    createdAt: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    updatedBy: {
-      type: DataTypes.UUID,
-      allowNull: true
-    }
-    */
 
   }, {
     freezeTableName: true,
