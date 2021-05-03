@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/infra/database/models/city.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/city.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/infra/database/models/country.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/country.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +25,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infra/database/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/infra/database" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -42,11 +42,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/infra/database" />
       <recent name="$PROJECT_DIR$/src/infra/database/models" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/app/post" />
       <recent name="$PROJECT_DIR$/src/infra/support" />
-      <recent name="$PROJECT_DIR$/src/infra/sequelize" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -63,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="29607000" />
+      <workItem from="1619750211208" duration="31043000" />
     </task>
     <servers />
   </component>
