@@ -50,7 +50,7 @@ FROM GENERATE_SERIES(1, current_setting('my.status_names')::INT) AS status_name_
 
 -- Filling of sales
 INSERT INTO sale
-select gen_random_uuid ()
+SELECT gen_random_uuid ()
 	, round(CAST(float8 (random() * 10000) AS NUMERIC), 3)
 	, TO_TIMESTAMP(start_date, 'YYYY-MM-DD HH24:MI:SS') +
 		random()* (TO_TIMESTAMP(end_date, 'YYYY-MM-DD HH24:MI:SS')

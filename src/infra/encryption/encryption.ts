@@ -1,16 +1,14 @@
-/*eslint-disable*/
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 
 const encryptPassword = (password: any) => {
-  const salt = bcrypt.genSaltSync()
-  return bcrypt.hashSync(password, salt)
-}
+  const salt = bcrypt.genSaltSync();
+  return bcrypt.hashSync(password, salt);
+};
 
-const comparePassword = (password: any, encodedPassword: any) => {
-  return bcrypt.compareSync(password, encodedPassword)
-}
+const comparePassword = (password: any, encodedPassword: string) =>
+  bcrypt.compareSync(password, encodedPassword);
 
-export default {
+export {
   encryptPassword,
   comparePassword
-}
+};

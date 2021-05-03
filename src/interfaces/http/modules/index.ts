@@ -1,12 +1,12 @@
 /*eslint-disable*/
 import { Router } from 'express';
-import {SuccessResponse} from "../../../core/ApiResponse";
+import Status from 'http-status';
 
 export default () => {
   const router = Router();
 
   router.get('/', (req: any, res: any) => {
-    return new SuccessResponse('API working').send(res);
+    res.status(Status.OK).json({ status: 'API working' })
   });
 
   return router;
