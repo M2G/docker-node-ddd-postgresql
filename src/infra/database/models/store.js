@@ -1,20 +1,20 @@
 /*eslint-disable*/
-const Country = require('./country');
+const City = require('./city');
 
-const table = "city";
+const table = "store";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
- const City = sequelize.define(table, {
-   city_id: {
+ const Store = sequelize.define(table, {
+   store_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false
     },
-    country_name: {
-      type: DataTypes.STRING(450),
+   name: {
+      type: DataTypes.STRING(250),
       allowNull: false
     },
-   country_id: {
+   city_id: {
      type: DataTypes.INTEGER,
      allowNull: false
    },
@@ -26,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  City.hasMany(Country(), { foreignKey: 'fk_country', foreignKeyConstraint: true });
+  Store.hasMany(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
 
   return City;
+
 };
