@@ -1,11 +1,12 @@
 /*eslint-disable*/
-const table = "country";
+import Country from './country';
+
+const table = "city";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
-  const Country = sequelize.define(table, {
-    country_id: {
+ const City = sequelize.define(table, {
+   city_id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
@@ -13,14 +14,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(450),
       allowNull: false
     },
-
+   country_id: {
+     type: DataTypes.INTEGER,
+     allowNull: false
+   },
   }, {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate () {}
+      associate() {}
     }
   });
 
-  return Country;
-}
+  City.belongsTo(Country(), { foreignKey: 'fk_country' });
+
+  return City;
+
+};
