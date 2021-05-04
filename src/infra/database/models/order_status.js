@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     },
    city_id: {
      type: DataTypes.INTEGER,
-     allowNull: false
+     allowNull: false,
+     references: { model: 'city', key: 'city_id'},
    },
   }, {
     freezeTableName: true,
@@ -26,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Store.hasMany(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
+  Store.hasOne(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
 
   return City;
 

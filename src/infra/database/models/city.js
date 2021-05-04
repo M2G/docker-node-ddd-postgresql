@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     },
    country_id: {
      type: DataTypes.INTEGER,
-     allowNull: false
+     allowNull: false,
+     references: { model: 'country', key: 'country_id'},
    },
   }, {
     freezeTableName: true,
