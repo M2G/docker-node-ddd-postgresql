@@ -1,23 +1,29 @@
 /*eslint-disable*/
-const City = require('./city');
+const Sale = require('./sale');
+const Status = require('./status_name');
 
-const table = "store";
+const table = "order_status";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
- const Store = sequelize.define(table, {
-   store_id: {
-      type: DataTypes.INTEGER,
+ const OrderStatus = sequelize.define(table, {
+   order_status_id: {
+      type: DataTypes.STRING(200),
       primaryKey: true,
       allowNull: false
     },
-   name: {
-      type: DataTypes.STRING(250),
+   update_at: {
+      type: DataTypes.DATE,
       allowNull: false
     },
-   city_id: {
+   sale_id: {
+     type: DataTypes.STRING(200),
+     allowNull: false,
+     references: { model: 'sale', key: 'sale_id'},
+   },
+   status_name_id: {
      type: DataTypes.INTEGER,
      allowNull: false,
-     references: { model: 'city', key: 'city_id'},
+     references: { model: 'status_name', key: 'status_name_id'},
    },
   }, {
     freezeTableName: true,
@@ -27,8 +33,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Store.hasOne(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
+  OrderStatus.hasOne(Sale(), { foreignKey: 'fk_sale', foreignKeyConstraint: true });
+  OrderStatus.hasOne(Status(), { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
 
-  return Store;
+  return OrderStatus;
 
 };
