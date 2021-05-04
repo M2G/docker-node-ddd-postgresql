@@ -13,7 +13,9 @@ import logger from './infra/logging/logger';
 
 import response from './infra/support/response';
 import repository from './infra/repositories';
-import database from './infra/database';
+
+// eslint-disable-next-line
+const database = require('./infra/database');
 
 const container = createContainer();
 
@@ -22,6 +24,7 @@ container
   .register({
     app: asFunction(app).singleton(),
     config: asValue(config),
+    // eslint-disable-next-line
     database: asFunction(database).singleton(),
     logger: asFunction(logger).singleton(),
     repository: asFunction(repository).singleton(),

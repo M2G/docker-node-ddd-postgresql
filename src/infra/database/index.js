@@ -1,7 +1,8 @@
 /* eslint-disable */
-import sequelize from '../sequelize';
+const sequelize = require('../sequelize');
 
-export default ({ logger, config }: any) => {
+// @ts-ignore
+module.exports = ({ logger, config }) => {
   const { db = null } = config;
   if (!db) {
     logger.error('Database config file log not found, disabling database.');

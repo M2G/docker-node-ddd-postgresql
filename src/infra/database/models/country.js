@@ -1,8 +1,9 @@
 /*eslint-disable*/
 const table = "country";
 //@ts-ignore
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define(table, {
+module.exports = (sequelize, DataTypes) => {
+  console.log('sequelize sequelize sequelize 2', sequelize)
+ return sequelize.define(table, {
     country_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -21,4 +22,4 @@ module.exports = (sequelize, DataTypes) =>
       associate () {}
     }
   });
-
+}
