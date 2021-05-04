@@ -1,10 +1,10 @@
 /*eslint-disable*/
-const fs = require('fs');
-const path = require('path');
-const { Sequelize, DataTypes } = require('sequelize');
+import fs from 'fs';
+import path from 'path';
+import { Sequelize, DataTypes } from 'sequelize';
 
 // @ts-ignore
-module.exports = async ({ config, basePath }) => {
+export default ({ config, basePath }) => {
   // console.log('config', config)
   const sequelize = new Sequelize(
     process.env.DB_SCHEMA || 'postgres',
@@ -20,9 +20,9 @@ module.exports = async ({ config, basePath }) => {
 
   const dir = path.join(basePath, './models');
 
-  await fs.readdirSync(dir)?.filter((file) => {
-      return (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js');
-    })?.forEach((file) => {
+  fs.readdirSync(dir)?.filter((file) =>
+    (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js')
+    )?.forEach((file) => {
 
       console.log('file', file)
 
@@ -35,7 +35,7 @@ module.exports = async ({ config, basePath }) => {
     db.models[model.name] = model;
   });
 
-  Object.keys(db.models)?.forEach((key) => {
+  db.models && Object.keys(db.models)?.forEach((key) => {
     if ('associate' in db.models[key]) {
       db.models[key].associate(db.models)
     }

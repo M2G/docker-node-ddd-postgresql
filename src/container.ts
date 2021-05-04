@@ -13,9 +13,7 @@ import logger from './infra/logging/logger';
 
 import response from './infra/support/response';
 import repository from './infra/repositories';
-
-// eslint-disable-next-line
-const database = require('./infra/database');
+import database from './infra/database';
 
 const container = createContainer();
 

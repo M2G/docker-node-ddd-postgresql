@@ -1,12 +1,12 @@
 /*eslint-disable*/
-const Store = require('./store');
-const Product = require('./product');
-const User = require('./users');
+//const Store = require('./store');
+//const Product = require('./product');
+//const User = require('./users');
 
 const table = "sale";
 //@ts-ignore
-module.exports = (sequelize, DataTypes) => {
- const Sale = sequelize.define(table, {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(table, {
    sale_id: {
       type: DataTypes.STRING(200),
       primaryKey: true,
@@ -43,10 +43,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+ /*
   Sale.hasMany(Product(), { foreignKey: 'fk_product', foreignKeyConstraint: true });
   Sale.hasMany(User(), { foreignKey: 'fk_user', foreignKeyConstraint: true });
   Sale.hasMany(Store(), { foreignKey: 'fk_store', foreignKeyConstraint: true });
 
   return Sale;
+*/
 
-};

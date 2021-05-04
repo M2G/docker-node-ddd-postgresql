@@ -1,11 +1,10 @@
 /*eslint-disable*/
-
+// const Country = require('./country');
 
 const table = "city";
 //@ts-ignore
-module.exports = (sequelize, DataTypes) => {
-  console.log('sequelize sequelize sequelize 2', sequelize)
- return sequelize.define(table, {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(table, {
    city_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -27,4 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       associate() {}
     }
   });
-};
+
+  // City.hasMany(Country(), { foreignKey: 'fk_country', foreignKeyConstraint: true });
+  // return City;
+
