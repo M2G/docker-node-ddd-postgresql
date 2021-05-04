@@ -1,20 +1,32 @@
 /*eslint-disable*/
 const City = require('./city');
 
-const table = "store";
+const table = "sale";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
  const Store = sequelize.define(table, {
-   store_id: {
-      type: DataTypes.INTEGER,
+   sale_id: {
+      type: DataTypes.STRING(200),
       primaryKey: true,
       allowNull: false
     },
-   name: {
-      type: DataTypes.STRING(250),
+   amount: {
+      type: DataTypes.REAL(20,3),
       allowNull: false
     },
-   city_id: {
+   date_sale: {
+     type: DataTypes.DATE,
+     allowNull: false
+   },
+   product_id: {
+     type: DataTypes.INTEGER,
+     allowNull: false
+   },
+   user_id: {
+     type: DataTypes.INTEGER,
+     allowNull: false
+   },
+   store_id: {
      type: DataTypes.INTEGER,
      allowNull: false
    },
