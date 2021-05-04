@@ -29,6 +29,6 @@ module.exports = (sequelize, DataTypes) => {
 
   Store.hasMany(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
 
-  return City;
+  return Store;
 
 };

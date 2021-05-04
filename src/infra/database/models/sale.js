@@ -1,10 +1,12 @@
 /*eslint-disable*/
-const City = require('./city');
+const Store = require('./store');
+const Product = require('./product');
+const User = require('./users');
 
 const table = "sale";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
- const Store = sequelize.define(table, {
+ const Sale = sequelize.define(table, {
    sale_id: {
       type: DataTypes.STRING(200),
       primaryKey: true,
@@ -20,15 +22,18 @@ module.exports = (sequelize, DataTypes) => {
    },
    product_id: {
      type: DataTypes.INTEGER,
-     allowNull: false
+     allowNull: false,
+     references: { model: 'product', key: 'product_id'},
    },
    user_id: {
      type: DataTypes.INTEGER,
-     allowNull: false
+     allowNull: false,
+     references: { model: 'users', key: 'product_id'},
    },
    store_id: {
      type: DataTypes.INTEGER,
-     allowNull: false
+     allowNull: false,
+     references: { model: 'store', key: 'store_id'},
    },
   }, {
     freezeTableName: true,
@@ -38,8 +43,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Store.hasMany(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
+  Sale.hasMany(Product(), { foreignKey: 'fk_product', foreignKeyConstraint: true });
+  Sale.hasMany(User(), { foreignKey: 'fk_user', foreignKeyConstraint: true });
+  Sale.hasMany(Store(), { foreignKey: 'fk_store', foreignKeyConstraint: true });
 
-  return City;
+  return Sale;
 
 };
