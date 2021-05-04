@@ -1,23 +1,17 @@
 /*eslint-disable*/
-const City = require('./city');
-
-const table = "store";
+const table = "status_name";
 //@ts-ignore
-module.exports = (sequelize, DataTypes) => {
- const Store = sequelize.define(table, {
-   store_id: {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(table, {
+    status_name_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       allowNull: false
     },
-   name: {
-      type: DataTypes.STRING(250),
+    status_name: {
+      type: DataTypes.STRING(450),
       allowNull: false
     },
-   city_id: {
-     type: DataTypes.INTEGER,
-     allowNull: false
-   },
   }, {
     freezeTableName: true,
     timestamps: false,
@@ -25,9 +19,3 @@ module.exports = (sequelize, DataTypes) => {
       associate() {}
     }
   });
-
-  Store.hasMany(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
-
-  return City;
-
-};
