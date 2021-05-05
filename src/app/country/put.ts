@@ -7,13 +7,13 @@ import Post from '../../domain/post';
 /**
   * function for getter post.
   */
-export default ({ postRepository }: any) => {
+export default ({ countryRepository }: any) => {
   // code for getting all the items
   const update = ({ id, body }: any) =>
     new Promise(async (resolve, reject) => {
       try {
         const post = new Post(body);
-        await postRepository.update(post, {
+        await countryRepository.update(post, {
           where: { id }
         })
         resolve(post);

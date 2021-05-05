@@ -1,14 +1,13 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for getter country.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
+export default ({ countryRepository }: any) => {
   const remove = ({ id }: any) =>
     Promise
       .resolve()
       .then(() =>
-        postRepository.update({
+        countryRepository.update({
           isDeleted: 1
         }, {
           where: { id }

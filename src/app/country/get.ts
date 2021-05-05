@@ -1,13 +1,13 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for getter country.
   */
-export default ({ postRepository }: any) => {
+export default ({ countryRepository }: any) => {
   const all = () =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.getAll({
+        countryRepository.getAll({
           attributes: [
             //'id', 'title', 'content', 'createdAt', 'modifiedAt'
             'id', 'title', 'content'
