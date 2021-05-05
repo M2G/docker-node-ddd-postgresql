@@ -3,3 +3,4 @@ dist
 build
 config
 .eslintrc.js
+custom.d.ts

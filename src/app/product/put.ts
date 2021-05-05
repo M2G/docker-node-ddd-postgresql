@@ -2,23 +2,22 @@
 /**
  * this file will hold all the get use-case for post domain
  */
-import Post from '../../domain/post';
+import Product from '../../domain/product';
 
 /**
-  * function for update post.
+  * function for update product.
   */
 export default ({ productRepository }: any) => {
-  // code for getting all the items
   const update = ({ id, body }: any) =>
     new Promise(async (resolve, reject) => {
       try {
-        const post = new Post(body);
+        const post = new Product(body);
         await productRepository.update(post, {
           where: { id }
         })
-        resolve(post);
+        return resolve(post);
       } catch (error) {
-        reject(error);
+        return reject(error);
       }
     });
 

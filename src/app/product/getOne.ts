@@ -1,6 +1,6 @@
 /*eslint-disable*/
 /**
-  * function for get one post.
+  * function for get one product.
   */
 export default ({ productRepository }: any) => {
   const one = ({ id }: any) =>

@@ -26,6 +26,7 @@ services:
 
   postgres:
     image: postgres:13.2
+    user: postgres
     restart: always
     environment:
       - POSTGRES_DB=test_tb

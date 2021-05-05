@@ -1,6 +1,6 @@
 /*eslint-disable*/
 /**
-  * function for remove post.
+  * function for remove product.
   */
 export default ({ productRepository }: any) => {
   const remove = ({ id }: any) =>

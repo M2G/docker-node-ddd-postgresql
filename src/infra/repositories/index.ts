@@ -1,15 +1,17 @@
 /*eslint-disable*/
-import Post from './post';
+// import Post from './post';
 
 export default ({ database }: any) => {
 
-  console.log('database', database)
+ const { models } = database;
 
-  const { models } = database;
+   console.log('database database database database', models)
+
+ /*
   const { test_tb } = models;
   const postModel: any = test_tb;
-
+*/
   return {
-    postRepository: Post({ model: postModel }),
+    // postRepository: Post({ model: postModel }),
   };
 };

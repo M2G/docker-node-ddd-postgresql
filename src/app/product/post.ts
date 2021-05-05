@@ -1,11 +1,11 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for product domain
  */
-import Post from '../../domain/post';
+import Product from '../../domain/product';
 
 /**
-  * function for create post.
+  * function for create product.
   */
 export default ({ productRepository }: any) => {
   // code for getting all the items
@@ -13,7 +13,7 @@ export default ({ productRepository }: any) => {
     Promise
       .resolve()
       .then(() => {
-        const post = new Post(body);
+        const post = new Product(body);
         return productRepository.create(post);
       })
       .catch((error) => {
