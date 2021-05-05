@@ -2,20 +2,18 @@
 /**
  * this file will hold all the get use-case for country domain
  */
-import Post from '../../domain/post';
+import Country from '../../domain/country';
 
 /**
   * function for getter post.
   */
 export default ({ countryRepository }: any) => {
-  // code for getting all the items
   const create = ({ body }: any) =>
     Promise
       .resolve()
       .then(() => {
-        // @ts-ignore
-        const post = new Post(body);
-        return countryRepository.create(post);
+        const country = new Country(body);
+        return countryRepository.create(country);
       })
       .catch((error) => {
         throw new Error(error);

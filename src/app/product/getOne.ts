@@ -3,15 +3,15 @@
   * function for get one product.
   */
 export default ({ productRepository }: any) => {
-  const one = ({ id }: any) =>
+  const one = ({ country_id }: any) =>
      Promise
       .resolve()
       .then(() =>
         productRepository.findById({
           attributes: [
-            'product_id', 'name'
+            'country_id', 'country_name'
           ],
-          where: { id }
+          where: { country_id }
         })
       )
       .catch(error => {

@@ -3,8 +3,8 @@
 import { attributes } from 'structure';
 
 const Product = attributes({
-  name: String,
   product_id: Number,
+  name: String
 })(class Product {});
 
 export default Product;

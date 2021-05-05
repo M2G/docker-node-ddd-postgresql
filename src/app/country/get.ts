@@ -9,8 +9,7 @@ export default ({ countryRepository }: any) => {
       .then(() =>
         countryRepository.getAll({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'country_id', 'country_name'
           ]
         })
       )

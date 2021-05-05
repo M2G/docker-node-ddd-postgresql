@@ -3,16 +3,15 @@
   * function for getter country.
   */
 export default ({ countryRepository }: any) => {
-  const one = ({ id }: any) =>
+  const one = ({ country_id }: any) =>
      Promise
       .resolve()
       .then(() =>
         countryRepository.findById({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'country_id', 'country_name'
           ],
-          where: { id }
+          where: { country_id }
         })
       )
       .catch(error => {
