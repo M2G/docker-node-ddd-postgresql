@@ -1,16 +1,15 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for store post.
   */
-export default ({ postRepository }: any) => {
+export default ({ storeRepository }: any) => {
   const all = () =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.getAll({
+        storeRepository.getAll({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'store_id', 'name', 'city_id'
           ]
         })
       )

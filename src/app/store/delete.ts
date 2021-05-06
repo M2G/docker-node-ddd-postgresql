@@ -1,17 +1,16 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for delete store.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const remove = ({ id }: any) =>
+export default ({ storeRepository }: any) => {
+  const remove = ({ store_id }: any) =>
     Promise
       .resolve()
       .then(() =>
-        postRepository.update({
+        storeRepository.update({
           isDeleted: 1
         }, {
-          where: { id }
+          where: { store_id }
         })
       )
       .catch((error) => {

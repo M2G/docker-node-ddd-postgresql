@@ -1,21 +1,19 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for store domain
  */
-import Post from '../../domain/post';
+import Store from '../../domain/store';
 
 /**
-  * function for getter post.
+  * function for create store.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
+export default ({ storeRepository }: any) => {
   const create = ({ body }: any) =>
     Promise
       .resolve()
       .then(() => {
-        // @ts-ignore
-        const post = new Post(body);
-        return postRepository.create(post);
+        const store = new Store(body);
+        return storeRepository.create(store);
       })
       .catch((error) => {
         throw new Error(error);

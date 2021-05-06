@@ -2,16 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/domain/city/city.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/city/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/store/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/store/store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/users/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/domain/users/users.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/city/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/delete.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/city/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/get.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/city/getOne.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/getOne.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/city/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/post.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/city/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/put.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/post/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/post/post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store/delete.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store/getOne.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store/getOne.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/store/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/store/put.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/delete.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/getOne.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/getOne.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/users/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/users/put.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="59809000" />
+      <workItem from="1619750211208" duration="62253000" />
     </task>
     <servers />
   </component>

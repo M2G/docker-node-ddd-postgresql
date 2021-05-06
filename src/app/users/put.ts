@@ -1,22 +1,22 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for users domain
  */
-import Post from '../../domain/post';
+import Users from '../../domain/users';
 
 /**
-  * function for getter post.
+  * function for update user.
   */
-export default ({ postRepository }: any) => {
+export default ({ usersRepository }: any) => {
   // code for getting all the items
-  const update = ({ id, body }: any) =>
+  const update = ({ user_id, body }: any) =>
     new Promise(async (resolve, reject) => {
       try {
-        const post = new Post(body);
-        await postRepository.update(post, {
-          where: { id }
+        const user = new Users(body);
+        await usersRepository.update(user, {
+          where: { user_id }
         })
-        resolve(post);
+        resolve(user);
       } catch (error) {
         reject(error);
       }

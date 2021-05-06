@@ -1,17 +1,16 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for delete users.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const remove = ({ id }: any) =>
+export default ({ usersRepository }: any) => {
+  const remove = ({ user_id }: any) =>
     Promise
       .resolve()
       .then(() =>
-        postRepository.update({
+        usersRepository.update({
           isDeleted: 1
         }, {
-          where: { id }
+          where: { user_id }
         })
       )
       .catch((error) => {

@@ -1,21 +1,20 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for user domain
  */
-import Post from '../../domain/post';
+import Users from '../../domain/users';
 
 /**
-  * function for getter post.
+  * function for create user.
   */
-export default ({ postRepository }: any) => {
+export default ({ usersRepository }: any) => {
   // code for getting all the items
   const create = ({ body }: any) =>
     Promise
       .resolve()
       .then(() => {
-        // @ts-ignore
-        const post = new Post(body);
-        return postRepository.create(post);
+        const user = new Users(body);
+        return usersRepository.create(user);
       })
       .catch((error) => {
         throw new Error(error);

@@ -1,18 +1,17 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for get user.
   */
-export default ({ postRepository }: any) => {
-  const one = ({ id }: any) =>
+export default ({ usersRepository }: any) => {
+  const one = ({ user_id }: any) =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.findById({
+        usersRepository.findById({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'user_id', 'name'
           ],
-          where: { id }
+          where: { user_id }
         })
       )
       .catch(error => {

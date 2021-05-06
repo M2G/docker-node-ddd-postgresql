@@ -1,16 +1,15 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for get users.
   */
-export default ({ postRepository }: any) => {
+export default ({ usersRepository }: any) => {
   const all = () =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.getAll({
+        usersRepository.getAll({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'user_id', 'name'
           ]
         })
       )
