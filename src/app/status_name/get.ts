@@ -1,16 +1,15 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for get status_name.
   */
-export default ({ postRepository }: any) => {
+export default ({ statusNameRepository }: any) => {
   const all = () =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.getAll({
+        statusNameRepository.getAll({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'status_name_id', 'status_name'
           ]
         })
       )

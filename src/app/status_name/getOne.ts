@@ -1,18 +1,17 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+ * function for get status_name.
   */
-export default ({ postRepository }: any) => {
-  const one = ({ id }: any) =>
+export default ({ statusNameRepository }: any) => {
+  const one = ({ status_name_id }: any) =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.findById({
+        statusNameRepository.findById({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'status_name_id', 'status_name'
           ],
-          where: { id }
+          where: { status_name_id }
         })
       )
       .catch(error => {

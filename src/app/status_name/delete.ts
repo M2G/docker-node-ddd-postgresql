@@ -1,17 +1,16 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for delete status name.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const remove = ({ id }: any) =>
+export default ({ statusNameRepository }: any) => {
+  const remove = ({ status_name_id }: any) =>
     Promise
       .resolve()
       .then(() =>
-        postRepository.update({
+        statusNameRepository.update({
           isDeleted: 1
         }, {
-          where: { id }
+          where: { status_name_id }
         })
       )
       .catch((error) => {

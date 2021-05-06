@@ -1,21 +1,20 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for status_name domain
  */
-import Post from '../../domain/post';
+import StatusName from '../../domain/status_name';
 
 /**
   * function for getter post.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
+export default ({ statusNameRepository }: any) => {
   const create = ({ body }: any) =>
     Promise
       .resolve()
       .then(() => {
         // @ts-ignore
-        const post = new Post(body);
-        return postRepository.create(post);
+        const status_name = new StatusName(body);
+        return statusNameRepository.create(status_name);
       })
       .catch((error) => {
         throw new Error(error);
