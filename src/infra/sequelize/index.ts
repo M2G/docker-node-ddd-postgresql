@@ -22,14 +22,14 @@ export default ({ config, basePath }) => {
 
   fs.readdirSync(dir)?.filter((file) =>
     (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js')
-    )?.forEach((file) => {
+  )?.forEach((file) => {
 
       console.log('file', file)
 
     const modelDir = path.join(dir, file);
-    //@see https://github.com/sequelize/express-example/issues/99
+    // @see https://github.com/sequelize/express-example/issues/99
     // Sequelize v5 -> v6
-     // const model = sequelize.import(modelDir)
+    // const model = sequelize.import(modelDir)
     const model = require(modelDir)(sequelize, DataTypes);
 
     db.models[model.name] = model;
