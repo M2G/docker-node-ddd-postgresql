@@ -1,21 +1,19 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for order status domain
  */
-import Post from '../../domain/post';
+import OrderStatus from '../../domain/order_status';
 
 /**
-  * function for getter post.
+  * function for create order_status.
   */
 export default ({ postRepository }: any) => {
-  // code for getting all the items
   const create = ({ body }: any) =>
     Promise
       .resolve()
       .then(() => {
-        // @ts-ignore
-        const post = new Post(body);
-        return postRepository.create(post);
+        const order_status = new OrderStatus(body);
+        return postRepository.create(order_status);
       })
       .catch((error) => {
         throw new Error(error);

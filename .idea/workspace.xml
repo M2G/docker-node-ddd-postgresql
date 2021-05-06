@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/domain/order_status/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/order_status/order_status.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/sale/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/domain/sale/sale.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/order_status/delete.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/order_status/delete.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/order_status/get.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/order_status/get.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/order_status/getOne.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/order_status/getOne.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/order_status/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/order_status/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/order_status/put.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/order_status/put.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/status_name/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/status_name/post.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/domain" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -44,8 +46,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/domain" />
       <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/domain" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/infra/database/models" />
       <recent name="$PROJECT_DIR$/src/infra/database" />
@@ -65,7 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="63916000" />
+      <workItem from="1619750211208" duration="64416000" />
     </task>
     <servers />
   </component>

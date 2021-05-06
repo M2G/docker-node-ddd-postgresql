@@ -1,16 +1,15 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for get order status.
   */
-export default ({ postRepository }: any) => {
+export default ({ orderStatusRepository }: any) => {
   const all = () =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.getAll({
+        orderStatusRepository.getAll({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'order_status_id', 'update_at', 'sale_id', 'status_name_id'
           ]
         })
       )

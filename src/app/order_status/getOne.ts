@@ -1,18 +1,17 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for get order status.
   */
-export default ({ postRepository }: any) => {
-  const one = ({ id }: any) =>
+export default ({ orderStatusRepository }: any) => {
+  const one = ({ order_status_id }: any) =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.findById({
+        orderStatusRepository.findById({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'order_status_id', 'update_at', 'sale_id', 'status_name_id'
           ],
-          where: { id }
+          where: { order_status_id }
         })
       )
       .catch(error => {

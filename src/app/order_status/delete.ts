@@ -1,17 +1,16 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for delete order status.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const remove = ({ id }: any) =>
+export default ({ orderStatusRepository }: any) => {
+  const remove = ({ order_status_id }: any) =>
     Promise
       .resolve()
       .then(() =>
-        postRepository.update({
+        orderStatusRepository.update({
           isDeleted: 1
         }, {
-          where: { id }
+          where: { order_status_id }
         })
       )
       .catch((error) => {

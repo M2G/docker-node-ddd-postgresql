@@ -12,7 +12,6 @@ export default ({ statusNameRepository }: any) => {
     Promise
       .resolve()
       .then(() => {
-        // @ts-ignore
         const status_name = new StatusName(body);
         return statusNameRepository.create(status_name);
       })

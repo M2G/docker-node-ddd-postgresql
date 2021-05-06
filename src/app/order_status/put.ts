@@ -1,24 +1,23 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for order_status domain
  */
-import Post from '../../domain/post';
+import OrderStatus from '../../domain/order_status';
 
 /**
-  * function for getter post.
+  * function for update order_status.
   */
 export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const update = ({ id, body }: any) =>
+  const update = ({ order_status_id, body }: any) =>
     new Promise(async (resolve, reject) => {
       try {
-        const post = new Post(body);
-        await postRepository.update(post, {
-          where: { id }
+        const order_status = new OrderStatus(body);
+        await postRepository.update(order_status, {
+          where: { order_status_id }
         })
-        resolve(post);
+        return resolve(order_status);
       } catch (error) {
-        reject(error);
+        return reject(error);
       }
     });
 
