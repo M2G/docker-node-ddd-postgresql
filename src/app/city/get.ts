@@ -2,15 +2,14 @@
 /**
   * function for getter post.
   */
-export default ({ postRepository }: any) => {
+export default ({ cityRepository }: any) => {
   const all = () =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.getAll({
+        cityRepository.getAll({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'city_id', 'city_name', 'country_id'
           ]
         })
       )

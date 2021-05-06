@@ -2,17 +2,16 @@
 /**
   * function for getter post.
   */
-export default ({ postRepository }: any) => {
-  const one = ({ id }: any) =>
+export default ({ cityRepository }: any) => {
+  const one = ({ city_id }: any) =>
      Promise
       .resolve()
       .then(() =>
-        postRepository.findById({
+        cityRepository.findById({
           attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
+            'city_id', 'city_name', 'country_id'
           ],
-          where: { id }
+          where: { city_id }
         })
       )
       .catch(error => {

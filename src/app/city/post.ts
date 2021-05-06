@@ -1,21 +1,19 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for city domain
  */
-import Post from '../../domain/post';
+import City from '../../domain/city';
 
 /**
-  * function for getter post.
+  * function for create one city.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
+export default ({ cityRepository }: any) => {
   const create = ({ body }: any) =>
     Promise
       .resolve()
       .then(() => {
-        // @ts-ignore
-        const post = new Post(body);
-        return postRepository.create(post);
+        const city = new City(body);
+        return cityRepository.create(city);
       })
       .catch((error) => {
         throw new Error(error);

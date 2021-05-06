@@ -1,17 +1,17 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
+  * function for delete city.
   */
-export default ({ postRepository }: any) => {
+export default ({ cityRepository }: any) => {
   // code for getting all the items
-  const remove = ({ id }: any) =>
+  const remove = ({ city_id }: any) =>
     Promise
       .resolve()
       .then(() =>
-        postRepository.update({
+        cityRepository.update({
           isDeleted: 1
         }, {
-          where: { id }
+          where: { city_id }
         })
       )
       .catch((error) => {

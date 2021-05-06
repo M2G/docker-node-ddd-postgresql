@@ -2,21 +2,21 @@
 /**
  * this file will hold all the get use-case for post domain
  */
-import Post from '../../domain/post';
+import City from '../../domain/city';
 
 /**
   * function for getter post.
   */
 export default ({ postRepository }: any) => {
   // code for getting all the items
-  const update = ({ id, body }: any) =>
+  const update = ({ city_id, body }: any) =>
     new Promise(async (resolve, reject) => {
       try {
-        const post = new Post(body);
-        await postRepository.update(post, {
-          where: { id }
+        const city = new City(body);
+        await postRepository.update(city, {
+          where: { city_id }
         })
-        resolve(post);
+        resolve(city);
       } catch (error) {
         reject(error);
       }
