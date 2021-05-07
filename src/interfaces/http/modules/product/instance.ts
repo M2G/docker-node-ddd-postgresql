@@ -1,7 +1,7 @@
 import container from '../../../../container';
 import {
  get, getOne, post, put, remove
-} from '../../../../app/post';
+} from '../../../../app/product';
 
 export default () => {
   const {cradle} = container;
