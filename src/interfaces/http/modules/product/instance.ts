@@ -4,18 +4,18 @@ import {
 } from '../../../../app/product';
 
 export default () => {
-  const {cradle} = container;
+  const { cradle } = container;
   const {
  repository: {
-    postRepository
+    productRepository
     }
   } = cradle;
 
-  const getUseCase = get({postRepository});
-  const getOneUseCase = getOne({postRepository});
-  const postUseCase = post({postRepository});
-  const putUseCase = put({postRepository});
-  const deleteUseCase = remove({postRepository});
+  const getUseCase = get({productRepository});
+  const getOneUseCase = getOne({productRepository});
+  const postUseCase = post({productRepository});
+  const putUseCase = put({productRepository});
+  const deleteUseCase = remove({productRepository});
 
   return {
     deleteUseCase,
