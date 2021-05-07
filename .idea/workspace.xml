@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/sale/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/sale/instance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/sale/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/status_name/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/status_name/instance.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/sale/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/sale/instance.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="72240000" />
+      <workItem from="1619750211208" duration="72290000" />
     </task>
     <servers />
   </component>
