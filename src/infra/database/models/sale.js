@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) =>
       allowNull: false
     },
    amount: {
-      type: DataTypes.REAL(20,3),
+      type: DataTypes.DOUBLE(20,3),
       allowNull: false
     },
    date_sale: {

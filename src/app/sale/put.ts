@@ -1,22 +1,21 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for sale domain
  */
-import Post from '../../domain/post';
+import Sale from '../../domain/sale';
 
 /**
-  * function for getter post.
+  * function for getter sale.
   */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
+export default ({ saleRepository }: any) => {
   const update = ({ id, body }: any) =>
     new Promise(async (resolve, reject) => {
       try {
-        const post = new Post(body);
-        await postRepository.update(post, {
+        const sale = new Sale(body);
+        await saleRepository.update(sale, {
           where: { id }
         })
-        resolve(post);
+        resolve(sale);
       } catch (error) {
         reject(error);
       }
