@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import * as redis from 'redis';
+import Status from 'http-status';
 
 const portRedis = process.env.PORT_REDIS ?? '6379';
 
@@ -14,8 +15,8 @@ const get = (req, res, next) => {
   const { id } = params;
 
   redisClient.get(id, (error, data) => {
-    if (error) res.status(400).send(error);
-    if (data !== null) res.status(200).send(JSON.parse(data));
+    if (error) res.status(Status.BAD_REQUEST).send(error);
+    if (data !== null) res.status(Status.OK).send(JSON.parse(data));
     else next();
   });
 }
