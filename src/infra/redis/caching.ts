@@ -1,26 +1,26 @@
 /*eslint-disable*/
-import type {Response, Request, NextFunction} from 'express';
 import * as redis from 'redis';
 
 const portRedis = process.env.PORT_REDIS ?? '6379';
 
 const redisClient = redis.createClient(portRedis);
 
-const isCached = (req: Request | any, res: Response | any, next: NextFunction) => {
-  const { params } = req;
+const set = (key: string, value: any) =>
+  redisClient.set(key, JSON.stringify(value));
+
+//@ts-ignore
+const get = (req, res, next) => {
+  const { params = {} } = req;
   const { id } = params;
 
-  redisClient.get(id, (err, data) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    if (data) {
-      console.log('we Found it in Redis');
-      return res.send(data);
-    }
-      console.log('User Not Found');
-      next();
+  redisClient.get(id, (error, data) => {
+    if (error) res.status(400).send(error);
+    if (data !== null) res.status(200).send(JSON.parse(data));
+    else next();
   });
-};
+}
 
-export default isCached;
+export {
+  set,
+  get
+}
