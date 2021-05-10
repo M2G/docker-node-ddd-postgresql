@@ -2,7 +2,7 @@
 /**
  * this file will hold all the get use-case for user domain
  */
-const Token = require('src/domain/token')
+import Token from '../../domain/token';
 
 /**
  * function for getter user.
@@ -13,7 +13,7 @@ export default ({ userRepository, webToken }: any) => {
   const validate = ({ body }: any) => {
     return new Promise(async (resolve, reject) => {
       try {
-        const credentials = Token(body)
+        const credentials = Token(body);
         const userCredentials = await userRepository.findOne({
           attributes: [
             'id', 'firstName', 'lastName', 'middleName', 'email', 'password', 'roleId', 'isDeleted', 'createdBy'

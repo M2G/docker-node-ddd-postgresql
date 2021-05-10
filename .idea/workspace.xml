@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/domain/token/token.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/token/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/token/instance.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/interfaces/http/modules/token/router.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/create_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/create_tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/token/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/token/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/token/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/token/token.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/container.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/token/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/token/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infra/database/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/users.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/city/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/city/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/token/token.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/token/token.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +64,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="91830000" />
+      <workItem from="1619750211208" duration="92024000" />
     </task>
     <servers />
   </component>
