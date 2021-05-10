@@ -15,9 +15,9 @@ const get = (req, res, next) => {
   const { id } = params;
 
   redisClient.get(id, (error, data) => {
-    if (error) res.status(Status.BAD_REQUEST).send(error);
-    if (data !== null) res.status(Status.OK).send(JSON.parse(data));
-    else next();
+    if (error) return res.status(Status.BAD_REQUEST).send(error);
+    if (data !== null) return res.status(Status.OK).send(JSON.parse(data));
+    else return next();
   });
 }
 

@@ -31,6 +31,4 @@ RUN npm install
 ## Copy built node modules and binaries without including the toolchain
 #COPY --from=builder node_modules .
 
-USER postgres
-
 CMD [ "/app/scripts/run.sh" ]

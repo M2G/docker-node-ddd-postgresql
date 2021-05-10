@@ -1,4 +1,4 @@
--- Dumping database structure for test_table
+-- Dumping database structure for test_db
 CREATE DATABASE IF NOT EXISTS test_db;
 USE test_db;
 
