@@ -1,6 +1,6 @@
 -- Dumping database structure for test_db
-CREATE DATABASE IF NOT EXISTS test_db;
-USE test_db;
+-- DROP DATABASE IF EXISTS test_db;
+-- CREATE DATABASE test_db;
 
 -- Creation of product table
 CREATE TABLE IF NOT EXISTS product (

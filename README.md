@@ -28,13 +28,18 @@ By isolating domain code away from all other concerns of the system like infrast
 - [] Auth functionality (Signup, Login)
 - [] JWT Authentication
 ---
-
 ## Run locally
 
 
 
 ---
+## Create DATABASE
 
+docker exec -it CONTAINER_ID bash
+psql -U postgres
+CREATE DATABASE YOUR_DATABASE
+
+---
 ## Getting Started
 
 Run in development:
