@@ -1,6 +1,6 @@
 -- Set params
-SET SESSION my.number_of_sales = '2000000';
-SET SESSION my.number_of_users = '500000';
+SET SESSION my.number_of_sales = '200';
+SET SESSION my.number_of_users = '500';
 SET SESSION my.number_of_products = '300';
 SET SESSION my.number_of_stores = '500';
 SET SESSION my.number_of_coutries = '100';
@@ -40,6 +40,17 @@ FROM GENERATE_SERIES(1, current_setting('my.number_of_stores')::INT) AS id;
 INSERT INTO users
 SELECT id
 	, concat('User ', id)
+	, MD5(random()::text)
+	, MD5(random()::text)
+	, MD5(random()::text)
+	, MD5(random()::text)
+	, MD5(random()::text)
+	, random_between(0,2)
+	, MD5(random()::text)
+	, random_between(0,1)
+	, random_between(0,1)
+	, MD5(random()::text)
+	, MD5(random()::text)
 FROM GENERATE_SERIES(1, current_setting('my.number_of_users')::INT) AS id;
 
 -- Filling of users
@@ -53,7 +64,7 @@ INSERT INTO sale
 SELECT gen_random_uuid ()
 	, round(CAST(float8 (random() * 10000) AS NUMERIC), 3)
 	, TO_TIMESTAMP(start_date, 'YYYY-MM-DD HH24:MI:SS') +
-		random()* (TO_TIMESTAMP(end_date, 'YYYY-MM-DD HH24:MI:SS')
+		random() * (TO_TIMESTAMP(end_date, 'YYYY-MM-DD HH24:MI:SS')
 							- TO_TIMESTAMP(start_date, 'YYYY-MM-DD HH24:MI:SS'))
 	, floor(random() * (current_setting('my.number_of_products')::INT) + 1)::INT
 	, floor(random() * (current_setting('my.number_of_users')::INT) + 1)::INT

@@ -9,7 +9,6 @@ import Token from '../../domain/token';
  */
 
 export default ({ userRepository, webToken }: any) => {
-  // code for getting all the items
   const validate = ({ body }: any) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -42,7 +41,7 @@ export default ({ userRepository, webToken }: any) => {
       } catch (error) {
         reject(error)
       }
-    })
+    });
   }
 
   return {
