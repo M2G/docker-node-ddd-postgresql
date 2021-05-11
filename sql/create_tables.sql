@@ -42,6 +42,16 @@ CREATE TABLE IF NOT EXISTS store (
 CREATE TABLE IF NOT EXISTS users (
   user_id INT NOT NULL,
   name varchar(250) NOT NULL,
+  firstName varchar(250) NOT NULL,
+  lastName varchar(250) NOT NULL,
+  email varchar(250) NOT NULL,
+  password varchar(250) NOT NULL,
+  roleId INT NOT NULL,
+  verificationCode varchar(250) NOT NULL
+  isVerified INT NOT NULL,
+  isDeleted INT NOT NULL,
+  createdBy varchar(250) NOT NULL,
+  updatedBy varchar(250) NOT NULL,
   PRIMARY KEY (user_id)
 );
 

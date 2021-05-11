@@ -16,7 +16,7 @@ export default ({ userRepository, webToken }: any) => {
         const credentials = Token(body);
         const userCredentials = await userRepository.findOne({
           attributes: [
-            'id', 'firstName', 'lastName', 'middleName', 'email', 'password', 'roleId', 'isDeleted', 'createdBy'
+            'id', 'firstName', 'lastName', 'email', 'password', 'roleId', 'isDeleted', 'createdBy'
           ],
           where: {
             email: credentials.email,
@@ -36,7 +36,6 @@ export default ({ userRepository, webToken }: any) => {
             id: userCredentials.id,
             firstName: userCredentials.firstName,
             lastName: userCredentials.lastName,
-            middleName: userCredentials.middleName,
             email: userCredentials.email
           })
         })

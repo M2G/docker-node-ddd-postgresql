@@ -4,7 +4,7 @@ import { attributes } from 'structure';
 
 const Users = attributes({
   user_id: Number,
-  name: String
+  name: String,
 })(class Product {});
 
 export default Users;
