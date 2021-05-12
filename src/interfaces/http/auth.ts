@@ -21,16 +21,13 @@ export default ({ config, repository: { userRepository } }) => {
       .catch((error) => done(error, null))
   })
 
-  passport.use(strategy)
+  passport.use(strategy);
 
   passport.serializeUser(function (user, done) {
     done(null, user)
   })
 
-  passport.deserializeUser(function (user, done) {
-    // @ts-ignore
-    return done(null, user);
-  })
+  passport.deserializeUser((user: any, done) => done(null, user))
 
   return {
     initialize: () => {
