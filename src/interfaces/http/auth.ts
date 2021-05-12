@@ -23,9 +23,7 @@ export default ({ config, repository: { userRepository } }) => {
 
   passport.use(strategy);
 
-  passport.serializeUser(function (user, done) {
-    done(null, user)
-  })
+  passport.serializeUser((user, done) => done(null, user))
 
   passport.deserializeUser((user: any, done) => done(null, user))
 
