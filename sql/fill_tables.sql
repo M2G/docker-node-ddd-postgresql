@@ -18,24 +18,18 @@ CREATE EXTENSION pgcrypto;
  BEGIN
     RETURN floor(random()* (high-low + 1) + low);
  END;
- $$ language 'plpgsql' STRICT;
-
-CREATE OR REPLACE FUNCTION
-random_in_range(INTEGER, INTEGER) RETURNS INTEGER
-AS $$
-    SELECT floor(($1 + ($2 - $1 + 1) * random()))::INTEGER;
-$$ LANGUAGE SQL;
+ $$ LANGUAGE 'plpgsql' STRICT;
 
 CREATE FUNCTION random_text(INTEGER)
 RETURNS TEXT
 LANGUAGE SQL
 AS $$
-  select upper(
-    substring(
+  SELECT UPPER(
+    SUBSTRING(
       (SELECT string_agg(md5(random()::TEXT), '')
        FROM generate_series(
            1,
-           CEIL($1 / 32.)::integer)
+           CEIL($1 / 32.)::INTEGER)
        ), 1, $1) );
 $$;
 
@@ -62,8 +56,6 @@ SELECT id
 	, concat('Store ', id)
 	, floor(random() * (current_setting('my.number_of_cities')::INT) + 1)::INT
 FROM GENERATE_SERIES(1, current_setting('my.number_of_stores')::INT) AS id;
-
---  random_between(0,1)
 
 -- Filling of users
 INSERT INTO users
