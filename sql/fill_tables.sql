@@ -64,7 +64,7 @@ SELECT id
   , random_text(42)
   , random_text(42)
   , random_text(42)
-  , random_text(42)
+  , crypt('password', gen_salt('bf'))
   , random_between(0,1)
   , random_text(42)
   , random_between(0,1)
