@@ -20,6 +20,25 @@ CREATE EXTENSION pgcrypto;
  END;
  $$ language 'plpgsql' STRICT;
 
+CREATE OR REPLACE FUNCTION
+random_in_range(INTEGER, INTEGER) RETURNS INTEGER
+AS $$
+    SELECT floor(($1 + ($2 - $1 + 1) * random()))::INTEGER;
+$$ LANGUAGE SQL;
+
+CREATE FUNCTION random_text(INTEGER)
+RETURNS TEXT
+LANGUAGE SQL
+AS $$
+  select upper(
+    substring(
+      (SELECT string_agg(md5(random()::TEXT), '')
+       FROM generate_series(
+           1,
+           CEIL($1 / 32.)::integer)
+       ), 1, $1) );
+$$;
+
 -- Filling of products
 INSERT INTO product
 SELECT id, concat('Product ', id)
@@ -44,21 +63,22 @@ SELECT id
 	, floor(random() * (current_setting('my.number_of_cities')::INT) + 1)::INT
 FROM GENERATE_SERIES(1, current_setting('my.number_of_stores')::INT) AS id;
 
+--  random_between(0,1)
+
 -- Filling of users
 INSERT INTO users
 SELECT id
 	, concat('User ', id)
-	, MD5(random()::text)
-	, MD5(random()::text)
-	, MD5(random()::text)
-	, MD5(random()::text)
-	, MD5(random()::text)
-	, random_between(0,2)
-	, MD5(random()::text)
-	, random_between(0,1)
-	, random_between(0,1)
-	, MD5(random()::text)
-	, MD5(random()::text)
+  , random_text(42)
+  , random_text(42)
+  , random_text(42)
+  , random_text(42)
+  , random_between(0,1)
+  , random_text(42)
+  , random_between(0,1)
+  , random_between(0,1)
+  , random_text(42)
+  , random_text(42)
 FROM GENERATE_SERIES(1, current_setting('my.number_of_users')::INT) AS id;
 
 -- Filling of users
