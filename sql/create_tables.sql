@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS users (
   email varchar(250) NOT NULL,
   password varchar(250) NOT NULL,
   roleId INT NOT NULL,
-  verificationCode varchar(250) NOT NULL
+  verificationCode varchar(250) NOT NULL,
   isVerified INT NOT NULL,
   isDeleted INT NOT NULL,
   createdBy varchar(250) NOT NULL,

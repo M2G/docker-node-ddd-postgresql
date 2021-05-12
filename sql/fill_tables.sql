@@ -1,6 +1,6 @@
 -- Set params
-SET SESSION my.number_of_sales = '200';
-SET SESSION my.number_of_users = '500';
+SET SESSION my.number_of_sales = '2000000';
+SET SESSION my.number_of_users = '500000';
 SET SESSION my.number_of_products = '300';
 SET SESSION my.number_of_stores = '500';
 SET SESSION my.number_of_coutries = '100';
@@ -11,6 +11,14 @@ SET SESSION my.end_date = '2020-02-01 00:00:00';
 
 -- load the pgcrypto extension to gen_random_uuid ()
 CREATE EXTENSION pgcrypto;
+
+ CREATE OR REPLACE FUNCTION random_between(low INT ,high INT)
+    RETURNS INT AS
+ $$
+ BEGIN
+    RETURN floor(random()* (high-low + 1) + low);
+ END;
+ $$ language 'plpgsql' STRICT;
 
 -- Filling of products
 INSERT INTO product
