@@ -13,12 +13,10 @@ export default ({ config, repository: { userRepository } }) => {
 
   const strategy = new Strategy(params, (payload: { id: any; }, done: (arg0: null, arg1: null) => void) => {
     userRepository.findById(payload.id)
-      // @ts-ignore
-      .then((user) => {
+      .then((user: any) => {
         done(null, user)
       })
-      // @ts-ignore
-      .catch((error) => done(error, null))
+      .catch((error: null) => done(error, null))
   })
 
   passport.use(strategy);
