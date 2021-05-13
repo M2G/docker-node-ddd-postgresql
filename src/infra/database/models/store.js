@@ -3,8 +3,30 @@
 
 const table = "store";
 //@ts-ignore
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define(table, {
+module.exports = (sequelize, DataTypes) => {
+  //@TODO rewrite duplicate
+  const Country = sequelize.define(table, {
+    country_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false
+    },
+    country_name: {
+      type: DataTypes.STRING(450),
+      allowNull: false
+    },
+
+  }, {
+    freezeTableName: true,
+    timestamps: false,
+    classMethods: {
+      associate () {}
+    }
+  });
+
+
+  const City = sequelize.define(table, {
    store_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -27,8 +49,9 @@ module.exports = (sequelize, DataTypes) =>
     }
   });
 
- /*
-  Store.hasMany(City(), { foreignKey: 'fk_city', foreignKeyConstraint: true });
-  return Store;
-*/
+City.belongsTo(Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
+
+return City;
+
+}
 
