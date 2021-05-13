@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  City.hasOne(Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
+  City.belongsTo(Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
 
   return City;
 

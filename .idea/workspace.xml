@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/fill_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill_tables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/city/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/city/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/city/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/city/router.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/city.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/order_status.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/order_status.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/store.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +66,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="109068000" />
+      <workItem from="1619750211208" duration="110474000" />
     </task>
     <servers />
   </component>
