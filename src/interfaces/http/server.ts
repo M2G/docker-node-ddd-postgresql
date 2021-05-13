@@ -1,11 +1,11 @@
 /*eslint-disable*/
 import express from 'express';
 
-export default ({ config, router, logger }: any) => {
+export default ({ config, router, logger, auth }: any) => {
   const app = express();
 
   app.disable('x-powered-by');
- //  app.use(auth.initialize())
+  app.use(auth.initialize())
   app.use(router);
 
   return {

@@ -16,7 +16,7 @@ CREATE EXTENSION pgcrypto;
     RETURNS INT AS
  $$
  BEGIN
-    RETURN floor(random()* (high-low + 1) + low);
+    RETURN floor(random() * (high-low + 1) + low);
  END;
  $$ LANGUAGE 'plpgsql' STRICT;
 

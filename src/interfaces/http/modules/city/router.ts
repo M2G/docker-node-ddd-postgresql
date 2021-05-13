@@ -14,6 +14,8 @@ export default ({
 }: any) => {
   const router = Router();
 
+  console.log('auth', auth)
+
  router.use(auth.authenticate())
 
   router
