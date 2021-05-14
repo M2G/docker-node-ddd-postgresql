@@ -16,7 +16,7 @@ export default ({
 
   console.log('auth', auth)
 
- router.use(auth.authenticate())
+ // router.use(auth.authenticate())
 
   router
     .get('/', (req: any, res: any) => {

@@ -9,5 +9,5 @@ export {
   getOne,
   post,
   put,
-  remove,
+  remove
 };
