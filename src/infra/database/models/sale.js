@@ -5,36 +5,20 @@
 
 const table = "sale";
 //@ts-ignore
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define(table, {
-   sale_id: {
-      type: DataTypes.STRING(200),
+module.exports = (sequelize, DataTypes) => {
+  //@TODO no duplicate
+  const Product = sequelize.define(table, {
+    product_id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
-   amount: {
-      type: DataTypes.DOUBLE(20,3),
+    name: {
+      type: DataTypes.STRING(250),
       allowNull: false
     },
-   date_sale: {
-     type: DataTypes.DATE,
-     allowNull: false
-   },
-   product_id: {
-     type: DataTypes.INTEGER,
-     allowNull: false,
-     references: { model: 'product', key: 'product_id'},
-   },
-   user_id: {
-     type: DataTypes.INTEGER,
-     allowNull: false,
-     references: { model: 'users', key: 'product_id'},
-   },
-   store_id: {
-     type: DataTypes.INTEGER,
-     allowNull: false,
-     references: { model: 'store', key: 'store_id'},
-   },
+
   }, {
     freezeTableName: true,
     timestamps: false,
@@ -43,11 +27,127 @@ module.exports = (sequelize, DataTypes) =>
     }
   });
 
- /*
-  Sale.hasMany(Product(), { foreignKey: 'fk_product', foreignKeyConstraint: true });
-  Sale.hasMany(User(), { foreignKey: 'fk_user', foreignKeyConstraint: true });
-  Sale.hasMany(Store(), { foreignKey: 'fk_store', foreignKeyConstraint: true });
+  const User = sequelize.define(table, {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      allowNull: false
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    roleId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    verificationCode: {
+      type: DataTypes.STRING,
+      defaultValue: ''
+    },
+    isVerified: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    isDeleted: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
+    },
+    createdBy: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    updatedBy: {
+      type: DataTypes.UUID,
+      allowNull: true
+    }
+  }, {
+    freezeTableName: true,
+    timestamps: false,
+    classMethods: {
+      associate () {
+        // associations can be defined here
+      }
+    }
+  })
 
-  return Sale;
-*/
+  const Sale = sequelize.define(table, {
+    sale_id: {
+      type: DataTypes.STRING(200),
+      primaryKey: true,
+      allowNull: false
+    },
+    amount: {
+      type: DataTypes.DOUBLE(20, 3),
+      allowNull: false
+    },
+    date_sale: {
+      type: DataTypes.DATE,
+      allowNull: false
+    },
+    product_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'product', key: 'product_id' },
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'users', key: 'product_id' },
+    },
+    store_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'store', key: 'store_id' },
+    },
+  }, {
+    freezeTableName: true,
+    timestamps: false,
+    classMethods: {
+      associate () {}
+    }
+  });
 
+  const Store = sequelize.define(table, {
+    store_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING(250),
+      allowNull: false
+    },
+    city_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'city', key: 'city_id' },
+    },
+  }, {
+    freezeTableName: true,
+    timestamps: false,
+    classMethods: {
+      associate () {}
+    }
+  });
+
+   Sale.hasMany(Product, { foreignKey: 'fk_product', foreignKeyConstraint: true });
+   Sale.hasMany(User, { foreignKey: 'fk_user', foreignKeyConstraint: true });
+   Sale.hasMany(Store, { foreignKey: 'fk_store', foreignKeyConstraint: true });
+
+   return Sale;
+}

@@ -2,13 +2,12 @@
 // const City = require('./city');
 
 const table = "store";
+const table_city = "city";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
-  //@TODO rewrite duplicate
-  const Country = sequelize.define(table, {
-    country_id: {
+  const City = sequelize.define(table_city, {
+    city_id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
@@ -16,31 +15,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(450),
       allowNull: false
     },
-
-  }, {
-    freezeTableName: true,
-    timestamps: false,
-    classMethods: {
-      associate () {}
-    }
-  });
-
-
-  const City = sequelize.define(table, {
-   store_id: {
+    country_id: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      references: { model: 'country', key: 'country_id'},
     },
-   name: {
-      type: DataTypes.STRING(250),
-      allowNull: false
-    },
-   city_id: {
-     type: DataTypes.INTEGER,
-     allowNull: false,
-     references: { model: 'city', key: 'city_id'},
-   },
   }, {
     freezeTableName: true,
     timestamps: false,
@@ -49,9 +28,30 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-City.belongsTo(Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
+  const Store = sequelize.define(table, {
+    store_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING(250),
+      allowNull: false
+    },
+    city_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: { model: 'city', key: 'city_id' },
+    },
+  }, {
+    freezeTableName: true,
+    timestamps: false,
+    classMethods: {
+      associate () {}
+    }
+  });
 
-return City;
+   Store.hasMany(City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
 
+   return Store;
 }
-

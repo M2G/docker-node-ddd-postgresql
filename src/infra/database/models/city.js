@@ -1,10 +1,10 @@
 /*eslint-disable*/
 const table = "city";
-const table2 = "country";
+const table_country = "country";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
   //@TODO no duplicate
-  const Country = sequelize.define(table2, {
+  const Country = sequelize.define(table_country, {
     country_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
