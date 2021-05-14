@@ -9,7 +9,13 @@ export default ({ usersRepository }: any) => {
       .then(() =>
         usersRepository.getAll({
           attributes: [
-            'user_id', 'name'
+            'user_id',
+            'name',
+            "firstName",
+            "lastName",
+            "email",
+            "password",
+            "roleId"
           ]
         })
       )
