@@ -17,7 +17,7 @@ export default ({ config, basePath }) => {
     // { ...config.db })
     {
       host: 'postgres',
-      port: 5438,
+      port: 5432,
       dialect: 'postgres'
     })
 
