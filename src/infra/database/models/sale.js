@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     amount: {
-      type: DataTypes.DOUBLE(20, 3),
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     date_sale: {

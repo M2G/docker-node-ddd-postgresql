@@ -12,7 +12,7 @@ export default ({ database }: any) => {
 
  const { models } = database;
 
-   console.log('database database database database', models)
+  // console.log('database database database database', models)
 
   const {
     product,

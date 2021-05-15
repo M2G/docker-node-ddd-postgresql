@@ -2,13 +2,22 @@
 import toEntity from './transform';
 
 export default ({ model }: any) => {
-  const getAll = (...args: any[]) =>
-    model.findAll(...args).then((entity: { dataValues: any }[]) =>
-      entity?.map((data: { dataValues: any }) => {
-        const { dataValues } = data || {};
+
+
+  const getAll = (...args: any[]) => {
+
+    console.log('getAll 2')
+
+    return model.findAll(...args).then((entity: { dataValues: any }[]) => {
+
+      console.log('entity', entity)
+
+      return entity?.map((data: { dataValues: any }) => {
+        const {dataValues} = data || {};
         return new toEntity(dataValues);
       })
-    )
+    })
+}
 
   const findById = (...args: any[]) =>
     model.findByPk(...args)

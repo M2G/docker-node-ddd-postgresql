@@ -1,6 +1,6 @@
 -- Set params
-SET SESSION my.number_of_sales = '2000000';
-SET SESSION my.number_of_users = '500000';
+SET SESSION my.number_of_sales = '200';
+SET SESSION my.number_of_users = '500';
 SET SESSION my.number_of_products = '300';
 SET SESSION my.number_of_stores = '500';
 SET SESSION my.number_of_coutries = '100';

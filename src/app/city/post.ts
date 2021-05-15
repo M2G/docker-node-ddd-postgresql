@@ -13,7 +13,10 @@ export default ({ cityRepository }: any) => {
       .resolve()
       .then(() => {
         const city = new City(body);
-        return cityRepository.create(city);
+
+        console.log('city', city)
+
+        return cityRepository.create(body);
       })
       .catch((error) => {
         throw new Error(error);

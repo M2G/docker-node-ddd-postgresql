@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9843815-70d4-4a9c-b82e-179d1e8995a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/postgres-initdb.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/city/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/city/city.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/city/city.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/city/instance.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/city/instance.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/http/modules/city/router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interfaces/http/modules/city/router.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/fill_tables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/fill_tables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/city/post.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/city/post.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/city.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/city.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/order_status.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/order_status.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/database/models/sale.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/database/models/sale.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/city/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/city/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/repositories/product/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/repositories/product/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infra/sequelize/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infra/sequelize/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619027368632</updated>
       <workItem from="1619027369845" duration="87096000" />
-      <workItem from="1619750211208" duration="117485000" />
+      <workItem from="1619750211208" duration="136187000" />
     </task>
     <servers />
   </component>
