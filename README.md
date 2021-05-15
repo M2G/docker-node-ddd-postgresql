@@ -33,11 +33,12 @@ By isolating domain code away from all other concerns of the system like infrast
 
 
 ---
-## Create DATABASE
+## Show DATABASE/TABLE
 
-docker exec -it CONTAINER_ID bash
-psql -U postgres
-CREATE DATABASE YOUR_DATABASE
+docker exec -it CONTAINER_ID sh
+psql -U postgres YOUR_DATABASE
+\l
+SELECT * FROM YOUR_TABLE;
 
 ---
 ## Getting Started
