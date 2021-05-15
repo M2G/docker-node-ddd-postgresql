@@ -35,19 +35,15 @@ export default ({ config, basePath }) => {
     (file.indexOf('.') !== 0) && (file !== "index.js") && (file.slice(-3) === '.js')
   )?.forEach((file) => {
 
-
-
-    // const modelDir = path.join(dir, file);
+    const modelDir = path.join(dir, file);
     // @see https://github.com/sequelize/express-example/issues/99
     // Sequelize v5 -> v6
     // const model = sequelize.import(modelDir)
-   //  const model = require(modelDir)(sequelize, DataTypes);
-
-   // console.log('modelDir', modelDir)
-
-    const model = require("/app/build/src/infra/database/models/product.js")(sequelize, DataTypes);
+    // const model = require(modelDir)(sequelize, DataTypes);
+    const model = require(modelDir)(sequelize, DataTypes);
 
     db.models[model.name] = model;
+
   });
 
   db.models && Object.keys(db.models)?.forEach((key) => {
