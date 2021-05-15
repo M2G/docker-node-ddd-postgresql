@@ -6,20 +6,11 @@ import { Sequelize, DataTypes } from 'sequelize';
 // @ts-ignore
 export default ({ config, basePath }) => {
 
-  // console.log('config', config)
-
-  // console.log('config', config)
   const sequelize = new Sequelize(
-    "test_db",
-    // process.env.DB_SCHEMA || 'postgres',
-    process.env.DB_USER || 'postgres',
+    process.env.POSTGRES_DB || '',
+    process.env.DB_USER || '',
     process.env.DB_PASSWORD || '',
-    // { ...config.db })
-    {
-      host: 'postgres',
-      port: 5432,
-      dialect: 'postgres'
-    })
+    { ...config.db })
 
   const db = {
     sequelize,
