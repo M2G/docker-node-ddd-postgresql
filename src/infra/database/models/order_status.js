@@ -7,7 +7,6 @@ const table_status_name = "status_name";
 const table_sale = "sale";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
-
   const Status = sequelize.define(table_status_name, {
     status_name_id: {
       type: DataTypes.INTEGER,
@@ -59,7 +58,9 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate() {}
+      associate() {
+
+      }
     }
   });
 
@@ -86,12 +87,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     timestamps: false,
-    classMethods: {
-      associate() {}
+    associate: function (/** @type {any} */ models) {
+      console.log('models', models)
     }
   });
 
-  OrderStatus.belongsTo(Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
+  OrderStatus.hasOne(Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
   OrderStatus.belongsTo(Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
 
   return OrderStatus;

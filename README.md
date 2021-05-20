@@ -34,7 +34,6 @@ By isolating domain code away from all other concerns of the system like infrast
 
 ---
 ## Show DATABASE/TABLE
-
 docker exec -it CONTAINER_ID sh
 psql -U postgres YOUR_DATABASE
 \l

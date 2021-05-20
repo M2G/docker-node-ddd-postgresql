@@ -3,8 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
 
-// @ts-ignore
-export default ({ config, basePath }) => {
+export default ({ config, basePath }: any) => {
 
   const sequelize = new Sequelize(
     process.env.POSTGRES_DB || '',
@@ -29,8 +28,7 @@ export default ({ config, basePath }) => {
     const modelDir = path.join(dir, file);
     // @see https://github.com/sequelize/express-example/issues/99
     // Sequelize v5 -> v6
-    // const model = sequelize.import(modelDir)
-    // const model = require(modelDir)(sequelize, DataTypes);
+    // const model = sequelize.import(modelDir);
     const model = require(modelDir)(sequelize, DataTypes);
 
     db.models[model.name] = model;
