@@ -1,10 +1,10 @@
 /*eslint-disable*/
 const table = "city";
-const table_country = "country";
+// const table_country = "country";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
   //@TODO no duplicate
-  const Country = sequelize.define(table_country, {
+  /*const Country = sequelize.define(table_country, {
     country_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate () {}
     }
-  });
+  });*/
 
   const City = sequelize.define(table, {
    city_id: {
@@ -43,11 +43,13 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate() {}
+      associate: function (/** @type {any} */ models) {
+        City.hasOne(models.Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
+      }
     }
   });
 
-  City.hasOne(Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
+  // City.hasOne(Country, { foreignKey: 'fk_country', foreignKeyConstraint: true });
 
   return City;
 
