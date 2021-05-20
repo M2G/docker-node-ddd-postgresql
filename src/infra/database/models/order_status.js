@@ -93,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   OrderStatus.hasOne(Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
-  OrderStatus.belongsTo(Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
+  OrderStatus.hasOne(Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
 
   return OrderStatus;
 
