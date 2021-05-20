@@ -3,10 +3,11 @@
 //  const Status = require('./status_name');
 
 const table = "order_status";
-const table_status_name = "status_name";
-const table_sale = "sale";
+// const table_status_name = "status_name";
+// const table_sale = "sale";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
+  /*
   const Status = sequelize.define(table_status_name, {
     status_name_id: {
       type: DataTypes.INTEGER,
@@ -62,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
 
       }
     }
-  });
+  });*/
 
   const OrderStatus = sequelize.define(table, {
    order_status_id: {
@@ -89,11 +90,13 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     associate: function (/** @type {any} */ models) {
       console.log('models', models)
+      OrderStatus.hasOne(models.Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
+      OrderStatus.hasOne(models.Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
     }
   });
 
-  OrderStatus.hasOne(Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
-  OrderStatus.hasOne(Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
+  // OrderStatus.hasOne(Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
+  // OrderStatus.hasOne(Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
 
   return OrderStatus;
 

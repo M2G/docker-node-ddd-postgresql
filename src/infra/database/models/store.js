@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-   Store.hasMany(City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
+   Store.hasOne(City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
 
    return Store;
 }
