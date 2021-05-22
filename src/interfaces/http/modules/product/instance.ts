@@ -4,7 +4,7 @@ import {
 } from '../../../../app/product';
 
 export default () => {
-  const { cradle } = container;
+  const {cradle} = container;
   const {
  repository: {
     productRepository

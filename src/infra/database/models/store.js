@@ -2,9 +2,10 @@
 // const City = require('./city');
 
 const table = "store";
-const table_city = "city";
+// const table_city = "city";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
+  /*
   const City = sequelize.define(table_city, {
     city_id: {
       type: DataTypes.INTEGER,
@@ -26,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     classMethods: {
       associate() {}
     }
-  });
+  });*/
 
   const Store = sequelize.define(table, {
     store_id: {
@@ -47,11 +48,13 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate () {}
+      associate: function (/** @type {any} */ models) {
+        Store.hasOne(models.City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
+      }
     }
   });
 
-   Store.hasOne(City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
+   // Store.hasOne(City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
 
    return Store;
 }

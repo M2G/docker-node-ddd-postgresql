@@ -7,6 +7,7 @@ const table = "sale";
 //@ts-ignore
 module.exports = (sequelize, DataTypes) => {
   //@TODO no duplicate
+  /*
   const Product = sequelize.define(table, {
     product_id: {
       type: DataTypes.INTEGER,
@@ -83,7 +84,7 @@ module.exports = (sequelize, DataTypes) => {
         // associations can be defined here
       }
     }
-  })
+  })*/
 
   const Sale = sequelize.define(table, {
     sale_id: {
@@ -118,10 +119,15 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate () {}
+      associate: function (/** @type {any} */ models) {
+        Sale.hasMany(models.Product, { foreignKey: 'fk_product', foreignKeyConstraint: true });
+        Sale.hasMany(models.User, { foreignKey: 'fk_user', foreignKeyConstraint: true });
+        Sale.hasMany(models.Store, { foreignKey: 'fk_store', foreignKeyConstraint: true });
+      }
     }
   });
 
+  /*
   const Store = sequelize.define(table, {
     store_id: {
       type: DataTypes.INTEGER,
@@ -141,13 +147,13 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true,
     timestamps: false,
     classMethods: {
-      associate () {}
+      associate: function () {}
     }
-  });
+  });*/
 
-   Sale.hasMany(Product, { foreignKey: 'fk_product', foreignKeyConstraint: true });
-   Sale.hasMany(User, { foreignKey: 'fk_user', foreignKeyConstraint: true });
-   Sale.hasMany(Store, { foreignKey: 'fk_store', foreignKeyConstraint: true });
+   // Sale.hasMany(Product, { foreignKey: 'fk_product', foreignKeyConstraint: true });
+   // Sale.hasMany(User, { foreignKey: 'fk_user', foreignKeyConstraint: true });
+   // Sale.hasMany(Store, { foreignKey: 'fk_store', foreignKeyConstraint: true });
 
    return Sale;
 }

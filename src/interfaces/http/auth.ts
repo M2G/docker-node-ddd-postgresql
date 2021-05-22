@@ -13,12 +13,12 @@ export default ({ config, repository: { userRepository } }: any) => {
   }
 
   const strategy = new Strategy(params, (payload: { id: any; }, done: (arg0: null, arg1: null) => void) => {
-    userRepository.findById(payload.id)
-      .then((user: any) => {
-        done(null, user);
-      })
+    userRepository.findById(payload?.id)
+      .then((user: any) => done(null, user))
       .catch((error: null) => done(error, null))
   });
+
+  console.log('strategy', strategy)
 
   passport.use(strategy);
   passport.serializeUser((user, done) => done(null, user));
