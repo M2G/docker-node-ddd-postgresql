@@ -10,8 +10,7 @@ import Users from '../../domain/users';
 export default ({ usersRepository }: any) => {
   // code for getting all the items
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const user = new Users(body);
         return usersRepository.create(user);

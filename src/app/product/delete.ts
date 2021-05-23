@@ -4,8 +4,7 @@
   */
 export default ({ productRepository }: any) => {
   const remove = ({ id }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() =>
         productRepository.remove({
           isDeleted: 1

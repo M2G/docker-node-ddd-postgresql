@@ -4,8 +4,7 @@
   */
 export default ({ statusNameRepository }: any) => {
   const one = ({ status_name_id }: any) =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         statusNameRepository.findById({
           attributes: [

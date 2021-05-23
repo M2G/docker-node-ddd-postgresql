@@ -4,8 +4,7 @@
   */
 export default ({ usersRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         usersRepository.getAll({
           attributes: [

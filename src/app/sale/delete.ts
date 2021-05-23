@@ -5,8 +5,7 @@
 export default ({ postRepository }: any) => {
   // code for getting all the items
   const remove = ({ id }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() =>
         postRepository.update({
           isDeleted: 1

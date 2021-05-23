@@ -4,8 +4,7 @@
   */
 export default ({ countryRepository }: any) => {
   const one = ({ country_id }: any) =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         countryRepository.findById({
           attributes: [

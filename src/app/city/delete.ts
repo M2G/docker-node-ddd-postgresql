@@ -5,8 +5,7 @@
 export default ({ cityRepository }: any) => {
   // code for getting all the items
   const remove = ({ city_id }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() =>
         cityRepository.update({
           isDeleted: 1

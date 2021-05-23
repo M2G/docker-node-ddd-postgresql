@@ -4,8 +4,7 @@
   */
 export default ({ storeRepository }: any) => {
   const one = ({ store_id }: any) =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         storeRepository.findById({
           attributes: [

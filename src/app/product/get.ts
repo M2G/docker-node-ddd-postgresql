@@ -4,8 +4,7 @@
   */
 export default ({ productRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         productRepository.getAll({
           attributes: [

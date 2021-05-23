@@ -4,8 +4,7 @@
   */
 export default ({ usersRepository }: any) => {
   const remove = ({ user_id }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() =>
         usersRepository.update({
           isDeleted: 1

@@ -4,8 +4,7 @@
   */
 export default ({ cityRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         cityRepository.getAll({
           attributes: [

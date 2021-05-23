@@ -4,8 +4,7 @@
   */
 export default ({ orderStatusRepository }: any) => {
   const remove = ({ order_status_id }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() =>
         orderStatusRepository.update({
           isDeleted: 1

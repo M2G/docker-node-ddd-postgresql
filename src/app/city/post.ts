@@ -9,8 +9,7 @@ import City from '../../domain/city';
   */
 export default ({ cityRepository }: any) => {
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const city = new City(body);
 

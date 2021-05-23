@@ -4,8 +4,7 @@
   */
 export default ({ postRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         postRepository.getAll({
           attributes: [

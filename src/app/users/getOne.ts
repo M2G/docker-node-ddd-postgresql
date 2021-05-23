@@ -4,8 +4,7 @@
   */
 export default ({ usersRepository }: any) => {
   const one = ({ user_id }: any) =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         usersRepository.findById({
           attributes: [

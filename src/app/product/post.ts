@@ -10,8 +10,7 @@ import Product from '../../domain/product';
 export default ({ productRepository }: any) => {
   // code for getting all the items
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const post = new Product(body);
         return productRepository.create(post);

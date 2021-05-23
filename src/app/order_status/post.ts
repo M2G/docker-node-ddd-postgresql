@@ -9,8 +9,7 @@ import OrderStatus from '../../domain/order_status';
   */
 export default ({ postRepository }: any) => {
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const order_status = new OrderStatus(body);
         return postRepository.create(order_status);

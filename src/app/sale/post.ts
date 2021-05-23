@@ -9,8 +9,7 @@ import Sale from '../../domain/sale';
   */
 export default ({ saleRepository }: any) => {
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const sale = new Sale(body);
         return saleRepository.create(sale);

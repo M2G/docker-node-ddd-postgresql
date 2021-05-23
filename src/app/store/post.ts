@@ -9,8 +9,7 @@ import Store from '../../domain/store';
   */
 export default ({ storeRepository }: any) => {
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const store = new Store(body);
         return storeRepository.create(store);

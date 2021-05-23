@@ -9,8 +9,7 @@ import Country from '../../domain/country';
   */
 export default ({ countryRepository }: any) => {
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const country = new Country(body);
         return countryRepository.create(country);

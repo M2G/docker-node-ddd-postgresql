@@ -4,8 +4,7 @@
   */
 export default ({ countryRepository }: any) => {
   const remove = ({ country_id }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() =>
         countryRepository.update({
           isDeleted: 1

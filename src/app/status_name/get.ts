@@ -4,8 +4,7 @@
   */
 export default ({ statusNameRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         statusNameRepository.getAll({
           attributes: [

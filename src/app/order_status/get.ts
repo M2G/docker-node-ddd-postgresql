@@ -4,8 +4,7 @@
   */
 export default ({ orderStatusRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         orderStatusRepository.getAll({
           attributes: [

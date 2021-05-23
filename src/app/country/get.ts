@@ -4,8 +4,7 @@
   */
 export default ({ countryRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         countryRepository.getAll({
           attributes: [

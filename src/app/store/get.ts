@@ -4,8 +4,7 @@
   */
 export default ({ storeRepository }: any) => {
   const all = () =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         storeRepository.getAll({
           attributes: [

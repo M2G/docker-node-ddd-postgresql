@@ -4,8 +4,7 @@
   */
 export default ({ postRepository }: any) => {
   const one = ({ id }: any) =>
-     Promise
-      .resolve()
+     Promise.resolve()
       .then(() =>
         postRepository.findById({
           attributes: [

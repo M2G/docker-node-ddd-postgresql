@@ -9,8 +9,7 @@ import StatusName from '../../domain/status_name';
   */
 export default ({ statusNameRepository }: any) => {
   const create = ({ body }: any) =>
-    Promise
-      .resolve()
+    Promise.resolve()
       .then(() => {
         const status_name = new StatusName(body);
         return statusNameRepository.create(status_name);

@@ -7,8 +7,7 @@
  */
 export default ({ server, database }: any) => ({
     start: () =>
-      Promise
-        .resolve()
+      Promise.resolve()
         .then(database.authenticate)
         .then(server.start),
   });
