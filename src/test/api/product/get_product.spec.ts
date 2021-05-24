@@ -1,13 +1,18 @@
-/* eslint-env mocha */
 /* eslint-disable */
 
-const { productRepository } = app.resolve('repository');
+const supertest = require('supertest')
 
-describe('Routes: GET ProductsEntity', () => {
+import container from '../../../container';
+import { app } from '../../../index';
+const { productRepository } = container.resolve('repository');
+
+const request = supertest(app);
+
+describe('Routes: GET roductsEntity', () => {
   const BASE_URI = `/api/product`;
 
   // @ts-ignore
-  const signIn = app.resolve('jwt').signin();
+  const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {

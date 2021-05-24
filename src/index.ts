@@ -1,6 +1,6 @@
 import container from './container';
 
-const app: any = container.resolve('app');
+export const app: any = container.resolve('app');
 
 app
   .start()

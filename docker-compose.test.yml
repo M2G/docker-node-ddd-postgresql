@@ -1,5 +1,5 @@
 #
-# Docker NodeJS Typescript Starter
+# Docker NodeJS
 # Example Docker Compose file
 #
 
@@ -19,20 +19,46 @@ services:
       - ${PORT}:${PORT}
     volumes:
       - .:/app
+      - /app/node_modules/bcrypt
     command: npm run test
     depends_on:
-      - db
+      - postgres
+      - redis
 
-  db:
-    image: mysql:8.0.16
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
-    container_name: mysql
+  redis:
+    image: redis:alpine
+    container_name: cache
     ports:
-      - 3307:3306
+      - ${HOST_PORT_REDIS}:${CONTAINER_PORT_REDIS}
     volumes:
-      - ./test.sql:/docker-entrypoint-initdb.d/test.sql
+      - ./redis-data:/data
+
+  postgres:
+    image: postgres:13.2
+    restart: always
+    environment:
+      - POSTGRES_DB=test_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DB_SCHEMA=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: '10' # good
+    ports:
+      - ${HOST_PORT}:${CONTAINER_PORT}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      # copy the sql script to fill tables
+      - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_NICE
+volumes:
+  postgres-data:
