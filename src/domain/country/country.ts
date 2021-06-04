@@ -5,7 +5,7 @@ import { attributes } from 'structure';
 const Country = attributes({
   country_id: Number,
   country_name: String,
-})(class Product {});
+})(class Country {});
 
 export default Country;
 

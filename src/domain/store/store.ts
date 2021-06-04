@@ -6,7 +6,7 @@ const Store = attributes({
   store_id: Number,
   name: String,
   city_id: Number,
-})(class Product {});
+})(class Store {});
 
 export default Store;
 

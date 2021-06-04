@@ -9,7 +9,7 @@ const Sale = attributes({
   product_id: Number,
   user_id: Number,
   store_id: Number,
-})(class Product {});
+})(class Sale {});
 
 export default Sale;
 

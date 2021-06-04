@@ -1,6 +1,5 @@
 /* eslint-disable */
-
-const supertest = require('supertest')
+const supertest = require('supertest');
 
 import container from '../../../container';
 import { app } from '../../../index';

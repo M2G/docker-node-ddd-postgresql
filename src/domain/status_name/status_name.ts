@@ -5,7 +5,7 @@ import { attributes } from 'structure';
 const StatusName = attributes({
   status_name_id: Number,
   status_name: String
-})(class Product {});
+})(class StatusName {});
 
 export default StatusName;
 
