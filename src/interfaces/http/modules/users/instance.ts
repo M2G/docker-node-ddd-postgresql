@@ -1,8 +1,10 @@
 import container from '../../../../container';
-import { get, getOne, post, put, remove } from '../../../../app/users';
+import {
+ get, getOne, post, put, remove
+} from '../../../../app/users';
 
 export default () => {
-  const { cradle } = container;
+  const {cradle} = container;
   const {
  repository: {
    usersRepository
