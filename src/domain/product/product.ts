@@ -1,11 +1,9 @@
-/*eslint-disable*/
-// @ts-ignore
-import { attributes } from 'structure';
+import t from 'tcomb';
+import {compose} from 'ramda';
 
-const Product = attributes({
-  product_id: Number,
-  name: String
-})(class Product {});
+const Product = t.struct({
+  name: t.maybe(t.String),
+  product_id: t.maybe(t.Number)
+});
 
-export default Product;
-
+export default compose(Product);

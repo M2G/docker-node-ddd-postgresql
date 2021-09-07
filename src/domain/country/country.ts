@@ -1,11 +1,9 @@
-/*eslint-disable*/
-// @ts-ignore
-import { attributes } from 'structure';
+import t from 'tcomb';
+import {compose} from 'ramda';
 
-const Country = attributes({
-  country_id: Number,
-  country_name: String,
-})(class Country {});
+const Country = t.struct({
+  country_id: t.maybe(t.Number),
+  country_name: t.maybe(t.String)
+});
 
-export default Country;
-
+export default compose(Country);

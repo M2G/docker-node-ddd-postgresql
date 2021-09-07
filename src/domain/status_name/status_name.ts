@@ -1,11 +1,9 @@
-/*eslint-disable*/
-// @ts-ignore
-import { attributes } from 'structure';
+import t from 'tcomb';
+import {compose} from 'ramda';
 
-const StatusName = attributes({
-  status_name_id: Number,
-  status_name: String
-})(class StatusName {});
+const StatusName = t.struct({
+  status_name: t.maybe(t.String),
+  status_name_id: t.maybe(t.Number)
+});
 
-export default StatusName;
-
+export default compose(StatusName);

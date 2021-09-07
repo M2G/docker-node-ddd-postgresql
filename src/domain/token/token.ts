@@ -1,11 +1,9 @@
-/*eslint-disable*/
-// @ts-ignore
-import { attributes } from 'structure';
+import t from 'tcomb';
+import {compose} from 'ramda';
 
-const Token = attributes({
-  email: String,
-  password: String,
-})(class Token {});
+const Token = t.struct({
+  email: t.maybe(t.Number),
+  password: t.maybe(t.String)
+});
 
-export default Token;
-
+export default compose(Token);

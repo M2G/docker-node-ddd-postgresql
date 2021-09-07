@@ -22,8 +22,6 @@ By isolating domain code away from all other concerns of the system like infrast
 - [x] Sequelize with Postgres implementation
 - [x] Unit tests
 - [x] Badges (coverage, up-to-date dependencies)
-- [] GraphQL API
-- [] GraphQL playground
 - [] Code refactor
 - [] Auth functionality (Signup, Login)
 - [] JWT Authentication
