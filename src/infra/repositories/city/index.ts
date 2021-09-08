@@ -10,14 +10,14 @@ export default ({ model }: any) => {
 
       return entity?.map((data: { dataValues: any }) => {
         const {dataValues} = data || {};
-        return new toEntity(dataValues);
+        return toEntity(dataValues);
       })
     })
   }
 
   const findById = (...args: any[]) =>
     model.findByPk(...args)
-      .then(({ dataValues }: any) => new toEntity(dataValues))
+      .then(({ dataValues }: any) => toEntity(dataValues))
       .catch((error: string | undefined) => { throw new Error(error) })
 
   const create = (...args: any[]) => {
@@ -26,7 +26,7 @@ export default ({ model }: any) => {
 
       console.log('dataValues', dataValues)
 
-      return new toEntity(dataValues);
+      return toEntity(dataValues);
     })
   }
 
