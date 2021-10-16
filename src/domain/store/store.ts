@@ -1,5 +1,4 @@
 import t from 'tcomb';
-import {compose} from 'ramda';
 
 const Store = t.struct({
   city_id: t.Number,
@@ -7,4 +6,4 @@ const Store = t.struct({
   store_id: t.Number
 });
 
-export default compose(Store);
+export default Store;

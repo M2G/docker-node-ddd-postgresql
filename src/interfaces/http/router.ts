@@ -2,7 +2,6 @@
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { Router } from 'express';
-import { partialRight } from 'ramda';
 import httpLogger from './middlewares/http_logger';
 import errorHandler from './middlewares/error_handler';
 // controller
@@ -40,7 +39,10 @@ export default ({ config, logger, database }: any) => {
   router.use('/api/status_name', status_name.default().router);
   router.use('/api/sale', sale.default().router);
   router.use('/api/order_status', order_status.default().router);
-  router.use(partialRight(errorHandler, [logger, config]));
+  router.use(() => ({
+    ...errorHandler,
+    ...[logger, config]
+  }));
 
   return router;
 };

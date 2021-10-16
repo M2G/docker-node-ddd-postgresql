@@ -1,5 +1,4 @@
 import t from 'tcomb';
-import {compose} from 'ramda';
 
 const OrderStatus = t.struct({
   order_status_id: t.String,
@@ -8,4 +7,4 @@ const OrderStatus = t.struct({
   update_at: t.Number
 });
 
-export default compose(OrderStatus);
+export default OrderStatus;

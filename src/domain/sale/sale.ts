@@ -1,5 +1,4 @@
 import t from 'tcomb';
-import {compose} from 'ramda';
 
 const Sale = t.struct({
   amount: t.Number,
@@ -10,4 +9,4 @@ const Sale = t.struct({
   user_id: t.Number
 });
 
-export default compose(Sale);
+export default Sale;
