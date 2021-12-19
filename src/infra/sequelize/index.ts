@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
 
+const { DB_FORCE_RESTART } = process.env;
+
 export default ({ config, basePath }: any) => {
 
   const sequelize = new Sequelize(
@@ -11,13 +13,32 @@ export default ({ config, basePath }: any) => {
     process.env.DB_PASSWORD || '',
     { ...config.db })
 
+  /*
+ const sequelize = new Sequelize(
+ 'test_db2',
+ 'postgres',
+ 'postgres',
+  {
+    host: 'localhost',
+    port: 5432,
+    dialect: 'postgres',
+    logging: process.env.ENV === 'production' ? false : console.log,
+  });
+ */
+
   const db = {
     sequelize,
     Sequelize,
     models: {}
   }
 
-  const sequelizeOptions = { logging: console.log };
+  const sequelizeOptions: {
+    logging: Function;
+    force: boolean | undefined;
+  } = {
+    force: undefined,
+    logging: console.log,
+  };
 
   const dir = path.join(basePath, './models');
 
@@ -41,7 +62,15 @@ export default ({ config, basePath }: any) => {
     }
   });
 
-  sequelize.sync(sequelizeOptions)
+  // Removes all tables and recreates them (only available if env is not in production)
+  if (
+    DB_FORCE_RESTART === 'true' &&
+    process.env.ENV !== 'production'
+  ) {
+    sequelizeOptions.force = true;
+  }
+
+  sequelize.sync(sequelizeOptions as object)
     .catch((err) => {
       console.log(err);
       process.exit();
