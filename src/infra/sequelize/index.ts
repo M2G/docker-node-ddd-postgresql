@@ -7,24 +7,25 @@ const { DB_FORCE_RESTART } = process.env;
 
 export default ({ config, basePath }: any) => {
 
-  const sequelize = new Sequelize(
+  console.log('config config', config)
+
+  /* const sequelize = new Sequelize(
     process.env.POSTGRES_DB || '',
     process.env.DB_USER || '',
     process.env.DB_PASSWORD || '',
     { ...config.db })
-
-  /*
- const sequelize = new Sequelize(
- 'test_db2',
- 'postgres',
- 'postgres',
-  {
-    host: 'localhost',
-    port: 5432,
-    dialect: 'postgres',
-    logging: process.env.ENV === 'production' ? false : console.log,
-  });
  */
+
+   const sequelize = new Sequelize(
+   'test_db',
+   'postgres',
+   'postgres',
+    {
+      host: 'localhost',
+      port: 5432,
+      dialect: 'postgres',
+      logging: process.env.ENV === 'production' ? false : console.log,
+    });
 
   const db = {
     sequelize,
@@ -73,7 +74,7 @@ export default ({ config, basePath }: any) => {
   sequelize.sync(sequelizeOptions as object)
     .catch((err) => {
       console.log(err);
-      process.exit();
+      //process.exit();
     });
 
   return db;

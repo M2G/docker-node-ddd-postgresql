@@ -26,6 +26,7 @@
     "serve": "node --harmony-top-level-await build/src/index.js",
     "watch-node": "nodemon build/src/index.js",
     "watch": "NODE_ENV=development concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch2": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
     "watch-test": "npm run test -- --watchAll",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
@@ -78,6 +79,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
     "passport": "^0.4.1",
+    "passport-http-bearer": "^1.0.1",
     "passport-jwt": "^4.0.0",
     "pg": "^8.0.3",
     "prettier": "^2.1.2",
@@ -96,11 +98,13 @@
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^14.11.2",
     "@types/passport": "^1.0.6",
+    "@types/passport-http-bearer": "^1.0.37",
     "@types/passport-jwt": "^3.0.5",
     "@types/pg": "^7.14.11",
+    "@types/supertest": "^2.0.11",
     "babel-eslint": "^10.0.3",
     "concurrently": "^6.0.2",
-    "supertest": "3.4.2",
+    "supertest": "^6.1.6",
     "ts-node": "^5.0.0"
   }
 }

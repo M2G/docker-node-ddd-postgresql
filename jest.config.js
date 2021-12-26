@@ -10,6 +10,7 @@ module.exports = {
     "!<rootDir>/src/utils/**",
     "!<rootDir>/src/index.ts"
   ],
+  forceExit: true,
   globals: {
     "ts-jest": {
       "tsConfig": "<rootDir>/tsconfig.json"
@@ -17,12 +18,15 @@ module.exports = {
   },
   preset: "ts-jest",
   roots: [
-    "<rootDir>/src"
+    "<rootDir>/test"
   ],
   transform: {
     '^.+\\.ts?$': 'ts-jest',
   },
-  testRegex: '(/test/.*|(\\.|/)(test|spec))\\.ts?$',
+  testMatch: [
+    '**/__tests__/**/*.(js|ts)',
+    '**/?(*.)+(spec|test).(js|ts)',
+  ],
   modulePaths: [],
   moduleFileExtensions: [
     "ts",

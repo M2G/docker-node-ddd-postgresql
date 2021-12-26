@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamps: false,
     classMethods: {
       associate: function (/** @type {any} */ models) {
-        Store.hasOne(models.City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
+        // Store.hasOne(models.City, { foreignKey: 'fk_city', foreignKeyConstraint: true });
       }
     }
   });

@@ -78,20 +78,20 @@ module.exports = (sequelize, DataTypes) => {
    sale_id: {
      type: DataTypes.STRING(200),
      allowNull: false,
-     references: { model: 'sale', key: 'sale_id'},
+     // references: { model: 'sale', key: 'sale_id'},
    },
    status_name_id: {
      type: DataTypes.INTEGER,
      allowNull: false,
-     references: { model: 'status_name', key: 'status_name_id'},
+     // references: { model: 'status_name', key: 'status_name_id'},
    },
   }, {
     freezeTableName: true,
     timestamps: false,
     associate: function (/** @type {any} */ models) {
       console.log('models', models)
-      OrderStatus.hasOne(models.Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
-      OrderStatus.hasOne(models.Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
+      // OrderStatus.hasOne(models.Sale, { foreignKey: 'fk_sale', foreignKeyConstraint: true });
+      // OrderStatus.hasOne(models.Status, { foreignKey: 'fk_status_name', foreignKeyConstraint: true });
     }
   });
 
