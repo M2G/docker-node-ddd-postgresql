@@ -1,6 +1,6 @@
 /* eslint-disable*/
 import Status from 'http-status';
-import { Router } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
 export default ({
   getUseCase,
@@ -10,10 +10,12 @@ export default ({
   deleteUseCase,
   logger,
   response: { Success, Fail },
+                  auth,
 }: any) => {
   const router = Router();
 
- // router.use(auth.authenticate())
+  router.use((req: Request, res: Response, next: NextFunction) =>
+    auth.authenticate(req, res, next));
 
   router
     .get('/', (req: any, res: any) => {

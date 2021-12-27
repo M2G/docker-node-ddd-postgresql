@@ -15,7 +15,7 @@ import * as status_name from '../http/modules/status_name';
 import * as sale from '../http/modules/sale';
 import * as order_status from '../http/modules/order_status';
 
-export default ({ config, logger, database }: any) => {
+export default ({ config, logger, database, verify }: any) => {
   // console.log('database', database);
   const router = Router();
 
@@ -35,10 +35,12 @@ export default ({ config, logger, database }: any) => {
   router.use('/api/country', country.default().router);
   router.use('/api/city', city.default().router);
   router.use('/api/store', store.default().router);
-  router.use('/api/users', users.default().router);
   router.use('/api/status_name', status_name.default().router);
   router.use('/api/sale', sale.default().router);
   router.use('/api/order_status', order_status.default().router);
+  router.use(verify);
+  router.use('/api/users', users.default().router);
+
   router.use(() => ({
     ...errorHandler,
     ...[logger, config]

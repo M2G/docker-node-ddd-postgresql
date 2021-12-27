@@ -24,6 +24,7 @@ export default ({
         arg1: { _id: any; email: any; password: any } | null,
       ) => any,
     ) => {
+
       const { _id }: any | number = jwt.decode()(token);
 
       usersRepository

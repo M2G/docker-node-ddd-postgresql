@@ -3,13 +3,22 @@ import router from './router';
 import instance from './instance';
 
 export default () => {
-  const {logger, response: {Success, Fail}} = container.cradle;
+  const { cradle } = container;
+
+  const {
+    logger,
+    response: { Success, Fail },
+    auth
+  } = cradle;
   const app = instance();
 
   return {
     app,
-    router: router(
-      {logger, response: {Fail, Success}, ...app}
-      )
+    router: router({
+      auth,
+      logger,
+      response: { Fail, Success },
+      ...app
+    })
   };
 };

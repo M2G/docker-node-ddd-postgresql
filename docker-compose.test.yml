@@ -20,7 +20,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules/bcrypt
-    command: npm run test
+    command: npm run watch2
     depends_on:
       - postgres
       - redis
@@ -44,6 +44,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB_HOST=postgres
+      - SECRET=secret
     logging:
       options:
         max-size: 10m

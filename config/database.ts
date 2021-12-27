@@ -4,6 +4,7 @@ export default {
         host: process.env.DB_HOST || 'localhost',
         port: process.env.DB_PORT || 5432,
         dialect: 'postgres',
+        logging: console.log,
     },
     staging: {
         version: 'v1',
@@ -29,8 +30,9 @@ export default {
     },
     test: {
         version: 'v1',
-        host: process.env.DB_HOST || 'localhost',
-        port: process.env.DB_PORT || 5432,
+        host: 'localhost',
+        port: 5432,
         dialect: 'postgres',
+        logging: console.log,
     }
 };

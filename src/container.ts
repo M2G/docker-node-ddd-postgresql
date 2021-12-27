@@ -4,6 +4,7 @@ import app from './app';
 import server from './interfaces/http/server';
 import router from './interfaces/http/router';
 import auth from './interfaces/http/auth';
+import verify from './interfaces/http/middlewares/verify';
 import config from '../config';
 import jwt from './infra/jwt/jwt';
 import logger from './infra/logging/logger';
@@ -14,8 +15,7 @@ import database from './infra/database';
 const container = createContainer();
 
 // SYSTEM
-container
-  .register({
+container.register({
     app: asFunction(app).singleton(),
     auth: asFunction(auth).singleton(),
     config: asValue(config),
@@ -25,7 +25,8 @@ container
     repository: asFunction(repository).singleton(),
     response: asFunction(response).singleton(),
     router: asFunction(router).singleton(),
-    server: asFunction(server).singleton()
+    server: asFunction(server).singleton(),
+    verify: asFunction(verify).singleton()
   });
 
 export default container;

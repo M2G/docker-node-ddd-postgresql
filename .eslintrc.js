@@ -13,7 +13,6 @@ module.exports = {
     "./node_modules/eslint-config-airbnb-base/rules/variables.js",
     "./node_modules/eslint-config-airbnb-base/rules/es6.js",
     "prettier",
-    "prettier/@typescript-eslint",
     "eslint:all",
     "plugin:import/errors",
     "plugin:import/warnings",
@@ -25,7 +24,7 @@ module.exports = {
   parserOptions: {
     project: path.resolve(__dirname, './tsconfig.json'),
     tsconfigRootDir: __dirname,
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
     extraFileExtensions: [".scss"]
   },
@@ -45,6 +44,7 @@ module.exports = {
     "multiline-ternary": 0,
     "init-declarations": 0,
     "func-style": 0,
+    "camelcase": 1,
 
     "max-statements": 0,
     "max-lines": 0,
@@ -55,16 +55,20 @@ module.exports = {
     "implicit-arrow-linebreak": 0,
 
     "import/no-cycle": 1,
-    "import/extensions": "off",
+    "import/extensions": 0,
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
 
-    "lines-between-class-members": "off",
+    "lines-between-class-members": 0,
+    "multiline-comment-style": 0,
 
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/no-for-in-array": "warn",
+    "@typescript-eslint/ban-types": 1,
+    "@typescript-eslint/object-curly-spacing": 0,
+    "@typescript-eslint/no-unsafe-return": 1,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-namespace": 0,
+    "@typescript-eslint/no-for-in-array": 1,
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/ban-ts-ignore": 0,
     "@typescript-eslint/indent": 0,
@@ -85,16 +89,18 @@ module.exports = {
     "import/parsers": {
       "@typescript-eslint/parser": [".ts"]
     },
-    "import/resolver": {
+    'import/resolver': {
       node: {
-        extensions: [".js", ".ts"]
-      }
-    }
+        paths: ["src"],
+        extensions: ['.js', '.ts'],
+        moduleDirectory: ['node_modules', 'src'],
+      },
+    },
   },
   env: {
     browser: true,
-    jasmine: true,
     jest: true,
+    jasmine: true,
     node: true
   }
 };
