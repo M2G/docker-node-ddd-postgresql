@@ -5,9 +5,9 @@ const table = "users";
 //@ts-ignore
 module.exports = function(sequelize, DataTypes) {
 const User = sequelize.define(table, {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
+  userId: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true,
     allowNull: false
   },

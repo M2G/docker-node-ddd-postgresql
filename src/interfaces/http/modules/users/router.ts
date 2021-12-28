@@ -18,8 +18,20 @@ export default ({
     auth.authenticate(req, res, next));
 
   router
-    .get('/', (req: any, res: any) => {
-      getUseCase
+    .get('/', async (req: any, res: any) => {
+
+      try {
+
+        const users = await getUseCase.all({});
+        logger.debug(users);
+        return res.status(Status.OK).json(Success(users));
+
+      } catch (error) {
+        logger.error(error);
+       return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+      }
+
+      /*getUseCase
         .all(req, res)
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
@@ -28,16 +40,28 @@ export default ({
           logger.error(error);
           res.status(Status.BAD_REQUEST)
             .json(Fail(error.message));
-        });
+        });*/
     });
 
   router
-    .get('/:id', (req: any, res: any) => {
+    .get('/:id', async (req: any, res: any) => {
 
       const { params } = req || {};
       const { id = '' } = params || {};
 
-      getOneUseCase
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
+
+      try {
+        const user = await getOneUseCase.findById({ id: id });
+        logger.debug(user);
+        return res.status(Status.OK).json(Success(user));
+      } catch (error) {
+        logger.error(error);
+        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+      }
+
+     /* getOneUseCase
         .findById({ id: id })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
@@ -46,15 +70,24 @@ export default ({
           logger.error(error);
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message));
-        });
+        });*/
     });
 
   router
-    .post('/', (req: any, res: any) => {
+    .post('/', async (req: any, res: any) => {
 
       const { body = {} } = req || {};
 
-      postUseCase
+      try {
+        const user = await postUseCase.create({ body: body });
+        logger.debug(user);
+        return res.status(Status.OK).json(Success(user));
+      } catch (error) {
+        logger.error(error);
+        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+      }
+
+      /*postUseCase
         .create({ body: body })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
@@ -63,7 +96,7 @@ export default ({
           logger.error(error);
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message));
-        });
+        });*/
     });
 
   router
@@ -71,6 +104,9 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
+
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       putUseCase
         .update({ body: body, id: id })
