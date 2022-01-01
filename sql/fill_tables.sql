@@ -20,7 +20,8 @@ CREATE EXTENSION pgcrypto;
  END;
  $$ LANGUAGE 'plpgsql' STRICT;
 
-CREATE FUNCTION random_text(INTEGER)
+-- random_text
+CREATE OR REPLACE FUNCTION random_text(INTEGER)
 RETURNS TEXT
 LANGUAGE SQL
 AS $$
@@ -32,6 +33,20 @@ AS $$
            CEIL($1 / 32.)::INTEGER)
        ), 1, $1) );
 $$;
+
+-- random_choice
+CREATE OR REPLACE FUNCTION random_choice(
+    choices text[]
+)
+RETURNS text AS $$
+DECLARE
+    size_ int;
+BEGIN
+    size_ = array_length(choices, 1);
+    RETURN (choices)[floor(random()*size_)+1];
+END
+ $$ LANGUAGE 'plpgsql' STRICT;
+
 
 -- Filling of products
 INSERT INTO product
@@ -60,17 +75,15 @@ FROM GENERATE_SERIES(1, current_setting('my.number_of_stores')::INT) AS id;
 -- Filling of users
 INSERT INTO users
 SELECT id
-	, concat('User ', id)
-  , random_text(42)
-  , random_text(42)
-  , random_text(42)
+  , random_choice(array['George', 'Anderson', 'Smith', 'Iverson', 'Henery', 'Oliver', 'Benjamin', 'Alexander', 'Noah'])
+  , random_choice(array['Taylor', 'Jackson', 'Thompson', 'Harris', 'Garcia', 'Hernandez', 'Williams', 'Clark', 'Davis'])
   , crypt('password', gen_salt('bf'))
   , random_between(0,1)
   , random_text(42)
   , random_between(0,1)
   , random_between(0,1)
-  , random_text(42)
-  , random_text(42)
+  , random_between(1, 300)
+  , random_between(1, 300)
 FROM GENERATE_SERIES(1, current_setting('my.number_of_users')::INT) AS id;
 
 -- Filling of users

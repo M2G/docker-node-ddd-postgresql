@@ -43,17 +43,16 @@ CREATE TABLE IF NOT EXISTS store (
 -- Creation of user table
 CREATE TABLE IF NOT EXISTS users (
   user_id INT NOT NULL,
-  name varchar(250) NOT NULL,
   first_name varchar(250) NOT NULL,
   last_name varchar(250) NOT NULL,
-  email varchar(250) NOT NULL,
   password varchar(250) NOT NULL,
   role_id INT NOT NULL,
   verification_code varchar(250) NOT NULL,
   is_verified INT NOT NULL,
   is_deleted INT NOT NULL,
-  created_by varchar(250) NOT NULL,
-  updated_by varchar(250) NOT NULL,
+  created_by INT NOT NULL,
+  updated_by INT NOT NULL,
+  email varchar(250) NOT NULL generated always as (first_name || '.' || last_name || '@university.com') stored,
   PRIMARY KEY (user_id)
 );
 

@@ -9,12 +9,16 @@ export default ({ usersRepository }: any) => {
       return usersRepository.getAll({
         attributes: [
           'user_id',
-          'name',
-          "firstName",
-          "lastName",
-          "email",
-          "password",
-          "roleId"
+          'first_name',
+          'last_name',
+          'email',
+          'password',
+          'role_id',
+          'verification_code',
+          'is_verified',
+          'is_deleted',
+          'created_by',
+          'updated_by',
         ]
       });
     } catch (error) {

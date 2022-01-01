@@ -1,18 +1,18 @@
 import t from 'tcomb';
 
 const Users = t.struct({
-  createdBy: t.String,
+  created_by: t.String,
   email: t.String,
-  firstName: t.String,
-  isDeleted: t.Number,
-  isVerified: t.Number,
-  lastName: t.String,
+  first_name: t.String,
+  is_deleted: t.Number,
+  is_verified: t.Number,
+  last_name: t.String,
   name: t.String,
   password: t.String,
-  roleId: t.Number,
-  updatedBy: t.String,
+  role_id: t.Number,
+  updated_by: t.String,
   user_id: t.Number,
-  verificationCode: t.String
+  verification_code: t.String
 });
 
 export default Users;

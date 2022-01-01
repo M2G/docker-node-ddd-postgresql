@@ -8,7 +8,7 @@ export default ({ usersRepository }: any) => {
     try {
       return usersRepository.findById({
         attributes: [
-          'user_id', 'name'
+          'user_id'
         ],
         where: { user_id }
       });

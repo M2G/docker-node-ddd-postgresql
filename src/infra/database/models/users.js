@@ -2,20 +2,20 @@
 const { encryptPassword } = require('../../encryption');
 
 const table = "users";
-//@ts-ignore
-module.exports = function(sequelize, DataTypes) {
+
+module.exports = function(/** @type {{ define: (arg0: string, arg1: { user_id: { type: any; autoIncrement: boolean; primaryKey: boolean; allowNull: boolean; }; first_name: { type: any; allowNull: boolean; }; last_name: { type: any; allowNull: boolean; }; email: { type: any; allowNull: boolean; unique: boolean; }; password: { type: any; allowNull: boolean; }; role_id: { type: any; allowNull: boolean; }; verification_code: { type: any; defaultValue: string; }; is_verified: { type: any; defaultValue: number; }; is_deleted: { type: any; defaultValue: number; }; created_by: { type: any; allowNull: boolean; }; updated_by: { type: any; allowNull: boolean; }; }, arg2: { hooks: { beforeCreate: (user: { password: string; }) => void; }; freezeTableName: boolean; timestamps: boolean; classMethods: { associate(): void; }; }) => any; }} */ sequelize, /** @type {{ INTEGER: any; STRING: any; }} */ DataTypes) {
 const User = sequelize.define(table, {
-  userId: {
+  user_id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
     allowNull: false
   },
-  firstName: {
+  first_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  lastName: {
+  last_name: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -28,28 +28,28 @@ const User = sequelize.define(table, {
     type: DataTypes.STRING,
     allowNull: false
   },
-  roleId: {
+  role_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  verificationCode: {
+  verification_code: {
     type: DataTypes.STRING,
     defaultValue: ''
   },
-  isVerified: {
+  is_verified: {
     type: DataTypes.INTEGER,
     defaultValue: 0
   },
-  isDeleted: {
+  is_deleted: {
     type: DataTypes.INTEGER,
     defaultValue: 0
   },
-  createdBy: {
-    type: DataTypes.UUID,
+  created_by: {
+    type: DataTypes.INTEGER,
     allowNull: false
   },
-  updatedBy: {
-    type: DataTypes.UUID,
+  updated_by: {
+    type: DataTypes.INTEGER,
     allowNull: true
   }
 }, {
