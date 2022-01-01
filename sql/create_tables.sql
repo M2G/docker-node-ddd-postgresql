@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS users (
   is_deleted INT NOT NULL,
   created_by INT NOT NULL,
   updated_by INT NOT NULL,
-  email varchar(250) NOT NULL generated always as (first_name || '.' || last_name || '@university.com') stored,
+  email varchar(250) NOT NULL generated always as (lower(first_name) || '.' || lower(last_name) || '@university.com') stored,
   PRIMARY KEY (user_id)
 );
 
