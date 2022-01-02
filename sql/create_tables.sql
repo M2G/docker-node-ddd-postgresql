@@ -5,7 +5,7 @@
 -- Creation of product table
 CREATE TABLE IF NOT EXISTS product (
   product_id INT NOT NULL,
-  name varchar(250) NOT NULL,
+  product_name varchar(250) NOT NULL,
   PRIMARY KEY (product_id)
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS city (
 -- Creation of store table
 CREATE TABLE IF NOT EXISTS store (
   store_id INT NOT NULL,
-  name varchar(250) NOT NULL,
+  store_name varchar(250) NOT NULL,
   city_id INT NOT NULL,
   PRIMARY KEY (store_id)
 --PRIMARY KEY (store_id),

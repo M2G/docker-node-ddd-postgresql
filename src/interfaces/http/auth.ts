@@ -17,7 +17,7 @@ export default ({
   // @ts-ignore
   const strategy = new BearerStrategy(
     'bearer',
-    (
+    async (
       token: any,
       done: (
         arg0: any,
@@ -25,19 +25,20 @@ export default ({
       ) => any,
     ) => {
 
-      const { _id }: any | number = jwt.decode()(token);
+      const { _id: id }: any | number = jwt.decode()(token);
 
-      usersRepository
-        .findOne({ _id })
-        .then((user: any) => {
+      console.log('TOKEN ID BEARER', id)
+
+        try {
+          const user = await usersRepository.findOne({ id });
           if (!user) {
             return done(Status[Status.NOT_FOUND], null);
           }
-
           const { _id, email, password } = user;
           done(null, { _id, email, password });
-        })
-        .catch((error: null) => done(error, null));
+        } catch (error) {
+          done(error, null)
+        }
     },
   );
 

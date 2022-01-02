@@ -3,19 +3,23 @@
   * function for get one product.
   */
 export default ({ productRepository }: any) => {
-  const one = ({ country_id }: any) =>
+
+  const one = async ({ id }: any) => {
+    try {
+      return await productRepository.findById({ id });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  /*const one = ({ id }: any) =>
      Promise.resolve()
       .then(() =>
-        productRepository.findById({
-          attributes: [
-            'country_id', 'country_name'
-          ],
-          where: { country_id }
-        })
+        productRepository.findById({product_id: id })
       )
       .catch(error => {
         throw new Error(error);
-      });
+      });*/
 
   return {
     one

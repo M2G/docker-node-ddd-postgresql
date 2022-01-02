@@ -14,8 +14,8 @@ export default ({
 }: any) => {
   const router = Router();
 
-  router.use((req: Request, res: Response, next: NextFunction) =>
-    auth.authenticate(req, res, next));
+ /* router.use((req: Request, res: Response, next: NextFunction) =>
+    auth.authenticate(req, res, next));*/
 
   router
     .get('/', (req: any, res: any) => {
@@ -38,7 +38,7 @@ export default ({
       const { id = '' } = params || {};
 
       getOneUseCase
-        .findById({ id: id })
+        .one({ id: id })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
         })

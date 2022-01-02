@@ -108,7 +108,16 @@ export default ({
       if (!id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
-      putUseCase
+      try {
+        const user = putUseCase.update({ body: body, id: id });
+        logger.debug(user);
+        return res.status(Status.OK).json(Success(user));
+      } catch (error) {
+        logger.error(error);
+        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+      }
+
+      /*putUseCase
         .update({ body: body, id: id })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
@@ -117,7 +126,7 @@ export default ({
           logger.error(error);
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message));
-        });
+        });*/
     });
 
   router
@@ -126,7 +135,17 @@ export default ({
       const { params } = req || {};
       const { id = '' } = params || {};
 
-      deleteUseCase
+      try {
+        const user = deleteUseCase.remove({ id: id });
+        logger.debug(user);
+        return res.status(Status.OK).json(Success(user));
+      } catch (error) {
+        logger.error(error);
+        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+      }
+
+
+      /*deleteUseCase
         .remove({ id: id })
         .then((data: any) => {
           res.status(Status.OK).json(Success(data));
@@ -135,7 +154,7 @@ export default ({
           logger.error(error);
           res.status(Status.BAD_REQUEST).json(
             Fail(error.message));
-        });
+        });*/
     });
 
   return router;
