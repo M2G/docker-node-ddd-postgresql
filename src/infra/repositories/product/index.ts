@@ -11,7 +11,7 @@ export default ({ model }: any) => {
         return toEntity(dataValues);
       });
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
@@ -21,8 +21,7 @@ export default ({ model }: any) => {
       const data = await model.findByPk(product_id);
       return toEntity(data);
     } catch (error) {
-      console.log('error', error)
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
@@ -31,7 +30,7 @@ export default ({ model }: any) => {
     try {
       return await model.create(params);
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
@@ -39,12 +38,17 @@ export default ({ model }: any) => {
     try {
       return await model.update(...args);
     } catch (error) {
-      throw new Error(error)
+      throw new Error(error);
     }
   }
 
-  const destroy = (...args: any[]) =>
-    model.destroy(...args)
+  const destroy = async (...args: any[]) => {
+    try {
+      return await model.destroy(...args);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     getAll,

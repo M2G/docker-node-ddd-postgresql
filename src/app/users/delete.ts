@@ -3,12 +3,9 @@
  * function for delete users.
  */
 export default ({ usersRepository }: any) => {
-  const remove = ({ user_id }: any) => {
+  const remove = ({ id }: any) => {
     try {
-      return usersRepository.update(
-        { isDeleted: 1 },
-        { where: { user_id } },
-      );
+      return usersRepository.destroy({ where: { id } });
     } catch (error) {
       throw new Error(error);
     }

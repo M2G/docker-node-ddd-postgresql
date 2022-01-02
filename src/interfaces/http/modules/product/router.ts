@@ -122,7 +122,7 @@ export default ({
       const { id = '' } = params || {};
       const { product_id, product_name } = body;
 
-      if (!product_id || !product_name)
+      if (!product_id || !product_name || !id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
@@ -158,6 +158,9 @@ export default ({
 
       const { params } = req || {};
       const { id = '' } = params || {};
+
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
           const data = await deleteUseCase.remove({ id: id });
