@@ -6,14 +6,13 @@ module.exports = (sequelize, DataTypes) =>
     product_id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true,
-      allowNull: false
+      primaryKey: true
     },
-    name: {
+    product_name: {
       type: DataTypes.STRING(250),
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
-
   }, {
     freezeTableName: true,
     timestamps: false,

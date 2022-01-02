@@ -4,21 +4,21 @@
 
 -- Creation of product table
 CREATE TABLE IF NOT EXISTS product (
-  product_id INT NOT NULL,
+  product_id SERIAL,
   product_name varchar(250) NOT NULL,
   PRIMARY KEY (product_id)
 );
 
 -- Creation of country table
 CREATE TABLE IF NOT EXISTS country (
-  country_id INT NOT NULL,
+  country_id SERIAL,
   country_name varchar(450) NOT NULL,
   PRIMARY KEY (country_id)
 );
 
 -- Creation of city table
 CREATE TABLE IF NOT EXISTS city (
-  city_id INT NOT NULL,
+  city_id SERIAL,
   city_name varchar(450) NOT NULL,
   country_id INT NOT NULL,
   PRIMARY KEY (city_id)
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS city (
 
 -- Creation of store table
 CREATE TABLE IF NOT EXISTS store (
-  store_id INT NOT NULL,
+  store_id SERIAL,
   store_name varchar(250) NOT NULL,
   city_id INT NOT NULL,
   PRIMARY KEY (store_id)
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS store (
 
 -- Creation of user table
 CREATE TABLE IF NOT EXISTS users (
-  user_id INT NOT NULL,
+  user_id SERIAL,
   first_name varchar(250) NOT NULL,
   last_name varchar(250) NOT NULL,
   password varchar(250) NOT NULL,
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 -- Creation of status_name table
 CREATE TABLE IF NOT EXISTS status_name (
-  status_name_id INT NOT NULL,
+  status_name_id SERIAL,
   status_name varchar(450) NOT NULL,
   PRIMARY KEY (status_name_id)
 );

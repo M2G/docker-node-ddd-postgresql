@@ -8,7 +8,7 @@ export default ({ productRepository }: any) => {
     try {
     return productRepository.getAll({
         attributes: [
-          'product_id', 'name'
+          'product_id', 'product_name'
         ]
       });
     } catch (error) {

@@ -3,7 +3,21 @@
   * function for remove product.
   */
 export default ({ productRepository }: any) => {
-  const remove = ({ id }: any) =>
+
+  const remove = async ({ id }: any) => {
+
+    try {
+      return await productRepository.remove({
+        isDeleted: 1
+      }, {
+        where: { id }
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  /*const remove = ({ id }: any) =>
     Promise.resolve()
       .then(() =>
         productRepository.remove({
@@ -13,7 +27,7 @@ export default ({ productRepository }: any) => {
         }))
       .catch((error) => {
         throw new Error(error);
-      });
+      });*/
 
   return {
     remove

@@ -16,9 +16,9 @@ export default ({ model }: any) => {
   }
 
   const findById = async (...args: any[]) => {
-    const [{ id }] = args;
+    const [{ product_id }] = args;
     try {
-      const data = await model.findByPk(id);
+      const data = await model.findByPk(product_id);
       return toEntity(data);
     } catch (error) {
       console.log('error', error)
@@ -27,16 +27,13 @@ export default ({ model }: any) => {
   }
 
   const create = async (...args: any[]) => {
+    const [{ ...params }] = args;
     try {
-      return await model.update(...args);
+      return await model.create(params);
     } catch (error) {
       throw new Error(error)
     }
   }
-
-  /*const create = (...args: any[]) =>
-    model.create(...args).then(({ dataValues }: any) =>
-      toEntity(dataValues));*/
 
   const update = async (...args: any[]) => {
     try {
@@ -45,10 +42,6 @@ export default ({ model }: any) => {
       throw new Error(error)
     }
   }
-
- /* const update = (...args: any[]) =>
-    model.update(...args)
-      .catch((error: string | undefined) => { throw new Error(error) })*/
 
   const destroy = (...args: any[]) =>
     model.destroy(...args)

@@ -1,8 +1,8 @@
 import t from 'tcomb';
 
 const Product = t.struct({
-  name: t.String,
-  product_id: t.Number
+  product_id: t.maybe(t.Number),
+  product_name: t.maybe(t.String)
 });
 
 export default Product;
