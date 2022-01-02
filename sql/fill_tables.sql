@@ -9,9 +9,10 @@ SET SESSION my.status_names = '5';
 SET SESSION my.start_date = '2019-01-01 00:00:00';
 SET SESSION my.end_date = '2020-02-01 00:00:00';
 
--- load the pgcrypto extension to gen_random_uuid ()
+-- load the pgcrypto
 CREATE EXTENSION pgcrypto;
 
+-- random_between
  CREATE OR REPLACE FUNCTION random_between(low INT ,high INT)
     RETURNS INT AS
  $$
