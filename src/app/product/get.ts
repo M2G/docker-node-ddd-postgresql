@@ -14,18 +14,6 @@ export default ({ productRepository }: any) => {
     } catch (error) {
       throw new Error(error);
     }
-
-   /*  Promise.resolve()
-      .then(() =>
-        productRepository.getAll({
-          attributes: [
-            'product_id', 'name'
-          ]
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });*/
   }
 
   return {

@@ -29,20 +29,6 @@ export default ({
       }
     });
 
- /* router
-    .get('/', (req: any, res: any) => {
-      getUseCase
-        .all(req, res)
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST)
-            .json(Fail(error.message));
-        });
-    });*/
-
   router
     .get('/:id', async (req: any, res: any) => {
 
@@ -61,24 +47,6 @@ export default ({
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
     });
-
-  /*router
-    .get('/:id', (req: any, res: any) => {
-
-      const { params } = req || {};
-      const { id = '' } = params || {};
-
-      getOneUseCase
-        .one({ id: id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });
-    });*/
 
   router
     .post('/', async (req: any, res: any) => {
@@ -99,34 +67,22 @@ export default ({
       }
     });
 
-  /*router
-    .post('/', (req: any, res: any) => {
-
-      const { body = {} } = req || {};
-
-      postUseCase
-        .create({ body: body })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });
-    });*/
   router
     .put('/:id', async (req: any, res: any) => {
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
-      const { product_id, product_name } = body;
+      const { product_name } = body;
 
-      if (!product_id || !product_name || !id)
+      if (!product_name || !id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
-          const data = await putUseCase.update({ body: { product_id, product_name }, id: id });
+          const data = await putUseCase.update({ body: { product_name }, id: id });
+
+          console.log(':::', data[0])
+          if (!data[0]) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
+
           logger.debug(data);
           return res.status(Status.OK).json(Success(data));
         } catch (error) {
@@ -134,24 +90,6 @@ export default ({
          return res.status(Status.BAD_REQUEST).json(Fail(error.message));
         }
     });
-
- /* router
-    .put('/:id', (req: any, res: any) => {
-
-      const { body = {}, params } = req || {};
-      const { id = '' } = params || {};
-
-      putUseCase
-        .update({ body: body, id: id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });
-    });*/
 
   router
     .delete('/:id', async (req: any, res: any) => {
@@ -171,24 +109,6 @@ export default ({
           return res.status(Status.BAD_REQUEST).json(Fail(error.message));
         }
     });
-
-  /*router
-    .delete('/:id', (req: any, res: any) => {
-
-      const { params } = req || {};
-      const { id = '' } = params || {};
-
-      deleteUseCase
-        .remove({ id: id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });
-    });*/
 
   return router;
 };

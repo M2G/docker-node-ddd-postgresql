@@ -43,11 +43,14 @@ export default ({ model }: any) => {
   }
 
   const destroy = async (...args: any[]) => {
-    try {
+
+    console.log('destroy destroy destroy', args)
+
+    /*try {
       return await model.destroy(...args);
     } catch (error) {
       throw new Error(error);
-    }
+    }*/
   }
 
   return {
