@@ -28,7 +28,8 @@ export default ({ model }: any) => {
   const create = async (...args: any[]) => {
     const [{ ...params }] = args;
     try {
-      return await model.create(params);
+      const data = await model.create(params);
+      return toEntity(data);
     } catch (error) {
       throw new Error(error);
     }
@@ -36,21 +37,19 @@ export default ({ model }: any) => {
 
   const update = async (...args: any[]) => {
     try {
-      return await model.update(...args);
+      const [data] = await model.update(...args);
+      return data;
     } catch (error) {
       throw new Error(error);
     }
   }
 
   const destroy = async (...args: any[]) => {
-
-    console.log('destroy destroy destroy', args)
-
-    /*try {
+    try {
       return await model.destroy(...args);
     } catch (error) {
       throw new Error(error);
-    }*/
+    }
   }
 
   return {

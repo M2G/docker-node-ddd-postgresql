@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import Status from 'http-status';
+//@ts-ignore
 import { NextFunction, Request, Response, Router } from 'express';
 
 export default ({
@@ -80,8 +81,7 @@ export default ({
         try {
           const data = await putUseCase.update({ body: { product_name }, id: id });
 
-          console.log(':::', data[0])
-          if (!data[0]) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
+         if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 
           logger.debug(data);
           return res.status(Status.OK).json(Success(data));
@@ -102,6 +102,9 @@ export default ({
 
         try {
           const data = await deleteUseCase.remove({ id: id });
+
+          if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
+
           logger.debug(data);
           return res.status(Status.OK).json(Success(data));
         } catch (error) {

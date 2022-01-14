@@ -4,7 +4,7 @@ import container from '../../../src/container';
 
 const server: any = container.resolve('server');
 
-const { productRepository, userRepository } = container.resolve('repository');
+const { productRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
@@ -17,29 +17,28 @@ describe('Routes: GET productsEntity', () => {
 
   beforeEach((done) => {
     // we need to add user before we can request our token
-    userRepository
+    usersRepository
       .destroy({ where: {} })
       .then(() =>
-        userRepository.create({
+        usersRepository.create({
           user_id: 1,
           name: 'User 1',
-          firstName: 'John',
-          lastName: 'Doe',
-          email: 'johndoe@gmail.com',
+          first_name: 'John',
+          last_name: 'Doe',
+          // email: 'johndoe@gmail.com',
           password: 'test',
-          roleId: 1,
-          verificationCode: 'EB309B5A5079FEE895B20954A390910F5E3AB4B909',
-          isVerified: 1,
-          isDeleted: 0,
-          createdBy: '0116A7DC1C65D3AE3A1F6DCB0D70C56A65CB250F77',
-          updatedBy: '0116A7DC1C65D3AE3A1F6DCB0D70C56A65CB250F77'
+          role_id: 1,
+          verification_code: 'EB309B5A5079FEE895B20954A390910F5E3AB4B909',
+          is_verified: 1,
+          is_deleted: 0,
+          created_by: '0116A7DC1C65D3AE3A1F6DCB0D70C56A65CB250F77',
+          updated_by: '0116A7DC1C65D3AE3A1F6DCB0D70C56A65CB250F77'
         })
-      ).then((user: { id: any; firstName: any; lastName: any; middleName: any; email: any; }) => {
+      ).then((user: { id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        middleName: user.middleName,
+        first_name: user.first_name,
+        last_name: user.last_name,
         email: user.email
       })
       done()
