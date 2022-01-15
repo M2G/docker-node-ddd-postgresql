@@ -3,10 +3,10 @@
   * function for get all product.
   */
 export default ({ productRepository }: any) => {
-  const all = () => {
+  const all = async () => {
 
     try {
-    return productRepository.getAll({
+    return await productRepository.getAll({
         attributes: [
           'product_id', 'product_name'
         ]

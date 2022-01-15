@@ -38,7 +38,7 @@ export default ({ config, logger, database, verify }: any) => {
   router.use('/api/status_name', status_name.default().router);
   router.use('/api/sale', sale.default().router);
   router.use('/api/order_status', order_status.default().router);
-  router.use(verify);
+  //router.use(verify);
   router.use('/api/users', users.default().router);
 
   router.use(() => ({

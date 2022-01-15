@@ -1,5 +1,6 @@
 /* eslint-disable*/
 import Status from 'http-status';
+//@ts-ignore
 import { Router, Request, Response, NextFunction } from 'express';
 
 export default ({
@@ -14,8 +15,8 @@ export default ({
 }: any) => {
   const router = Router();
 
-  router.use((req: Request, res: Response, next: NextFunction) =>
-    auth.authenticate(req, res, next));
+  /*router.use((req: Request, res: Response, next: NextFunction) =>
+    auth.authenticate(req, res, next));*/
 
   router
     .get('/', async (req: any, res: any) => {
@@ -53,7 +54,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       try {
-        const user = await getOneUseCase.findById({ id: id });
+        const user = await getOneUseCase.one({ id: id });
         logger.debug(user);
         return res.status(Status.OK).json(Success(user));
       } catch (error) {

@@ -21,23 +21,23 @@ export default ({
       token: any,
       done: (
         arg0: any,
-        arg1: { _id: any; email: any; password: any } | null,
+        arg1: { user_id: any; email: any; password: any } | null,
       ) => any,
     ) => {
 
-      const { _id: id }: any | number = jwt.decode()(token);
+      const { user_id: userId }: any | number = jwt.decode()(token);
 
-      console.log('TOKEN ID BEARER', id)
+      console.log('TOKEN ID BEARER', userId)
 
         try {
-          const user = await usersRepository.findOne({ id });
-          if (!user) {
-            return done(Status[Status.NOT_FOUND], null);
-          }
-          const { _id, email, password } = user;
-          done(null, { _id, email, password });
+          const user: any = await usersRepository.findOne({ user_id: userId });
+
+          if (!user) return done(Status[Status.NOT_FOUND], null);
+
+          const { user_id, email, password } = user;
+          done(null, { user_id, email, password });
         } catch (error) {
-          done(error, null)
+          done(error, null);
         }
     },
   );

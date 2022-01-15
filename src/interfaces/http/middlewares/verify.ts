@@ -17,6 +17,8 @@ export default ({ response: { Fail }, jwt }: any) =>
       'Bearer ',
     );
 
+    console.log('extractToken')
+
     if (extractToken) {
       const token = req?.headers?.authorization?.split(' ')?.[1];
 

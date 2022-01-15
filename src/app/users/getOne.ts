@@ -2,32 +2,18 @@
 /**
   * function for get user.
   */
+
+import User from 'domain/users';
+
 export default ({ usersRepository }: any) => {
-  const one = ({ user_id }: any) => {
+  const one = async ({ id }: any) => {
 
     try {
-      return usersRepository.findById({
-        attributes: [
-          'user_id'
-        ],
-        where: { user_id }
-      });
+      const user = User({ user_id: +id });
+      return await usersRepository.findById(user);
     } catch (error) {
       throw new Error(error);
     }
-
-     /*Promise.resolve()
-      .then(() =>
-        usersRepository.findById({
-          attributes: [
-            'user_id', 'name'
-          ],
-          where: { user_id }
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });*/
   }
 
   return {

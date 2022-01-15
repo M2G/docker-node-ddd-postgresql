@@ -1,18 +1,18 @@
 import t from 'tcomb';
 
 const Users = t.struct({
-  created_by: t.String,
-  email: t.String,
-  first_name: t.String,
-  is_deleted: t.Number,
-  is_verified: t.Number,
-  last_name: t.String,
-  name: t.String,
-  password: t.String,
-  role_id: t.Number,
-  updated_by: t.String,
-  user_id: t.Number,
-  verification_code: t.String
+  created_by: t.maybe(t.Number),
+  email: t.maybe(t.String),
+  first_name: t.maybe(t.String),
+  is_deleted: t.maybe(t.Number),
+  is_verified: t.maybe(t.Number),
+  last_name: t.maybe(t.String),
+  name: t.maybe(t.String),
+  password: t.maybe(t.String),
+  role_id: t.maybe(t.Number),
+  updated_by: t.maybe(t.Number),
+  user_id: t.maybe(t.Number),
+  verification_code: t.maybe(t.String)
 });
 
 export default Users;

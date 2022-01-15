@@ -2,29 +2,55 @@
 import toEntity from './transform';
 
 export default ({ model }: any) => {
-  const getAll = (...args: any[]) =>
-    model.findAll(...args).then((entity: { dataValues: any }[]) =>
-      entity?.map((data: { dataValues: any }) => {
-        const { dataValues } = data || {};
+
+  const getAll = async (...args: any[]) => {
+    try {
+      const entity = await model.findAll(...args);
+      return entity?.map((data: { dataValues: any }) => {
+        const {dataValues} = data || {};
         return toEntity(dataValues);
-      })
-    )
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-  const findById = (...args: any[]) =>
-    model.findByPk(...args)
-      .then(({ dataValues }: any) => toEntity(dataValues))
-      .catch((error: string | undefined) => { throw new Error(error) })
+  const findById = async (...args: any[]) => {
+    const [{ user_id }] = args;
+    try {
+      const data = await model.findByPk(user_id);
+      return toEntity(data);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-  const create = (...args: any[]) =>
-    model.create(...args).then(({ dataValues }: any) =>
-      toEntity(dataValues));
+  const create = async (...args: any[]) => {
+    const [{ ...params }] = args;
+    try {
+      const data = await model.create(params);
+      return toEntity(data);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-  const update = (...args: any[]) =>
-    model.update(...args)
-      .catch((error: string | undefined) => { throw new Error(error) })
+  const update = async (...args: any[]) => {
+    try {
+      const [data] = await model.update(...args);
+      return data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-  const destroy = (...args: any[]) =>
-    model.destroy(...args)
+  const destroy = async (...args: any[]) => {
+    try {
+      return await model.destroy(...args);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     getAll,
