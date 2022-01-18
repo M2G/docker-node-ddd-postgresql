@@ -31,6 +31,7 @@ export default ({ config, logger, database, verify }: any) => {
     .use(bodyParser.json());
 
   router.use('/', index.default());
+  router.use(verify);
   router.use('/api/product', product.default().router);
   router.use('/api/country', country.default().router);
   router.use('/api/city', city.default().router);
@@ -38,7 +39,6 @@ export default ({ config, logger, database, verify }: any) => {
   router.use('/api/status_name', status_name.default().router);
   router.use('/api/sale', sale.default().router);
   router.use('/api/order_status', order_status.default().router);
-  //router.use(verify);
   router.use('/api/users', users.default().router);
 
   router.use(() => ({

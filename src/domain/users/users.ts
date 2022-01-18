@@ -7,7 +7,6 @@ const Users = t.struct({
   is_deleted: t.maybe(t.Number),
   is_verified: t.maybe(t.Number),
   last_name: t.maybe(t.String),
-  name: t.maybe(t.String),
   password: t.maybe(t.String),
   role_id: t.maybe(t.Number),
   updated_by: t.maybe(t.Number),

@@ -1,6 +1,5 @@
 /* eslint-disable*/
 import Status from 'http-status';
-//@ts-ignore
 import { Router, Request, Response, NextFunction } from 'express';
 
 export default ({
@@ -15,8 +14,8 @@ export default ({
 }: any) => {
   const router = Router();
 
-  /*router.use((req: Request, res: Response, next: NextFunction) =>
-    auth.authenticate(req, res, next));*/
+  router.use((req: Request, res: Response, next: NextFunction) =>
+    auth.authenticate(req, res, next));
 
   router
     .get('/', async (req: any, res: any) => {
@@ -31,17 +30,6 @@ export default ({
         logger.error(error);
        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
-
-      /*getUseCase
-        .all(req, res)
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST)
-            .json(Fail(error.message));
-        });*/
     });
 
   router
@@ -54,24 +42,13 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       try {
-        const user = await getOneUseCase.one({ id: id });
+        const user = await getOneUseCase.one({ id });
         logger.debug(user);
         return res.status(Status.OK).json(Success(user));
       } catch (error) {
         logger.error(error);
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
-
-     /* getOneUseCase
-        .findById({ id: id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });*/
     });
 
   router
@@ -80,24 +57,13 @@ export default ({
       const { body = {} } = req || {};
 
       try {
-        const user = await postUseCase.create({ body: body });
+        const user = await postUseCase.create({ body });
         logger.debug(user);
         return res.status(Status.OK).json(Success(user));
       } catch (error) {
         logger.error(error);
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
-
-      /*postUseCase
-        .create({ body: body })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });*/
     });
 
   router
@@ -110,24 +76,13 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       try {
-        const user = putUseCase.update({ body: body, id: id });
+        const user = putUseCase.update({ body, id });
         logger.debug(user);
         return res.status(Status.OK).json(Success(user));
       } catch (error) {
         logger.error(error);
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
-
-      /*putUseCase
-        .update({ body: body, id: id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });*/
     });
 
   router
@@ -137,7 +92,7 @@ export default ({
       const { id = '' } = params || {};
 
       try {
-        const user = deleteUseCase.remove({ id: id });
+        const user = deleteUseCase.remove({ id });
         logger.debug(user);
         return res.status(Status.OK).json(Success(user));
       } catch (error) {
@@ -145,17 +100,6 @@ export default ({
         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
       }
 
-
-      /*deleteUseCase
-        .remove({ id: id })
-        .then((data: any) => {
-          res.status(Status.OK).json(Success(data));
-        })
-        .catch((error: { message: any }) => {
-          logger.error(error);
-          res.status(Status.BAD_REQUEST).json(
-            Fail(error.message));
-        });*/
     });
 
   return router;

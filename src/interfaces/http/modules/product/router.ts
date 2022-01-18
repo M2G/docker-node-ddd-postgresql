@@ -1,6 +1,5 @@
 /* eslint-disable*/
 import Status from 'http-status';
-//@ts-ignore
 import { NextFunction, Request, Response, Router } from 'express';
 
 export default ({
@@ -15,8 +14,8 @@ export default ({
 }: any) => {
   const router = Router();
 
- /* router.use((req: Request, res: Response, next: NextFunction) =>
-    auth.authenticate(req, res, next));*/
+ router.use((req: Request, res: Response, next: NextFunction) =>
+    auth.authenticate(req, res, next));
 
   router
     .get('/', async (req: any, res: any) => {
@@ -59,7 +58,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const data = await postUseCase.create({ body: body });
+        const data = await postUseCase.create({ body });
         logger.debug(data);
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
@@ -79,7 +78,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
-          const data = await putUseCase.update({ body: { product_name }, id: id });
+          const data = await putUseCase.update({ body: { product_name }, id });
 
          if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 
@@ -101,7 +100,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
-          const data = await deleteUseCase.remove({ id: id });
+          const data = await deleteUseCase.remove({ id });
 
           if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 

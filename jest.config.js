@@ -13,7 +13,7 @@ module.exports = {
   forceExit: true,
   globals: {
     "ts-jest": {
-      "tsConfig": "<rootDir>/tsconfig.json"
+      tsconfig: "<rootDir>/tsconfig.json"
     }
   },
   preset: "ts-jest",

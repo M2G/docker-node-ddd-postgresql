@@ -42,16 +42,11 @@ describe('Routes: GET productsEntity', () => {
       })
       done()
     })
-  })
-
+  });
 
   const PRODUCT_1 = {
     product_id: 235235,
     product_name: 'Product 235235',
-  };
-  const PRODUCT_2 = {
-    product_id: 235234,
-    product_name: 'Product 235234',
   };
 
   describe('Should return product', () => {
@@ -59,33 +54,25 @@ describe('Routes: GET productsEntity', () => {
       // we need to add user before we can request our token
       productRepository
         .destroy({ where: {} })
-        .then(() =>
-          productRepository.create({
-            product_id: PRODUCT_1.product_id,
-            product_name: PRODUCT_1.product_name,
-          })
-        ).then(() => {
+        .then(() => {
         productRepository.create({
-          product_id: PRODUCT_2.product_id,
-          product_name: PRODUCT_2.product_name,
-        });
+          product_id: PRODUCT_1.product_id,
+          product_name: PRODUCT_1.product_name,
+        })
         done();
       })
     });
 
-    it('should return all products', (done) => {
-      rqt.get(BASE_URI)
+    it('should return one product', (done) => {
+      rqt.get(`${BASE_URI}/235235`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
-         expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].product_id).toEqual(PRODUCT_1.product_id);
-          expect(res.body.data[0].product_name).toEqual(PRODUCT_1.product_name);
-          expect(res.body.data[1].product_id).toEqual(PRODUCT_2.product_id);
-          expect(res.body.data[1].product_name).toEqual(PRODUCT_2.product_name);
-         done();
-        })
-    })
+          expect(res.body.data.product_id).toEqual(PRODUCT_1.product_id);
+          expect(res.body.data.product_name).toEqual(PRODUCT_1.product_name);
+          done();
+        });
+    });
 
     it('should return unauthorized if no token', (done) => {
       rqt.get(BASE_URI)

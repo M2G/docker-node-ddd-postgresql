@@ -16,7 +16,9 @@ export default ({ model }: any) => {
   }
 
   const findById = async (...args: any[]) => {
+
     const [{ user_id }] = args;
+
     try {
       const data = await model.findByPk(user_id);
       return toEntity(data);
@@ -25,8 +27,24 @@ export default ({ model }: any) => {
     }
   }
 
-  const create = async (...args: any[]) => {
+  const findByOne = async (...args: any[]) => {
+
     const [{ ...params }] = args;
+
+    console.log('params params params', params)
+
+    try {
+      const data = await model.findOne(params);
+      return toEntity(data);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const create = async (...args: any[]) => {
+
+    const [{ ...params }] = args;
+
     try {
       const data = await model.create(params);
       return toEntity(data);
@@ -55,6 +73,7 @@ export default ({ model }: any) => {
   return {
     getAll,
     findById,
+    findByOne,
     create,
     update,
     destroy

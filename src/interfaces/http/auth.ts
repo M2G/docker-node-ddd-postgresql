@@ -21,21 +21,20 @@ export default ({
       token: any,
       done: (
         arg0: any,
-        arg1: { user_id: any; email: any; password: any } | null,
+        arg1: { email: string; password: string } | null,
       ) => any,
     ) => {
 
-      const { user_id: userId }: any | number = jwt.decode()(token);
+      const { email }: any | string = jwt.decode()(token);
 
-      console.log('TOKEN ID BEARER', userId)
+      console.log('TOKEN ID BEARER', email)
 
         try {
-          const user: any = await usersRepository.findOne({ user_id: userId });
+          const user: any = await usersRepository.findByOne({ email });
 
           if (!user) return done(Status[Status.NOT_FOUND], null);
 
-          const { user_id, email, password } = user;
-          done(null, { user_id, email, password });
+          done(null, { email: user.email, password: user.password });
         } catch (error) {
           done(error, null);
         }

@@ -3,7 +3,7 @@ SET SESSION my.number_of_sales = '200';
 SET SESSION my.number_of_users = '500';
 SET SESSION my.number_of_products = '300';
 SET SESSION my.number_of_stores = '500';
-SET SESSION my.number_of_coutries = '100';
+SET SESSION my.number_of_countries = '100';
 SET SESSION my.number_of_cities = '30';
 SET SESSION my.status_names = '5';
 SET SESSION my.start_date = '2019-01-01 00:00:00';
@@ -57,13 +57,13 @@ FROM GENERATE_SERIES(1, current_setting('my.number_of_products')::INT) AS id;
 -- Filling of countries
 INSERT INTO country
 SELECT id, concat('Country ', id)
-FROM GENERATE_SERIES(1, current_setting('my.number_of_coutries')::INT) AS id;
+FROM GENERATE_SERIES(1, current_setting('my.number_of_countries')::INT) AS id;
 
 -- Filling of cities
 INSERT INTO city
 SELECT id
 	, concat('City ', id)
-	, floor(random() * (current_setting('my.number_of_coutries')::INT) + 1)::INT
+	, floor(random() * (current_setting('my.number_of_countries')::INT) + 1)::INT
 FROM GENERATE_SERIES(1, current_setting('my.number_of_cities')::INT) AS id;
 
 -- Filling of stores
