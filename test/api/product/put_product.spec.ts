@@ -62,33 +62,44 @@ describe('Routes: GET productsEntity', () => {
         .set('Authorization', `Bearer ${token}`)
         .send(PRODUCT))
         .then((res: any) => {
-
-          console.log(':::::::::', res.body.data)
-
-          // productId = product_id
+          productId = res.body.data.product_id;
           done();
         })
     });
 
-    it('should return create product', (done) => {
+    it('should return update product', (done) => {
 
-      console.log('-------->', productId)
-
-      /*
       const PRODUCT_2 = {
         product_name: 'Product 235236',
       }
 
-      rqt.put(`${BASE_URI}/${PRODUCT.product_id}`)
+      rqt.put(`${BASE_URI}/${productId}`)
         .set('Authorization', `Bearer ${token}`)
         .send(PRODUCT_2)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
-          //expect(res.body.success).toBeTruthy();
-          //expect(res.body.data.product_id).toEqual(PRODUCT.product_id);
-          //expect(res.body.data.product_name).toEqual(PRODUCT.product_name);
+          expect(res.body.success).toBeTruthy();
+          expect(res.body.data.product_name).toEqual(PRODUCT_2.product_name);
           done();
-        });*/
+        });
+    });
+
+    it('should return fail update product', (done) => {
+
+      const PRODUCT_2 = {
+        product_name: 'Product 235236',
+      }
+
+      rqt.put(`${BASE_URI}/${11111}`)
+        .set('Authorization', `Bearer ${token}`)
+        .send(PRODUCT_2)
+        .expect(500)
+        .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
+          const result = JSON.parse(res.text);
+          expect(result.success).toBeFalsy();
+          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          done(err);
+        });
     });
 
     it('should return unauthorized if no token', (done) => {
