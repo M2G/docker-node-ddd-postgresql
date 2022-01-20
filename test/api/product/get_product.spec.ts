@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import container from '../../../src/container';
+import container from 'container';
 
 const server: any = container.resolve('server');
 
@@ -15,7 +15,8 @@ describe('Routes: GET productsEntity', () => {
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeEach((done) => {
+  beforeAll( () => {});
+  beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -42,8 +43,7 @@ describe('Routes: GET productsEntity', () => {
       })
       done()
     })
-  })
-
+  });
 
   const PRODUCT_1 = {
     product_id: 235235,
@@ -70,7 +70,7 @@ describe('Routes: GET productsEntity', () => {
           product_name: PRODUCT_2.product_name,
         });
         done();
-      })
+      });
     });
 
     it('should return all products', (done) => {
@@ -91,7 +91,6 @@ describe('Routes: GET productsEntity', () => {
       rqt.get(BASE_URI)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
-
           const result = JSON.parse(res.text);
 
           expect(err).toEqual(null);

@@ -55,7 +55,7 @@ services:
       - ${HOST_PORT}:${CONTAINER_PORT}
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./postgres-initdb_test.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
     security_opt:
       - seccomp:unconfined

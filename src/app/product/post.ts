@@ -8,10 +8,10 @@ import { cleanData } from 'interfaces/http/utils';
   * function for create product.
   */
 export default ({ productRepository }: any) => {
-  const create = async ({ body }: any) => {
+  const create = ({ body }: any) => {
     try {
       const product = Product({ ...body });
-      return await productRepository.create(cleanData(product));
+      return productRepository.create(cleanData(product));
     } catch (error) {
       throw new Error(error);
     }

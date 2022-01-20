@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import container from '../../../src/container';
+import container from 'container';
 
 const server: any = container.resolve('server');
 
@@ -75,7 +75,7 @@ describe('Routes: GET productsEntity', () => {
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.get(BASE_URI)
+      rqt.get(`${BASE_URI}/235235`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
 

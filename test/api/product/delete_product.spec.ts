@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import container from '../../../src/container';
+import container from 'container';
 
 const server: any = container.resolve('server');
 
@@ -15,7 +15,7 @@ describe('Routes: DELETE Product', () => {
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeEach((done) => {
+  beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -40,7 +40,7 @@ describe('Routes: DELETE Product', () => {
         last_name: user.last_name,
         email: user.email
       })
-      done()
+      done();
     })
   });
 
@@ -64,28 +64,35 @@ describe('Routes: DELETE Product', () => {
         .then((res: any) => {
           productId = res.body.data.product_id;
           done();
-        })
+        });
     });
 
     it('should delete product', (done) => {
+
       rqt.delete(`${BASE_URI}/${productId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(204)
-        .end((err: any, res: { body: { data: any; }; }) => {
+        .end((err: any) => {
+          expect(err).toEqual(null);
+          done();
+        });
+    });
 
-          console.log('----->', res.body)
+    it('should delete product which does not exist', (done) => {
 
-          //expect(res.body.data.product_id).toEqual(PRODUCT_1.product_id);
-          // expect(res.body.data.product_name).toEqual(PRODUCT_1.product_name);
+      rqt.delete(`${BASE_URI}/${111111}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(404)
+        .end((err: any) => {
+          expect(err).toEqual(null);
           done();
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.delete(BASE_URI)
+      rqt.delete(`${BASE_URI}/${productId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
-
           const result = JSON.parse(res.text);
 
           expect(err).toEqual(null);

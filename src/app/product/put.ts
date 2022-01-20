@@ -8,12 +8,14 @@ import { cleanData } from 'interfaces/http/utils';
   * function for update product.
   */
 export default ({ productRepository }: any) => {
-  const update = async ({ id, body }: any) => {
+  const update = ({ id, body }: any) => {
       try {
         const post = Product({ ...body });
-        return await productRepository.update(cleanData(post), {
-          where: { product_id: id }
-        })
+        return productRepository.update(cleanData(post), {
+          where: { product_id: id },
+          returning: true,
+          plain: true
+        });
       } catch (error) {
         throw new Error(error);
       }

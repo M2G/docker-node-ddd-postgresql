@@ -39,7 +39,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       try {
-        const data = await getOneUseCase.one({ id: id });
+        const data = await getOneUseCase.one({ id });
         logger.debug(data);
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
@@ -58,7 +58,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const data = await postUseCase.create({ body });
+        const data = await postUseCase.create({ ...body });
         logger.debug(data);
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
@@ -78,15 +78,15 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
-          const data = await putUseCase.update({ body: { product_name }, id });
+          const data = await putUseCase.update({ product_name, id });
 
-         if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
+          if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 
           logger.debug(data);
           return res.status(Status.OK).json(Success(data));
         } catch (error) {
           logger.error(error);
-         return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+         return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
         }
     });
 
@@ -105,10 +105,10 @@ export default ({
           if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 
           logger.debug(data);
-          return res.status(Status.OK).json(Success(data));
+          return res.status(Status.NO_CONTENT).json(Success());
         } catch (error) {
           logger.error(error);
-          return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+          return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
         }
     });
 

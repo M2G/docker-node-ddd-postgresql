@@ -1,15 +1,11 @@
-import container from '../../../../container';
+import container from 'container';
 import {
  get, getOne, post, put, remove
-} from '../../../../app/product';
+} from 'app/product';
 
 export default () => {
-  const {cradle} = container;
-  const {
- repository: {
-    productRepository
-    }
-  } = cradle;
+  const { cradle } = container;
+  const { repository: { productRepository } } = cradle;
 
   const getUseCase = get({productRepository});
   const getOneUseCase = getOne({productRepository});

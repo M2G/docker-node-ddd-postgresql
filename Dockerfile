@@ -23,7 +23,7 @@ COPY . .
 # Create environment file
 RUN cp .env.example .env
 
-# Create environment file
+# Create environment test file
 RUN cp .env_test.example .env_test
 
 # Install dependencies

@@ -3,14 +3,9 @@
   * function for get all product.
   */
 export default ({ productRepository }: any) => {
-  const all = async () => {
-
+  const all = (params: any) => {
     try {
-    return await productRepository.getAll({
-        attributes: [
-          'product_id', 'product_name'
-        ]
-      });
+    return productRepository.getAll(params);
     } catch (error) {
       throw new Error(error);
     }

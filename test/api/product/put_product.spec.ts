@@ -1,6 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
-import container from '../../../src/container';
+import container from 'container';
 
 const server: any = container.resolve('server');
 
@@ -93,7 +93,7 @@ describe('Routes: GET productsEntity', () => {
       rqt.put(`${BASE_URI}/${11111}`)
         .set('Authorization', `Bearer ${token}`)
         .send(PRODUCT_2)
-        .expect(500)
+        .expect(404)
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
@@ -103,7 +103,7 @@ describe('Routes: GET productsEntity', () => {
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.get(BASE_URI)
+      rqt.put(`${BASE_URI}/${productId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);

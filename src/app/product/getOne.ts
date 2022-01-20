@@ -4,14 +4,13 @@
   */
 
 import Product from 'domain/product';
-import { cleanData } from 'interfaces/http/utils';
 
 export default ({ productRepository }: any) => {
 
-  const one = async ({ id }: any) => {
+  const one = ({ id }: any) => {
     try {
-      const product = Product({ product_id: +id });
-      return await productRepository.findById(cleanData(product));
+      const { product_id: productId }: any = Product({ product_id: +id });
+      return productRepository.findById({ product_id: productId });
     } catch (error) {
       throw new Error(error);
     }

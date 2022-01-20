@@ -1,4 +1,5 @@
 module.exports = {
+  testTimeout: 1500000,
   coverageDirectory: './test/coverage/',
   collectCoverage: true,
   collectCoverageFrom: [
@@ -8,12 +9,12 @@ module.exports = {
     "!<rootDir>/src/models/**",
     "!<rootDir>/src/repository/**",
     "!<rootDir>/src/utils/**",
-    "!<rootDir>/src/index.ts"
+    "!<rootDir>/src/app/index.ts"
   ],
   forceExit: true,
   globals: {
     "ts-jest": {
-      tsconfig: "<rootDir>/tsconfig.json"
+      "tsconfig": "<rootDir>/tsconfig.json"
     }
   },
   preset: "ts-jest",
@@ -22,10 +23,11 @@ module.exports = {
   ],
   transform: {
     '^.+\\.ts?$': 'ts-jest',
+    '^.+\\.(js)?$': 'babel-jest'
   },
   testMatch: [
-    '**/__tests__/**/*.(js|ts)',
-    '**/?(*.)+(spec|test).(js|ts)',
+    '**/__tests__/**/*.(js|ts|tsx)',
+    '**/?(*.)+(spec|test).(js|ts|tsx)',
   ],
   moduleNameMapper: {
     "^container": "<rootDir>/src/container",

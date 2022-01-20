@@ -6,7 +6,7 @@ import Product from 'domain/product';
   */
 export default ({ productRepository }: any) => {
 
-  const remove = ({ id }: any) => {
+  const remove = ({ id }: number | any) => {
     try {
       const { product_id: productId }: any = Product({ product_id: +id });
       return productRepository.destroy({ where: { product_id: productId } });
