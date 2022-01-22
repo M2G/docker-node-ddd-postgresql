@@ -68,8 +68,9 @@ export default ({ config }: any) => ({
           return resolve(res ? JSON.parse(<string>res) : null);
         },
       );
-    })
+    });
   },
+
   /**
    * Returns 'OK' if successful
    * @async
@@ -96,9 +97,8 @@ export default ({ config }: any) => ({
       throw new Error(e);
     }
 
-    if (ttl) {
-      redisClient.expire(key, ttl);
-    }
+    if (ttl) redisClient.expire(key, ttl);
+
     return result;
   },
 

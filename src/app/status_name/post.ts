@@ -1,23 +1,22 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for status_name domain
+ * this file will hold all the get use-case for status name domain
  */
-import StatusName from '../../domain/status_name';
+import StatusName from 'domain/status_name';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for getter post.
+  * function for create status name.
   */
 export default ({ statusNameRepository }: any) => {
-  const create = ({ body }: any) =>
-    Promise.resolve()
-      .then(() => {
-        const status_name = new StatusName(body);
-        return statusNameRepository.create(status_name);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
-
+  const create = ({ body }: any) => {
+    try {
+      const status = StatusName({ ...body });
+      return statusNameRepository.create(cleanData(status));
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   return {
     create
   }

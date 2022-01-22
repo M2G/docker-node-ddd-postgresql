@@ -1,5 +1,5 @@
 /* eslint-disable*/
-import Status from 'http-status';
+import Status from 'http-status-codes';
 import { NextFunction, Request, Response, Router } from 'express';
 
 export default ({
@@ -25,7 +25,7 @@ export default ({
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -44,7 +44,7 @@ export default ({
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -63,7 +63,7 @@ export default ({
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -78,7 +78,7 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
         try {
-          const data = await putUseCase.update({ product_name, id });
+          const data = await putUseCase.update({ body, id });
 
           if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 

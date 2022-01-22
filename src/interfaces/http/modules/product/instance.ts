@@ -5,9 +5,9 @@ import {
 
 export default () => {
   const { cradle } = container;
-  const { repository: { productRepository } } = cradle;
+  const { redis, repository: { productRepository } } = cradle;
 
-  const getUseCase = get({productRepository});
+  const getUseCase = get({ productRepository, redis });
   const getOneUseCase = getOne({productRepository});
   const postUseCase = post({productRepository});
   const putUseCase = put({productRepository});

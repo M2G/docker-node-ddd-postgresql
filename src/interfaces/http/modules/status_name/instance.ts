@@ -1,5 +1,7 @@
-import container from '../../../../container';
-import { get, getOne, post, put, remove } from '../../../../app/status_name';
+import container from 'container';
+import {
+ get, getOne, post, put, remove
+} from 'app/status_name';
 
 export default () => {
   const { cradle } = container;

@@ -1,4 +1,4 @@
-import StatusName from '../../../domain/status_name';
+import StatusName from 'domain/status_name';
 
 const toEntity = StatusName;
 

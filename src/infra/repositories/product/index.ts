@@ -22,7 +22,7 @@ export default ({ model }: any) => {
     }
   }
 
-  const create = async (...args: any[]) => {
+  const create = async (...args: any[]): Promise<unknown> => {
     const [{ ...params }] = args;
     try {
       const data = await model.create(params);
@@ -32,7 +32,7 @@ export default ({ model }: any) => {
     }
   }
 
-  const update = async (...args: any[]) => {
+  const update = async (...args: any[]): Promise<unknown> => {
     try {
       const updateData = await model.update(...args);
       const { dataValues } = updateData?.[1];
@@ -45,7 +45,7 @@ export default ({ model }: any) => {
     }
   }
 
-  const destroy = async (...args: any[]) => {
+  const destroy = async (...args: any[]): Promise<unknown> => {
 
     try {
       return await model.destroy(...args);

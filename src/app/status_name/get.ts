@@ -1,20 +1,15 @@
 /*eslint-disable*/
 /**
-  * function for get status_name.
+  * function for get all status name.
   */
 export default ({ statusNameRepository }: any) => {
-  const all = () =>
-     Promise.resolve()
-      .then(() =>
-        statusNameRepository.getAll({
-          attributes: [
-            'status_name_id', 'status_name'
-          ]
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+  const all = (params: any) => {
+    try {
+    return statusNameRepository.getAll(params);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     all
