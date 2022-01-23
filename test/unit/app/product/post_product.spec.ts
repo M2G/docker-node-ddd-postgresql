@@ -25,9 +25,6 @@ describe('App -> Product -> Post', () => {
       }
 
       const lists = await useCase.create({ body });
-
-      console.log('lists lists', lists)
-
       expect(lists.product_name).toEqual(body.product_name);
     })
   })

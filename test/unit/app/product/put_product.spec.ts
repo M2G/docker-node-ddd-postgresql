@@ -1,10 +1,9 @@
 /*eslint-disable*/
-import updateUsecase from  'app/product/put';
+import updateUsecase from 'app/product/put';
 
 describe('App -> Product -> Put', () => {
   const productId = 1;
   const productName = "Product 1";
- // const productName2 = "Product 2";
   let useCase: { update: any; };
 
   describe('Success path', () => {
