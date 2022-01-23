@@ -1,9 +1,9 @@
 /*eslint-disable*/
-import updateUsecase from  'app/product/put';
+import updateUsecase from 'app/status_name/put';
 
-describe('App -> Product -> Put', () => {
-  const productId = 1;
-  const productName = "Product 1";
+describe('App -> StatusName -> Put', () => {
+  const statusNameId = 1;
+  const statusName = "Status Name 1";
   let useCase: { update: any; };
 
   describe('Success path', () => {
@@ -13,26 +13,26 @@ describe('App -> Product -> Put', () => {
       }
 
       useCase = updateUsecase({
-        productRepository: MockRepository
+        statusNameRepository: MockRepository
       })
     })
 
     it('test', async () => {
       const body = {
-        product_id: productId,
-        product_name: productName,
+        status_name_id: statusNameId,
+        status_name: statusName,
       }
 
-      const lists = await useCase.update({ id: productId, body });
-      expect(lists.product_id).toEqual(body.product_id);
-      expect(lists.product_name).toEqual(body.product_name);
+      const lists = await useCase.update({ id: statusNameId, body });
+      expect(lists.status_name_id).toEqual(body.status_name_id);
+      expect(lists.status_name).toEqual(body.status_name);
     })
   })
 
   describe('Fail path', () => {
     const body = {
-      product_id: productId,
-      product_name: productName,
+      status_name_id: statusNameId,
+      status_name: statusName,
     }
     beforeEach(() => {
       const MockRepository = {
@@ -40,7 +40,7 @@ describe('App -> Product -> Put', () => {
       }
 
       useCase = updateUsecase({
-        productRepository: MockRepository
+        statusNameRepository: MockRepository
       })
     })
 
@@ -48,7 +48,7 @@ describe('App -> Product -> Put', () => {
 
       let error
       try {
-        await useCase.update({ id: productId, body })
+        await useCase.update({ id: statusNameId, body })
       } catch (e) {
         // error = e.message;
         error = e;

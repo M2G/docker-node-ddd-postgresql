@@ -1,7 +1,7 @@
 /*eslint-disable*/
-import getUsecase from 'app/product/get';
+import getUsecase from 'app/status_name/get';
 
-describe('App -> Product -> Get All', () => {
+describe('App -> StatusName -> Get All', () => {
   let useCase: any;
   const mockData = {};
 
@@ -16,7 +16,7 @@ describe('App -> Product -> Get All', () => {
       };
 
       useCase = getUsecase({
-        productRepository: MockRepository,
+        statusNameRepository: MockRepository,
         redis: MockRedis
       });
     });
@@ -40,7 +40,7 @@ describe('App -> Product -> Get All', () => {
       };
 
       useCase = getUsecase({
-        productRepository: MockRepository,
+        statusNameRepository: MockRepository,
         redis: MockRedis
       });
     });

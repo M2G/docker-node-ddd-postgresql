@@ -1,9 +1,9 @@
 /*eslint-disable*/
-import postUsecase from 'app/product/post';
+import postUsecase from 'app/status_name/post';
 
-describe('App -> Product -> Post', () => {
-  const productId = 1;
-  const productName = "Product 1";
+describe('App -> StatusName -> Post', () => {
+  const statusNameId = 1;
+  const statusName = "Status Name 1";
   let useCase: { create: any; };
 
   describe('Success path', () => {
@@ -14,25 +14,25 @@ describe('App -> Product -> Post', () => {
       }
 
       useCase = postUsecase({
-        productRepository: MockRepository
+        statusNameRepository: MockRepository
       })
     })
 
     it('test', async () => {
       const body = {
-        product_id: productId,
-        product_name: productName,
+        status_name_id: statusNameId,
+        status_name: statusName,
       }
 
       const lists = await useCase.create({ body });
-      expect(lists.product_name).toEqual(body.product_name);
+      expect(lists.status_name).toEqual(body.status_name);
     })
   })
 
   describe('Fail path', () => {
     const body = {
-      product_id: productId,
-      product_name: productName,
+      status_name_id: statusNameId,
+      status_name: statusName,
     }
 
     beforeEach(() => {
@@ -41,7 +41,7 @@ describe('App -> Product -> Post', () => {
       }
 
       useCase = postUsecase({
-        productRepository: MockRepository
+        statusNameRepository: MockRepository
       })
     })
 

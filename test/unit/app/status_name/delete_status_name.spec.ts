@@ -1,11 +1,11 @@
 /*eslint-disable*/
-import deleteUseCase from 'app/product/delete';
+import deleteUseCase from 'app/status_name/delete';
 
-describe('App -> Product -> Delete', () => {
-  const productId = 1;
+describe('App -> Status Name -> Delete', () => {
+  const statusNameId = 1;
   let useCase: any;
   const mockData = [{
-    product_id: productId
+    status_name_id: statusNameId
   }];
 
   describe('Success path', () => {
@@ -15,12 +15,12 @@ describe('App -> Product -> Delete', () => {
       };
 
       useCase = deleteUseCase({
-        productRepository: MockRepository
+        statusNameRepository: MockRepository
       });
     });
 
     it('should display the user on success', async () => {
-      const user = await useCase.remove({ id: +productId });
+      const user = await useCase.remove({ id: statusNameId });
       expect(user).toEqual(mockData);
     });
   });
@@ -32,7 +32,7 @@ describe('App -> Product -> Delete', () => {
       };
 
       useCase = deleteUseCase({
-        productRepository: MockRepository
+        statusNameRepository: MockRepository
       });
     });
 
@@ -40,7 +40,7 @@ describe('App -> Product -> Delete', () => {
 
       let error;
       try {
-        await useCase.remove({ id: +productId });
+        await useCase.remove({ id: +statusNameId });
       } catch (e) {
         // error = e.message;
         error = e;
