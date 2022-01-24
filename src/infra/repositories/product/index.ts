@@ -13,9 +13,9 @@ export default ({ model }: any) => {
   }
 
   const findById = async (...args: any[]): Promise<unknown> => {
-    const [{ product_id }] = args;
+    const [{ ...params }] = args;
     try {
-      const data = await model.findByPk(product_id);
+      const data = await model.findByPk(params);
       return toEntity(data);
     } catch (error) {
       throw new Error(error);

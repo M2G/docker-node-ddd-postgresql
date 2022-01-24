@@ -3,39 +3,57 @@ import toEntity from './transform';
 
 export default ({ model }: any) => {
 
-  const getAll = (...args: any[]) => {
-    return model.findAll(...args).then((entity: { dataValues: any }[]) => {
-
-      console.log('entity', entity)
-
-      return entity?.map((data: { dataValues: any }) => {
-        const {dataValues} = data || {};
-        return toEntity(dataValues);
-      })
-    })
+  const getAll = async (...args: any[]): Promise<typeof toEntity> => {
+    try {
+      const entity = await model.findAll(...args);
+      return entity?.map(({ dataValues }: any) => toEntity(dataValues));
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
-  const findById = (...args: any[]) =>
-    model.findByPk(...args)
-      .then(({ dataValues }: any) => toEntity(dataValues))
-      .catch((error: string | undefined) => { throw new Error(error) })
+  const findById = async (...args: any[]): Promise<unknown> => {
+    const [{ ...params }] = args;
+    try {
+      const data = await model.findByPk(params);
+      return toEntity(data);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-  const create = (...args: any[]) => {
+  const create = async (...args: any[]): Promise<unknown> => {
+    const [{ ...params }] = args;
+    try {
+      const data = await model.create(params);
+      return toEntity(data);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
-    return model.create(...args).then(({dataValues}: any) => {
-
-      console.log('dataValues', dataValues)
+  const update = async (...args: any[]): Promise<unknown> => {
+    try {
+      const updateData = await model.update(...args);
+      const { dataValues } = updateData?.[1];
 
       return toEntity(dataValues);
-    })
+
+    } catch {
+
+      return false;
+    }
   }
 
-  const update = (...args: any[]) =>
-    model.update(...args)
-      .catch((error: string | undefined) => { throw new Error(error) })
+  const destroy = async (...args: any[]): Promise<unknown> => {
 
-  const destroy = (...args: any[]) =>
-    model.destroy(...args)
+    try {
+      return await model.destroy(...args);
+    } catch (error) {
+
+      throw new Error(error);
+    }
+  }
 
   return {
     getAll,

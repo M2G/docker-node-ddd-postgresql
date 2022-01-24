@@ -13,9 +13,9 @@ export default ({ model }: any) => {
   }
 
   const findById = async (...args: any[]): Promise<unknown> => {
-    const [{ status_name_id }] = args;
+    const [{ ...params }] = args;
     try {
-      const data = await model.findByPk(status_name_id);
+      const data = await model.findByPk(params);
       return toEntity(data);
     } catch (error) {
       throw new Error(error);
@@ -34,12 +34,7 @@ export default ({ model }: any) => {
 
   const update = async (...args: any[]): Promise<unknown> => {
     try {
-
-      console.log('...args', args)
-
       const updateData = await model.update(...args);
-
-      console.log('UPDATE updateData', updateData)
       const { dataValues } = updateData?.[1];
 
       return toEntity(dataValues);

@@ -3,48 +3,27 @@ import toEntity from './transform';
 
 export default ({ model }: any) => {
 
-  const getAll = async (...args: any[]) => {
+  const getAll = async (...args: any[]): Promise<typeof toEntity> => {
     try {
       const entity = await model.findAll(...args);
-      return entity?.map((data: { dataValues: any }) => {
-        const {dataValues} = data || {};
-        return toEntity(dataValues);
-      });
+      return entity?.map(({ dataValues }: any) => toEntity(dataValues));
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  const findById = async (...args: any[]) => {
-
-    const [{ user_id }] = args;
-
+  const findById = async (...args: any[]): Promise<unknown> => {
+    const [{ ...params }] = args;
     try {
-      const data = await model.findByPk(user_id);
+      const data = await model.findByPk(params);
       return toEntity(data);
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  const findByOne = async (...args: any[]) => {
-
+  const create = async (...args: any[]): Promise<unknown> => {
     const [{ ...params }] = args;
-
-    console.log('params params params', params)
-
-    try {
-      const data = await model.findOne(params);
-      return toEntity(data);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  const create = async (...args: any[]) => {
-
-    const [{ ...params }] = args;
-
     try {
       const data = await model.create(params);
       return toEntity(data);
@@ -53,19 +32,25 @@ export default ({ model }: any) => {
     }
   }
 
-  const update = async (...args: any[]) => {
+  const update = async (...args: any[]): Promise<unknown> => {
     try {
-      const [data] = await model.update(...args);
-      return data;
-    } catch (error) {
-      throw new Error(error);
+      const updateData = await model.update(...args);
+      const { dataValues } = updateData?.[1];
+
+      return toEntity(dataValues);
+
+    } catch {
+
+      return false;
     }
   }
 
-  const destroy = async (...args: any[]) => {
+  const destroy = async (...args: any[]): Promise<unknown> => {
+
     try {
       return await model.destroy(...args);
     } catch (error) {
+
       throw new Error(error);
     }
   }
@@ -73,7 +58,6 @@ export default ({ model }: any) => {
   return {
     getAll,
     findById,
-    findByOne,
     create,
     update,
     destroy
