@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) =>
   sequelize.define(table, {
     status_name_id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },

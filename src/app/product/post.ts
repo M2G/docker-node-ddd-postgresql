@@ -8,7 +8,7 @@ import { cleanData } from 'interfaces/http/utils';
   * function for create product.
   */
 export default ({ productRepository }: any) => {
-  const create = ({ body }: any) => {
+  const create = ({ ...body }: any) => {
     try {
       const product = Product({ ...body });
       return productRepository.create(cleanData(product));

@@ -9,7 +9,7 @@ import { cleanData } from 'interfaces/http/utils';
   * function for create status name.
   */
 export default ({ statusNameRepository }: any) => {
-  const create = ({ body }: any) => {
+  const create = ({ ...body }: any) => {
     try {
       const status = StatusName({ ...body });
       return statusNameRepository.create(cleanData(status));

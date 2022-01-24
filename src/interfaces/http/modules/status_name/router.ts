@@ -25,7 +25,7 @@ export default ({
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -44,7 +44,7 @@ export default ({
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -63,7 +63,7 @@ export default ({
         return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -72,13 +72,15 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
-      const { status_name_id } = body;
+      const { status_name } = body;
 
-      if (!status_name_id || !id)
+      if (!status_name || !id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const data = await putUseCase.update({ status_name_id, id });
+        const data = await putUseCase.update({ status_name, id });
+
+        console.log('data data data', data)
 
         if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 

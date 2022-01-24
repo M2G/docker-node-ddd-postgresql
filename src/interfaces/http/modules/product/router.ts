@@ -51,8 +51,8 @@ export default ({
   router
     .post('/', async (req: any, res: any) => {
 
-      const { body } = req;
-      const { product_id, product_name } = body;
+      const { body } = req || {};
+      const { product_id, product_name } = body || {};
 
       if (!product_id || !product_name)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));

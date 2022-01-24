@@ -5,13 +5,11 @@ import {
 
 export default () => {
   const { cradle } = container;
-  const {
- repository: {
-   statusNameRepository
-    }
-  } = cradle;
+  const { redis, repository: { statusNameRepository } } = cradle;
 
-  const getUseCase = get({statusNameRepository});
+  console.log('-----cradle', cradle)
+
+  const getUseCase = get({ redis, statusNameRepository});
   const getOneUseCase = getOne({statusNameRepository});
   const postUseCase = post({statusNameRepository});
   const putUseCase = put({statusNameRepository});
