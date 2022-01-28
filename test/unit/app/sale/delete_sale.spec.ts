@@ -1,11 +1,11 @@
 /*eslint-disable*/
-import deleteUseCase from 'app/city/delete';
+import deleteUseCase from 'app/sale/delete';
 
-describe('App -> City -> Delete', () => {
-  const storeId = 1;
+describe('App -> Sale -> Delete', () => {
+  const saleId = '61e3932a1c0df789e0deb729';
   let useCase: any;
   const mockData = [{
-    store_id: storeId
+    sale_id: saleId
   }];
 
   describe('Success path', () => {
@@ -15,12 +15,12 @@ describe('App -> City -> Delete', () => {
       };
 
       useCase = deleteUseCase({
-        storeRepository: MockRepository
+        saleRepository: MockRepository
       });
     });
 
     it('should display the user on success', async () => {
-      const user = await useCase.remove({ id: storeId });
+      const user = await useCase.remove({ id: saleId });
       expect(user).toEqual(mockData);
     });
   });
@@ -32,7 +32,7 @@ describe('App -> City -> Delete', () => {
       };
 
       useCase = deleteUseCase({
-        storeRepository: MockRepository
+        saleRepository: MockRepository
       });
     });
 
@@ -40,7 +40,7 @@ describe('App -> City -> Delete', () => {
 
       let error;
       try {
-        await useCase.remove({ id: storeId });
+        await useCase.remove({ id: saleId });
       } catch (e) {
         // error = e.message;
         error = e;

@@ -1,10 +1,12 @@
 /*eslint-disable*/
 import updateUsecase from 'app/city/put';
 
-describe('App -> City -> Put', () => {
-  const storeId = 1;
-  const storeName = "Store 1";
-  const cityId = "City 1";
+describe('App -> Sale -> Put', () => {
+  const saleId = '61e3932a1c0df789e0deb729';
+  const amount = 5;
+  const dateSale = new Date().getTime();
+  const productId = 1;
+  const userId = 1;
   let useCase: { update: any; };
 
   describe('Success path', () => {
@@ -14,29 +16,35 @@ describe('App -> City -> Put', () => {
       }
 
       useCase = updateUsecase({
-        storeRepository: MockRepository
+        saleRepository: MockRepository
       })
     })
 
     it('test', async () => {
       const body = {
-        store_id: storeId,
-        store_name: storeName,
-        city_id: cityId
+        sale_id: saleId,
+        amount: amount,
+        date_sale: dateSale,
+        product_id: productId,
+        user_id: userId,
       }
 
-      const lists = await useCase.update({ id: storeId, body });
-      expect(lists.store_id).toEqual(body.store_id);
-      expect(lists.store_name).toEqual(body.store_name);
-      expect(lists.city_id).toEqual(body.city_id);
+      const lists = await useCase.update({ id: saleId, body });
+      expect(lists.sale_id).toEqual(body.sale_id);
+      expect(lists.amount).toEqual(body.amount);
+      expect(lists.date_sale).toEqual(body.date_sale);
+      expect(lists.product_id).toEqual(body.product_id);
+      expect(lists.user_id).toEqual(body.user_id);
     })
   })
 
   describe('Fail path', () => {
     const body = {
-      store_id: storeId,
-      store_name: storeName,
-      city_id: cityId
+      sale_id: saleId,
+      amount: amount,
+      date_sale: dateSale,
+      product_id: productId,
+      user_id: userId,
     }
     beforeEach(() => {
       const MockRepository = {
@@ -44,7 +52,7 @@ describe('App -> City -> Put', () => {
       }
 
       useCase = updateUsecase({
-        storeRepository: MockRepository
+        saleRepository: MockRepository
       })
     })
 
@@ -52,7 +60,7 @@ describe('App -> City -> Put', () => {
 
       let error
       try {
-        await useCase.update({ id: storeId, body })
+        await useCase.update({ id: saleId, body })
       } catch (e) {
         // error = e.message;
         error = e;

@@ -1,11 +1,11 @@
 /*eslint-disable*/
-import getOneUseCase from 'app/city/getOne';
+import getOneUseCase from 'app/sale/getOne';
 
-describe('App -> City -> Get One', () => {
-  const storeId = 1;
+describe('App -> Sale -> Get One', () => {
+  const saleId = '61e3932a1c0df789e0deb729';
   let useCase: any;
   const mockData = [{
-    store_id: storeId
+    sale_id: saleId
   }];
 
   describe('Success path', () => {
@@ -16,12 +16,12 @@ describe('App -> City -> Get One', () => {
       }
 
       useCase = getOneUseCase({
-        storeRepository: MockRepository,
+        saleRepository: MockRepository,
       })
     });
 
     it('should display the user on success', async () => {
-      const user = await useCase.one({ id: storeId });
+      const user = await useCase.one({ id: saleId });
       expect(user).toEqual(mockData);
     })
   });
@@ -33,7 +33,7 @@ describe('App -> City -> Get One', () => {
       }
 
       useCase = getOneUseCase({
-        storeRepository: MockRepository,
+        saleRepository: MockRepository,
       })
     })
 
@@ -41,7 +41,7 @@ describe('App -> City -> Get One', () => {
 
       let error;
       try {
-        await useCase.one({ id: storeId });
+        await useCase.one({ id: saleId });
       } catch (e) {
         // error = e.message;
         error = e;

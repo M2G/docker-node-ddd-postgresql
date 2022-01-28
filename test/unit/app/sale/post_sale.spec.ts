@@ -1,10 +1,12 @@
 /*eslint-disable*/
-import postUsecase from 'app/city/post';
+import postUsecase from 'app/sale/post';
 
-describe('App -> City -> Post', () => {
-  const storeId = 1;
-  const storeName = "Store 1";
-  const cityId = "City 1";
+describe('App -> Sale -> Post', () => {
+  const saleId = '61e3932a1c0df789e0deb729';
+  const amount = 5;
+  const dateSale = new Date().getTime();
+  const productId = 1;
+  const userId = 1;
   let useCase: { create: any; };
 
   describe('Success path', () => {
@@ -15,27 +17,35 @@ describe('App -> City -> Post', () => {
       }
 
       useCase = postUsecase({
-        storeRepository: MockRepository
+        saleRepository: MockRepository
       })
     })
 
     it('test', async () => {
       const body = {
-        store_id: storeId,
-        store_name: storeName,
-        city_id: cityId
+        sale_id: saleId,
+        amount: amount,
+        date_sale: dateSale,
+        product_id: productId,
+        user_id: userId,
       }
 
       const lists = await useCase.create({ body });
-      expect(lists.store_name).toEqual(body.store_name);
-    })
-  })
+      expect(lists.sale_id).toEqual(body.sale_id);
+      expect(lists.amount).toEqual(body.amount);
+      expect(lists.date_sale).toEqual(body.date_sale);
+      expect(lists.product_id).toEqual(body.product_id);
+      expect(lists.user_id).toEqual(body.user_id);
+    });
+  });
 
   describe('Fail path', () => {
     const body = {
-      store_id: storeId,
-      store_name: storeName,
-      city_id: cityId
+      sale_id: saleId,
+      amount: amount,
+      date_sale: dateSale,
+      product_id: productId,
+      user_id: userId,
     }
 
     beforeEach(() => {
@@ -44,7 +54,7 @@ describe('App -> City -> Post', () => {
       }
 
       useCase = postUsecase({
-        storeRepository: MockRepository
+        saleRepository: MockRepository
       })
     })
 

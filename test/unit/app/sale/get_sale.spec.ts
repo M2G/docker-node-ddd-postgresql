@@ -1,7 +1,7 @@
 /*eslint-disable*/
-import getUsecase from 'app/city/get';
+import getUsecase from 'app/sale/get';
 
-describe('App -> City -> Get All', () => {
+describe('App -> Sale -> Get All', () => {
   let useCase: any;
   const mockData = {};
 
@@ -16,15 +16,12 @@ describe('App -> City -> Get All', () => {
       };
 
       useCase = getUsecase({
-        storeRepository: MockRepository,
+        saleRepository: MockRepository,
         redis: MockRedis
       });
     });
 
     it('should display all the user on success', async () => {
-
-      console.log('------>', useCase)
-
       const lists = await useCase.all({});
       expect(lists).toEqual(mockData);
     });
@@ -40,7 +37,7 @@ describe('App -> City -> Get All', () => {
       };
 
       useCase = getUsecase({
-        storeRepository: MockRepository,
+        saleRepository: MockRepository,
         redis: MockRedis
       });
     });
