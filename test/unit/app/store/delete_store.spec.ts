@@ -1,8 +1,9 @@
 /*eslint-disable*/
+import faker from 'faker';
 import deleteUseCase from 'app/city/delete';
 
 describe('App -> City -> Delete', () => {
-  const storeId = 1;
+  const storeId = faker.datatype.uuid();
   let useCase: any;
   const mockData = [{
     store_id: storeId

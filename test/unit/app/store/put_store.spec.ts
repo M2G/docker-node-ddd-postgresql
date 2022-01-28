@@ -1,8 +1,9 @@
 /*eslint-disable*/
+import faker from 'faker';
 import updateUsecase from 'app/city/put';
 
 describe('App -> City -> Put', () => {
-  const storeId = 1;
+  const storeId = faker.datatype.uuid();
   const storeName = "Store 1";
   const cityId = "City 1";
   let useCase: { update: any; };

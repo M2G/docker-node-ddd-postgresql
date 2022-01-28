@@ -1,8 +1,9 @@
 /*eslint-disable*/
+import faker from 'faker';
 import getOneUseCase from 'app/city/getOne';
 
 describe('App -> City -> Get One', () => {
-  const storeId = 1;
+  const storeId = faker.datatype.uuid();
   let useCase: any;
   const mockData = [{
     store_id: storeId
