@@ -44,7 +44,7 @@ describe('Routes: DELETE cityEntity', () => {
     })
   });
 
-  describe('Should DELETE City', () => {
+  describe('Should DELETE city', () => {
 
     let cityId: number | any;
 
@@ -53,8 +53,8 @@ describe('Routes: DELETE cityEntity', () => {
       const CITY = {
         country_id: 1,
         city_id: 1,
-        city_name: 'Product 235235',
-      }
+        city_name: 'City 235235',
+      };
 
       cityRepository
         .destroy({ where: {} })
@@ -68,7 +68,7 @@ describe('Routes: DELETE cityEntity', () => {
         });
     });
 
-    it('should delete City', (done) => {
+    it('should delete city', (done) => {
 
       rqt.delete(`${BASE_URI}/${cityId}`)
         .set('Authorization', `Bearer ${token}`)

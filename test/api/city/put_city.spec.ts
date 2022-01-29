@@ -8,14 +8,14 @@ const { cityRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: DELETE cityEntity', () => {
+describe('Routes: GET cityEntity', () => {
   const BASE_URI = `/api/city`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeEach( (done) => {
+  beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -44,7 +44,7 @@ describe('Routes: DELETE cityEntity', () => {
     })
   });
 
-  describe('Should DELETE City', () => {
+  describe('Should return city', () => {
 
     let cityId: number | any;
 
@@ -53,45 +53,64 @@ describe('Routes: DELETE cityEntity', () => {
       const CITY = {
         country_id: 1,
         city_id: 1,
-        city_name: 'Product 235235',
-      }
+        city_name: 'City 235235',
+      };
 
       cityRepository
         .destroy({ where: {} })
         .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(CITY))
+      rqt.post(BASE_URI)
+        .set('Authorization', `Bearer ${token}`)
+        .send(CITY))
         .then((res: any) => {
           cityId = res.body.data.city_id;
           done();
-        });
+        })
     });
 
-    it('should delete City', (done) => {
+    it('should return update city', (done) => {
 
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      const CITY = {
+        country_id: 1,
+        city_id: 1,
+        city_name: 'City 235235',
+      };
+
+      rqt.put(`${BASE_URI}/${cityId}`)
         .set('Authorization', `Bearer ${token}`)
-        .expect(204)
-        .end((err: any) => {
-          expect(err).toEqual(null);
+        .send(CITY)
+        .expect(200)
+        .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
+          expect(res.body.success).toBeTruthy();
+          expect(res.body.data.country_id).toEqual(CITY.country_id);
+          expect(res.body.data.city_id).toEqual(CITY.city_id);
+          expect(res.body.data.city_name).toEqual(CITY.city_name);
           done();
         });
     });
 
-    it('should delete product which does not exist', (done) => {
+    it('should return fail update city', (done) => {
 
-      rqt.delete(`${BASE_URI}/${111111}`)
+      const CITY = {
+        country_id: 1,
+        city_id: 1,
+        city_name: 'City 235235',
+      };
+
+      rqt.put(`${BASE_URI}/${11111}`)
         .set('Authorization', `Bearer ${token}`)
+        .send(CITY)
         .expect(404)
-        .end((err: any) => {
-          expect(err).toEqual(null);
-          done();
+        .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
+          const result = JSON.parse(res.text);
+          expect(result.success).toBeFalsy();
+          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          done(err);
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      rqt.put(`${BASE_URI}/${cityId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);

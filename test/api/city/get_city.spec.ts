@@ -8,13 +8,14 @@ const { cityRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: DELETE cityEntity', () => {
+describe('Routes: GET cityEntity', () => {
   const BASE_URI = `/api/city`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
+  beforeAll( () => {});
   beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
@@ -40,58 +41,60 @@ describe('Routes: DELETE cityEntity', () => {
         last_name: user.last_name,
         email: user.email
       })
-      done();
+      done()
     })
   });
 
-  describe('Should DELETE City', () => {
+  const CITY_1 = {
+    country_id: 1,
+    city_id: 1,
+    city_name: 'City 235235',
+  };
+  const CITY_2 = {
+    country_id: 1,
+    city_id: 1,
+    city_name: 'City 235236',
+  };
 
-    let cityId: number | any;
-
+  describe('Should return City', () => {
     beforeEach((done) => {
-
-      const CITY = {
-        country_id: 1,
-        city_id: 1,
-        city_name: 'Product 235235',
-      }
-
+      // we need to add user before we can request our token
       cityRepository
         .destroy({ where: {} })
         .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(CITY))
-        .then((res: any) => {
-          cityId = res.body.data.city_id;
-          done();
+          cityRepository.create({
+            country_id: CITY_1.country_id,
+            city_id: CITY_1.city_id,
+            city_name: CITY_1.city_name,
+          })
+        ).then(() => {
+        cityRepository.create({
+          country_id: CITY_2.country_id,
+          city_id: CITY_2.city_id,
+          city_name: CITY_2.city_name,
         });
+        done();
+      });
     });
 
-    it('should delete City', (done) => {
-
-      rqt.delete(`${BASE_URI}/${cityId}`)
+    it('should return all products', (done) => {
+      rqt.get(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
-        .expect(204)
-        .end((err: any) => {
-          expect(err).toEqual(null);
-          done();
-        });
-    });
-
-    it('should delete product which does not exist', (done) => {
-
-      rqt.delete(`${BASE_URI}/${111111}`)
-        .set('Authorization', `Bearer ${token}`)
-        .expect(404)
-        .end((err: any) => {
-          expect(err).toEqual(null);
-          done();
-        });
-    });
+        .expect(200)
+        .end((err: any, res: { body: { data: any; }; }) => {
+         expect(res.body.data.length).toEqual(2);
+          expect(res.body.data[0].country_id).toEqual(CITY_1.country_id);
+          expect(res.body.data[0].city_id).toEqual(CITY_1.city_id);
+          expect(res.body.data[0].city_name).toEqual(CITY_1.city_name);
+          expect(res.body.data[1].country_id).toEqual(CITY_2.country_id);
+          expect(res.body.data[1].city_id).toEqual(CITY_2.city_id);
+          expect(res.body.data[1].city_name).toEqual(CITY_2.city_name);
+         done();
+        })
+    })
 
     it('should return unauthorized if no token', (done) => {
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      rqt.get(BASE_URI)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);

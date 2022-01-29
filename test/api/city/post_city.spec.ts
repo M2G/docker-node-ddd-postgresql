@@ -8,14 +8,14 @@ const { cityRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: DELETE cityEntity', () => {
-  const BASE_URI = `/api/city`;
+describe('Routes: GET productsEntity', () => {
+  const BASE_URI = `/api/product`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeEach( (done) => {
+  beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -44,54 +44,39 @@ describe('Routes: DELETE cityEntity', () => {
     })
   });
 
-  describe('Should DELETE City', () => {
-
-    let cityId: number | any;
-
+  describe('Should return product', () => {
     beforeEach((done) => {
+      // we need to add user before we can request our token
+      cityRepository
+        .destroy({ where: {} })
+        .then(() => {
+        done();
+      });
+    });
+
+    it('should return create product', (done) => {
 
       const CITY = {
         country_id: 1,
         city_id: 1,
-        city_name: 'Product 235235',
-      }
+        city_name: 'City 235235',
+      };
 
-      cityRepository
-        .destroy({ where: {} })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(CITY))
-        .then((res: any) => {
-          cityId = res.body.data.city_id;
-          done();
-        });
-    });
-
-    it('should delete City', (done) => {
-
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      rqt.post(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
-        .expect(204)
-        .end((err: any) => {
-          expect(err).toEqual(null);
-          done();
-        });
-    });
-
-    it('should delete product which does not exist', (done) => {
-
-      rqt.delete(`${BASE_URI}/${111111}`)
-        .set('Authorization', `Bearer ${token}`)
-        .expect(404)
-        .end((err: any) => {
-          expect(err).toEqual(null);
+        .send(CITY)
+        .expect(200)
+        .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
+          expect(res.body.success).toBeTruthy();
+          expect(res.body.data.country_id).toEqual(CITY.country_id);
+          expect(res.body.data.city_id).toEqual(CITY.city_id);
+          expect(res.body.data.city_name).toEqual(CITY.city_name);
           done();
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      rqt.post(BASE_URI)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
