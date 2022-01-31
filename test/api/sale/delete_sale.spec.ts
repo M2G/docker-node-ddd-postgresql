@@ -1,22 +1,22 @@
 /* eslint-disable */
+import faker from 'faker';
 import request from 'supertest';
 import container from 'container';
-import faker from 'faker';
 
 const server: any = container.resolve('server');
 
-const { orderStatusRepository, usersRepository } = container.resolve('repository');
+const { saleRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+describe('Routes: DELETE saleEntity', () => {
+  const BASE_URI = `/api/sale`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeEach((done) => {
+  beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -41,57 +41,63 @@ describe('Routes: GET orderStatusEntity', () => {
         last_name: user.last_name,
         email: user.email
       })
-      done()
+      done();
     })
   });
 
-  const ORDER_STATUS = {
-    order_status_id: 1,
-    update_at: new Date().toISOString(),
-    sale_id: faker.datatype.uuid(),
-    status_name_id: 1,
-  };
+  describe('Should DELETE sale', () => {
 
-  describe('Should return order_status', () => {
-
-    let orderStatusId: number | any;
+    let saleId: number | any;
 
     beforeEach((done) => {
-      // we need to add user before we can request our token
-      orderStatusRepository
+
+      const SALE = {
+        sale_id:  faker.datatype.uuid(),
+        amount: 2,
+        date_sale: new Date().toISOString(),
+        product_id: 1,
+        user_id: 1,
+        store_id: 1
+      };
+
+      saleRepository
         .destroy({ where: {} })
-        .then(() => {
-          orderStatusRepository.create({
-            order_status_id: 1,
-            update_at: new Date().toISOString(),
-            sale_id: faker.datatype.uuid(),
-            status_name_id: 1,
-        })
-        done();
-        }).then((res: any) => {
-        orderStatusId = res.body.data.order_status_id;
-            done();
-          });
+        .then(() =>
+          rqt.post(BASE_URI)
+            .set('Authorization', `Bearer ${token}`)
+            .send(SALE))
+        .then((res: any) => {
+          saleId = res.body.data.sale_id;
+          done();
+        });
     });
 
-    it('should return one order_status', (done) => {
-      rqt.get(`${BASE_URI}/${orderStatusId}`)
+    it('should delete sale', (done) => {
+
+      rqt.delete(`${BASE_URI}/${saleId}`)
         .set('Authorization', `Bearer ${token}`)
-        .expect(200)
-        .end((err: any, res: { body: { data: any; }; }) => {
-          expect(res.body.data.order_status_id).toEqual(ORDER_STATUS.order_status_id);
-          expect(res.body.data.update_at).toEqual(ORDER_STATUS.update_at);
-          expect(res.body.data.sale_id).toEqual(ORDER_STATUS.sale_id);
-          expect(res.body.data.status_name_id).toEqual(ORDER_STATUS.status_name_id);
+        .expect(204)
+        .end((err: any) => {
+          expect(err).toEqual(null);
+          done();
+        });
+    });
+
+    it('should delete product which does not exist', (done) => {
+
+      rqt.delete(`${BASE_URI}/${111111}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(404)
+        .end((err: any) => {
+          expect(err).toEqual(null);
           done();
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.get(`${BASE_URI}/${orderStatusId}`)
+      rqt.delete(`${BASE_URI}/${saleId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
-
           const result = JSON.parse(res.text);
 
           expect(err).toEqual(null);

@@ -5,12 +5,12 @@ import faker from 'faker';
 
 const server: any = container.resolve('server');
 
-const { orderStatusRepository, usersRepository } = container.resolve('repository');
+const { saleRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+describe('Routes: GET saleEntity', () => {
+  const BASE_URI = `/api/sale`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -46,56 +46,69 @@ describe('Routes: GET orderStatusEntity', () => {
     })
   });
 
-  const ORDER_STATUS_1 = {
-    order_status_id: 1,
-    update_at: new Date().toISOString(),
-    sale_id: faker.datatype.uuid(),
-    status_name_id: 1,
+  const SALE_1 = {
+    sale_id:  faker.datatype.uuid(),
+    amount: 2,
+    date_sale: new Date().toISOString(),
+    product_id: 1,
+    user_id: 1,
+    store_id: 1
   };
-  const ORDER_STATUS_2 = {
-    order_status_id: 2,
-    update_at: new Date().toISOString(),
-    sale_id: faker.datatype.uuid(),
-    status_name_id: 2,
+  const SALE_2 = {
+    sale_id:  faker.datatype.uuid(),
+    amount: 3,
+    date_sale: new Date().toISOString(),
+    product_id: 2,
+    user_id: 2,
+    store_id: 2,
   };
 
-  describe('Should return order_status', () => {
+  describe('Should return sale', () => {
     beforeEach((done) => {
       // we need to add user before we can request our token
-      orderStatusRepository
+      saleRepository
         .destroy({ where: {} })
         .then(() =>
-          orderStatusRepository.create({
-            order_status_id: 1,
-            update_at: new Date().toISOString(),
-            sale_id: faker.datatype.uuid(),
-            status_name_id: 1,
+          saleRepository.create({
+            sale_id:  faker.datatype.uuid(),
+            amount: 2,
+            date_sale: new Date().toISOString(),
+            product_id: 1,
+            user_id: 1,
+            store_id: 1
           })
         ).then(() => {
-        orderStatusRepository.create({
-          order_status_id: 2,
-          update_at: new Date().toISOString(),
-          sale_id: faker.datatype.uuid(),
-          status_name_id: 2,
+        saleRepository.create({
+          sale_id:  faker.datatype.uuid(),
+          amount: 3,
+          date_sale: new Date().toISOString(),
+          product_id: 2,
+          user_id: 2,
+          store_id: 2,
         });
         done();
       });
     });
 
-    it('should return all order_status', (done) => {
+    it('should return all sale', (done) => {
       rqt.get(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].order_status_id).toEqual(ORDER_STATUS_1.order_status_id);
-          expect(res.body.data[0].update_at).toEqual(ORDER_STATUS_1.update_at);
-          expect(res.body.data[0].sale_id).toEqual(ORDER_STATUS_1.sale_id);
-          expect(res.body.data[0].status_name_id).toEqual(ORDER_STATUS_1.status_name_id);
-          expect(res.body.data[1].order_status_id).toEqual(ORDER_STATUS_2.order_status_id);
-          expect(res.body.data[1].update_at).toEqual(ORDER_STATUS_2.update_at);
-          expect(res.body.data[1].sale_id).toEqual(ORDER_STATUS_2.sale_id);
-          expect(res.body.data[1].status_name_id).toEqual(ORDER_STATUS_2.status_name_id);
+          expect(res.body.data[0].sale_id).toEqual(SALE_1.sale_id);
+          expect(res.body.data[0].amount).toEqual(SALE_1.amount);
+          expect(res.body.data[0].date_sale).toEqual(SALE_1.date_sale);
+          expect(res.body.data[0].product_id).toEqual(SALE_1.product_id);
+          expect(res.body.data[0].user_id).toEqual(SALE_1.user_id);
+          expect(res.body.data[0].store_id).toEqual(SALE_1.store_id);
+
+          expect(res.body.data[1].sale_id).toEqual(SALE_2.sale_id);
+          expect(res.body.data[1].amount).toEqual(SALE_2.amount);
+          expect(res.body.data[1].date_sale).toEqual(SALE_2.date_sale);
+          expect(res.body.data[1].product_id).toEqual(SALE_2.product_id);
+          expect(res.body.data[1].user_id).toEqual(SALE_2.user_id);
+          expect(res.body.data[1].store_id).toEqual(SALE_2.store_id);
          done();
         })
     })

@@ -5,12 +5,12 @@ import faker from 'faker';
 
 const server: any = container.resolve('server');
 
-const { orderStatusRepository, usersRepository } = container.resolve('repository');
+const { saleRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+describe('Routes: GET saleEntity', () => {
+  const BASE_URI = `/api/sale`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -45,66 +45,74 @@ describe('Routes: GET orderStatusEntity', () => {
     })
   });
 
-  describe('Should return order_status', () => {
+  describe('Should return sale', () => {
 
-    let orderStatusId: number | any;
+    let saleId: number | any;
 
     beforeEach((done) => {
 
-      const ORDER_STATUS = {
-        order_status_id: 1,
-        update_at: new Date().toISOString(),
-        sale_id: faker.datatype.uuid(),
-        status_name_id: 1,
+      const SALE = {
+        sale_id:  faker.datatype.uuid(),
+        amount: 2,
+        date_sale: new Date().toISOString(),
+        product_id: 1,
+        user_id: 1,
+        store_id: 1
       };
 
-      orderStatusRepository
+      saleRepository
         .destroy({ where: {} })
         .then(() =>
       rqt.post(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
-        .send(ORDER_STATUS))
+        .send(SALE))
         .then((res: any) => {
-          orderStatusId = res.body.data.order_status_id;
+          saleId = res.body.data.sale_id;
           done();
         })
     });
 
-    it('should return update order_status', (done) => {
+    it('should return update sale', (done) => {
 
-      const ORDER_STATUS = {
-        order_status_id: 1,
-        update_at: new Date().toISOString(),
-        sale_id: faker.datatype.uuid(),
-        status_name_id: 1,
+      const SALE = {
+        sale_id:  faker.datatype.uuid(),
+        amount: 2,
+        date_sale: new Date().toISOString(),
+        product_id: 1,
+        user_id: 1,
+        store_id: 1
       };
 
-      rqt.put(`${BASE_URI}/${orderStatusId}`)
+      rqt.put(`${BASE_URI}/${saleId}`)
         .set('Authorization', `Bearer ${token}`)
-        .send(ORDER_STATUS)
+        .send(SALE)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.order_status_id).toEqual(ORDER_STATUS.order_status_id);
-          expect(res.body.data.update_at).toEqual(ORDER_STATUS.update_at);
-          expect(res.body.data.sale_id).toEqual(ORDER_STATUS.sale_id);
-          expect(res.body.data.status_name_id).toEqual(ORDER_STATUS.status_name_id);
+          expect(res.body.data.sale_id).toEqual(SALE.sale_id);
+          expect(res.body.data.amount).toEqual(SALE.amount);
+          expect(res.body.data.date_sale).toEqual(SALE.date_sale);
+          expect(res.body.data.product_id).toEqual(SALE.product_id);
+          expect(res.body.data.user_id).toEqual(SALE.user_id);
+          expect(res.body.data.store_id).toEqual(SALE.store_id);
           done();
         });
     });
 
-    it('should return fail update order_status', (done) => {
+    it('should return fail update sale', (done) => {
 
-      const ORDER_STATUS = {
-        order_status_id: 1,
-        update_at: new Date().toISOString(),
-        sale_id: faker.datatype.uuid(),
-        status_name_id: 1,
+      const SALE = {
+        sale_id:  faker.datatype.uuid(),
+        amount: 2,
+        date_sale: new Date().toISOString(),
+        product_id: 1,
+        user_id: 1,
+        store_id: 1
       };
 
       rqt.put(`${BASE_URI}/${11111}`)
         .set('Authorization', `Bearer ${token}`)
-        .send(ORDER_STATUS)
+        .send(SALE)
         .expect(404)
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
@@ -115,7 +123,7 @@ describe('Routes: GET orderStatusEntity', () => {
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.put(`${BASE_URI}/${orderStatusId}`)
+      rqt.put(`${BASE_URI}/${saleId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
