@@ -24,6 +24,9 @@ export default ({ model }: any) => {
 
   const create = async (...args: any[]): Promise<unknown> => {
     const [{ ...params }] = args;
+
+    console.log('-------> params', params)
+
     try {
       const data = await model.create(params);
       return toEntity(data);

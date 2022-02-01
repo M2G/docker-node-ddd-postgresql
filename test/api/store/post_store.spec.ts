@@ -1,15 +1,16 @@
 /* eslint-disable */
 import request from 'supertest';
 import container from 'container';
+import faker from 'faker';
 
 const server: any = container.resolve('server');
 
-const { countryRepository, usersRepository } = container.resolve('repository');
+const { storeRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET countryEntity', () => {
-  const BASE_URI = `/api/order_status`;
+describe('Routes: GET saleEntity', () => {
+  const BASE_URI = `/api/sale`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -44,31 +45,39 @@ describe('Routes: GET countryEntity', () => {
     })
   });
 
-  describe('Should return country', () => {
+  describe('Should return sale', () => {
     beforeEach((done) => {
       // we need to add user before we can request our token
-      countryRepository
+      storeRepository
         .destroy({ where: {} })
         .then(() => {
         done();
       });
     });
 
-    it('should return create country', (done) => {
+    it('should return create sale', (done) => {
 
-      const COUNTRY = {
-        country_id: 1,
-        country_name: 'City 235235',
+      const SALE = {
+        sale_id:  faker.datatype.uuid(),
+        amount: 2,
+        date_sale: new Date().toISOString(),
+        product_id: 1,
+        user_id: 1,
+        store_id: 1
       };
 
       rqt.post(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
-        .send(COUNTRY)
+        .send(SALE)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.country_id).toEqual(COUNTRY.country_id);
-          expect(res.body.data.country_name).toEqual(COUNTRY.country_name);
+          expect(res.body.data.sale_id).toEqual(SALE.sale_id);
+          expect(res.body.data.amount).toEqual(SALE.amount);
+          expect(res.body.data.date_sale).toEqual(SALE.date_sale);
+          expect(res.body.data.product_id).toEqual(SALE.product_id);
+          expect(res.body.data.user_id).toEqual(SALE.user_id);
+          expect(res.body.data.store_id).toEqual(SALE.store_id);
           done();
         });
     });

@@ -1,21 +1,22 @@
 /* eslint-disable */
+import faker from 'faker';
 import request from 'supertest';
 import container from 'container';
 
 const server: any = container.resolve('server');
 
-const { countryRepository, usersRepository } = container.resolve('repository');
+const { storeRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET countryEntity', () => {
-  const BASE_URI = `/api/order_status`;
+describe('Routes: DELETE saleEntity', () => {
+  const BASE_URI = `/api/sale`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeEach((done) => {
+  beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -44,37 +45,57 @@ describe('Routes: GET countryEntity', () => {
     })
   });
 
-  describe('Should return country', () => {
+  describe('Should DELETE sale', () => {
+
+    let saleId: number | any;
+
     beforeEach((done) => {
-      // we need to add user before we can request our token
-      countryRepository
-        .destroy({ where: {} })
-        .then(() => {
-        done();
-      });
-    });
 
-    it('should return create country', (done) => {
-
-      const COUNTRY = {
-        country_id: 1,
-        country_name: 'City 235235',
+      const SALE = {
+        sale_id:  faker.datatype.uuid(),
+        amount: 2,
+        date_sale: new Date().toISOString(),
+        product_id: 1,
+        user_id: 1,
+        store_id: 1
       };
 
-      rqt.post(BASE_URI)
+      storeRepository
+        .destroy({ where: {} })
+        .then(() =>
+          rqt.post(BASE_URI)
+            .set('Authorization', `Bearer ${token}`)
+            .send(SALE))
+        .then((res: any) => {
+          saleId = res.body.data.sale_id;
+          done();
+        });
+    });
+
+    it('should delete sale', (done) => {
+
+      rqt.delete(`${BASE_URI}/${saleId}`)
         .set('Authorization', `Bearer ${token}`)
-        .send(COUNTRY)
-        .expect(200)
-        .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
-          expect(res.body.success).toBeTruthy();
-          expect(res.body.data.country_id).toEqual(COUNTRY.country_id);
-          expect(res.body.data.country_name).toEqual(COUNTRY.country_name);
+        .expect(204)
+        .end((err: any) => {
+          expect(err).toEqual(null);
+          done();
+        });
+    });
+
+    it('should delete product which does not exist', (done) => {
+
+      rqt.delete(`${BASE_URI}/${111111}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(404)
+        .end((err: any) => {
+          expect(err).toEqual(null);
           done();
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.post(BASE_URI)
+      rqt.delete(`${BASE_URI}/${saleId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);

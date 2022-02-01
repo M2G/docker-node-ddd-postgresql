@@ -32,6 +32,8 @@ export default ({
         try {
           const user: any = await usersRepository.findByOne({ email });
 
+          console.log('usersRepository.findByOne', user)
+
           if (!user) return done(Status[Status.NOT_FOUND], null);
 
           done(null, { email: user.email, password: user.password });

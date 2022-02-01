@@ -56,6 +56,8 @@ describe('Routes: DELETE cityEntity', () => {
         city_name: 'City 235235',
       };
 
+      console.log('----> token', token)
+
       cityRepository
         .destroy({ where: {} })
         .then(() =>
@@ -69,7 +71,6 @@ describe('Routes: DELETE cityEntity', () => {
     });
 
     it('should delete city', (done) => {
-
       rqt.delete(`${BASE_URI}/${cityId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(204)

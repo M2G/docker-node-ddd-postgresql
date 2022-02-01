@@ -30,11 +30,11 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       allowNull: false
     },
-    country_name: {
+    city_name: {
       type: DataTypes.STRING(450),
       allowNull: false
     },
-   country_id: {
+    country_id: {
      type: DataTypes.INTEGER,
      allowNull: false,
     // references: { model: 'country', key: 'country_id'},

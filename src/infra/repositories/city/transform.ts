@@ -1,4 +1,4 @@
-import City from '../../../domain/city';
+import City from 'domain/city';
 
 const toEntity = City;
 
