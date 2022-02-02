@@ -51,8 +51,8 @@ describe('Routes: GET cityEntity', () => {
     city_name: 'City 235235',
   };
   const CITY_2 = {
-    country_id: 1,
-    city_id: 1,
+    country_id: 2,
+    city_id: 2,
     city_name: 'City 235236',
   };
 

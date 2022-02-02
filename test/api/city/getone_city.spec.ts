@@ -66,7 +66,7 @@ describe('Routes: GET cityEntity', () => {
     });
 
     it('should return one city', (done) => {
-      rqt.get(`${BASE_URI}/235235`)
+      rqt.get(`${BASE_URI}/1`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {

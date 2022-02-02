@@ -71,10 +71,11 @@ describe('Routes: GET cityEntity', () => {
     it('should return update city', (done) => {
 
       const CITY = {
-        country_id: 1,
-        city_id: 1,
-        city_name: 'City 235235',
+        country_id: 2,
+        city_name: 'City 22',
       };
+
+      console.log('cityId cityId cityId', cityId)
 
       rqt.put(`${BASE_URI}/${cityId}`)
         .set('Authorization', `Bearer ${token}`)
@@ -83,7 +84,6 @@ describe('Routes: GET cityEntity', () => {
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
           expect(res.body.data.country_id).toEqual(CITY.country_id);
-          expect(res.body.data.city_id).toEqual(CITY.city_id);
           expect(res.body.data.city_name).toEqual(CITY.city_name);
           done();
         });
@@ -104,7 +104,7 @@ describe('Routes: GET cityEntity', () => {
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          expect(result.error).toEqual('Not found.');
           done(err);
         });
     });
@@ -114,7 +114,6 @@ describe('Routes: GET cityEntity', () => {
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
-
           expect(err).toEqual(null);
           expect(result.error.success).toBeFalsy();
           expect(result.error.message).toEqual('No token provided.');

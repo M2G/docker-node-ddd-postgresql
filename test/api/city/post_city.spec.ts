@@ -8,8 +8,8 @@ const { cityRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET productsEntity', () => {
-  const BASE_URI = `/api/product`;
+describe('Routes: GET cityEntity', () => {
+  const BASE_URI = `/api/city`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -80,7 +80,6 @@ describe('Routes: GET productsEntity', () => {
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
-
           expect(err).toEqual(null);
           expect(result.error.success).toBeFalsy();
           expect(result.error.message).toEqual('No token provided.');
