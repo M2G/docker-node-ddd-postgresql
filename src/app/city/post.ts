@@ -12,10 +12,7 @@ export default ({ cityRepository }: any) => {
     Promise.resolve()
       .then(() => {
         const city = new City(body);
-
-        console.log('city city city city', city)
-
-        return cityRepository.create(body);
+        return cityRepository.create(city);
       })
       .catch((error) => {
         throw new Error(error);

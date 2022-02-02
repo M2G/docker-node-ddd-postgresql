@@ -1,21 +1,20 @@
 /*eslint-disable*/
 /**
-  * function for getter post.
-  */
+ * function for get one city.
+ */
+
+import City from 'domain/city';
+
 export default ({ cityRepository }: any) => {
-  const one = ({ city_id }: any) =>
-     Promise.resolve()
-      .then(() =>
-        cityRepository.findById({
-          attributes: [
-            'city_id', 'city_name', 'country_id'
-          ],
-          where: { city_id }
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+
+  const one = ({ id }: any) => {
+    try {
+      const { city_id: cityId }: any = City({ city_id: +id });
+      return cityRepository.findById({ where: { city_id: cityId }});
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     one

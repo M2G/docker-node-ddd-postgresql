@@ -2,26 +2,30 @@
 /**
  * this file will hold all the get use-case for post domain
  */
-import City from '../../domain/city';
-
+import Product from 'domain/city';
+import { cleanData } from 'interfaces/http/utils';
 /**
-  * function for getter post.
-  */
-export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const update = ({ city_id, body }: any) =>
-    new Promise(async (resolve, reject) => {
-      try {
-        const city = new City(body);
-        await postRepository.update(city, {
-          where: { city_id }
-        })
-        resolve(city);
-      } catch (error) {
-        reject(error);
-      }
-    });
+ * function for update city.
+ */
+export default ({ cityRepository }: any) => {
+  const update = ({ id, ...args }: any) => {
+    try {
 
+      console.log('::::::::::::::::: body body', { ...args })
+
+      const post = Product(args);
+
+      console.log('::::::::::::::::: post post', post)
+
+      return cityRepository.update(cleanData(post), {
+        where: { city_id: id },
+        returning: true,
+        plain: true
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   return {
     update
   }
