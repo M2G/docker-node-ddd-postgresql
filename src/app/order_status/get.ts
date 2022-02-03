@@ -1,22 +1,30 @@
 /*eslint-disable*/
 /**
-  * function for get order status.
+  * function for get order order_status.
   */
-export default ({ orderStatusRepository }: any) => {
-  const all = () =>
-     Promise.resolve()
-      .then(() =>
-        orderStatusRepository.getAll({
-          attributes: [
-            'order_status_id', 'update_at', 'sale_id', 'status_name_id'
-          ]
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+const KEY = 'LIST_ORDER_STATUS';
+const TTL = 0.6 * 60;
+
+export default ({ orderStatusRepository, redis }: any) => {
+  const all = async (params: any) => {
+    try {
+
+      const cachingListCountry = await redis.get(KEY);
+
+      if (cachingListCountry) return cachingListCountry;
+
+      const countryList = orderStatusRepository.getAll(params);
+
+      await redis.set(KEY, JSON.stringify(countryList), TTL);
+
+      return countryList;
+
+    } catch (error: unknown) {
+      throw new Error(error as string | undefined);
+    }
+  };
 
   return {
     all
-  }
-}
+  };
+};

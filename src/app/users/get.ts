@@ -2,31 +2,29 @@
 /**
   * function for get users.
   */
-export default ({ usersRepository }: any) => {
+const KEY = 'LIST_USER';
+const TTL = 0.6 * 60;
 
-  const all = () => {
+export default ({ usersRepository, redis }: any) => {
+  const all = async (params: any) => {
     try {
-      return usersRepository.getAll({
-        attributes: [
-          'user_id',
-          'first_name',
-          'last_name',
-          'email',
-          'password',
-          'role_id',
-          'verification_code',
-          'is_verified',
-          'is_deleted',
-          'created_by',
-          'updated_by',
-        ]
-      });
-    } catch (error) {
-      throw new Error(error);
+
+      const cachingListUser = await redis.get(KEY);
+
+      if (cachingListUser) return cachingListUser;
+
+      const userList = usersRepository.getAll(params);
+
+      await redis.set(KEY, JSON.stringify(userList), TTL);
+
+      return userList;
+
+    } catch (error: unknown) {
+      throw new Error(error as string | undefined);
     }
-  }
+  };
 
   return {
     all
-  }
-}
+  };
+};

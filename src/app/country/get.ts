@@ -2,21 +2,30 @@
 /**
   * function for getter country.
   */
-export default ({ countryRepository }: any) => {
-  const all = () =>
-     Promise.resolve()
-      .then(() =>
-        countryRepository.getAll({
-          attributes: [
-            'country_id', 'country_name'
-          ]
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+const KEY = 'LIST_COUNTRY';
+const TTL = 0.6 * 60;
+
+export default ({ countryRepository, redis }: any) => {
+  const all = async (params: any) => {
+    try {
+
+      const cachingListCountry = await redis.get(KEY);
+
+      if (cachingListCountry) return cachingListCountry;
+
+      const countryList = countryRepository.getAll(params);
+
+      await redis.set(KEY, JSON.stringify(countryList), TTL);
+
+      return countryList;
+
+    } catch (error: unknown) {
+      throw new Error(error as string | undefined);
+    }
+  };
 
   return {
     all
-  }
-}
+  };
+};
+

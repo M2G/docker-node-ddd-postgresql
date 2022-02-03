@@ -12,7 +12,7 @@ export default ({ redis, statusNameRepository }: any) => {
 
       if (cachingListStatusName) return cachingListStatusName;
 
-      const statusNameList =  statusNameRepository.getAll(params);
+      const statusNameList = statusNameRepository.getAll(params);
 
       await redis.set(KEY, JSON.stringify(statusNameList), TTL);
 

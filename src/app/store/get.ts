@@ -1,22 +1,31 @@
 /*eslint-disable*/
 /**
-  * function for store post.
+  * function for store store.
   */
-export default ({ storeRepository }: any) => {
-  const all = () =>
-     Promise.resolve()
-      .then(() =>
-        storeRepository.getAll({
-          attributes: [
-            'store_id', 'name', 'city_id'
-          ]
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+
+const KEY = 'LIST_STORE';
+const TTL = 0.6 * 60;
+
+export default ({ storeRepository, redis }: any) => {
+  const all = async (params: any) => {
+    try {
+
+      const cachingListStore = await redis.get(KEY);
+
+      if (cachingListStore) return cachingListStore;
+
+      const storeList = storeRepository.getAll(params);
+
+      await redis.set(KEY, JSON.stringify(storeList), TTL);
+
+      return storeList;
+
+    } catch (error: unknown) {
+      throw new Error(error as string | undefined);
+    }
+  };
 
   return {
     all
-  }
-}
+  };
+};
