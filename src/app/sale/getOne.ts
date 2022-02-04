@@ -1,22 +1,18 @@
 /*eslint-disable*/
+import Product from 'domain/product';
+
 /**
   * function for getter post.
   */
-export default ({ postRepository }: any) => {
-  const one = ({ id }: any) =>
-     Promise.resolve()
-      .then(() =>
-        postRepository.findById({
-          attributes: [
-            //'id', 'title', 'content', 'createdAt', 'modifiedAt'
-            'id', 'title', 'content'
-          ],
-          where: { id }
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+export default ({ saleRepository }: any) => {
+  const one = ({ id }: any) => {
+    try {
+      const { sale_id }: any = Product({ sale_id: +id });
+      return saleRepository.findById({ sale_id });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     one

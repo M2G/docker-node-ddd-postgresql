@@ -1,22 +1,22 @@
 /*eslint-disable*/
 /**
- * this file will hold all the get use-case for post domain
+ * this file will hold all the get use-case for sale domain
  */
-import Sale from '../../domain/sale';
+import Sale from 'domain/sale';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for getter post.
+  * function for getter sale.
   */
 export default ({ saleRepository }: any) => {
-  const create = ({ body }: any) =>
-    Promise.resolve()
-      .then(() => {
-        const sale = new Sale(body);
-        return saleRepository.create(sale);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
+  const create = ({ ...args }: any) => {
+    try {
+      const sale = Sale(args);
+      return saleRepository.create(cleanData(sale));
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     create

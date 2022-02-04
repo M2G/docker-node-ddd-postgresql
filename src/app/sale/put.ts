@@ -2,24 +2,25 @@
 /**
  * this file will hold all the get use-case for sale domain
  */
-import Sale from '../../domain/sale';
+import Sale from 'domain/sale';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
   * function for getter sale.
   */
 export default ({ saleRepository }: any) => {
-  const update = ({ id, body }: any) =>
-    new Promise(async (resolve, reject) => {
-      try {
-        const sale = new Sale(body);
-        await saleRepository.update(sale, {
-          where: { id }
-        })
-        resolve(sale);
-      } catch (error) {
-        reject(error);
-      }
-    });
+  const update = ({ id, ...args }: any) => {
+    try {
+      const sale = Sale(args);
+      return saleRepository.update(cleanData(sale), {
+        where: { sale_id: id },
+        returning: true,
+        plain: true
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     update
