@@ -8,22 +8,13 @@ import { cleanData } from 'interfaces/http/utils';
   * function for create user.
   */
 export default ({ usersRepository }: any) => {
-  const create = async ({ body }: any) => {
+  const create = ({ ...body }: any) => {
     try {
       const user = new Users(body);
-      return await usersRepository.create(cleanData(user));
+      return usersRepository.create(cleanData(user));
     } catch (error) {
       throw new Error(error);
     }
-
-    /*Promise.resolve()
-      .then(() => {
-        const user = new Users(body);
-        return usersRepository.create(user);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });*/
   }
 
   return {

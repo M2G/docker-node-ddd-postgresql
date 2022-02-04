@@ -1,33 +1,20 @@
 /*eslint-disable*/
+import Users from 'domain/users';
+
 /**
  * function for delete users.
  */
 export default ({ usersRepository }: any) => {
-  const remove = ({ id }: any) => {
+  const remove = ({ id }: number | any) => {
     try {
-      return usersRepository.destroy({ where: { id } });
+      const { user_id }: any = Users({ user_id: +id });
+      return usersRepository.destroy({ where: { user_id } });
     } catch (error) {
       throw new Error(error);
     }
-  };
+  }
 
   return {
     remove,
   };
-  /*const remove = ({ user_id }: any) =>
-    Promise.resolve()
-      .then(() =>
-        usersRepository.update({
-          isDeleted: 1
-        }, {
-          where: { user_id }
-        })
-      )
-      .catch((error) => {
-        throw new Error(error);
-      })
-
-  return {
-    remove
-  }*/
 }
