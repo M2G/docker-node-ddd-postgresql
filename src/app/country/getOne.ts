@@ -1,21 +1,18 @@
 /*eslint-disable*/
+import Country from 'domain/country';
+
 /**
   * function for getter country.
   */
 export default ({ countryRepository }: any) => {
-  const one = ({ country_id }: any) =>
-     Promise.resolve()
-      .then(() =>
-        countryRepository.findById({
-          attributes: [
-            'country_id', 'country_name'
-          ],
-          where: { country_id }
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+  const one = ({ id }: any) => {
+    try {
+      const { country_id }: any = Country({ country_id: +id });
+      return countryRepository.findById({ where: { country_id }});
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     one

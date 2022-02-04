@@ -2,25 +2,25 @@
 /**
  * this file will hold all the get use-case for post domain
  */
-import Country from '../../domain/country';
+import Country from 'domain/country';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for getter post.
+  * function for getter country.
   */
 export default ({ countryRepository }: any) => {
-  // code for getting all the items
-  const update = ({ country_id, body }: any) =>
-    new Promise(async (resolve, reject) => {
-      try {
-        const country = new Country(body);
-        await countryRepository.update(country, {
-          where: { country_id }
-        })
-        resolve(country);
-      } catch (error) {
-        reject(error);
-      }
-    });
+  const update = ({ id, ...args }: any) => {
+    try {
+      const country = Country(args);
+      return countryRepository.update(cleanData(country), {
+        where: { country_id: id },
+        returning: true,
+        plain: true
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     update
