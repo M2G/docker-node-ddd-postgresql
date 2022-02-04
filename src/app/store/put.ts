@@ -2,25 +2,25 @@
 /**
  * this file will hold all the get use-case for store domain
  */
-import Store from '../../domain/store';
+import Store from 'domain/store';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
   * function for update store.
   */
 export default ({ postRepository }: any) => {
-  // code for getting all the items
-  const update = ({ store_id, body }: any) =>
-    new Promise(async (resolve, reject) => {
-      try {
-        const store = new Store(body);
-        await postRepository.update(store, {
-          where: { store_id }
-        })
-        resolve(store);
-      } catch (error) {
-        reject(error);
-      }
-    });
+  const update = ({ id, ...args }: any) => {
+    try {
+      const store = Store(args);
+      return postRepository.update(cleanData(store), {
+        where: { store_id: id },
+        returning: true,
+        plain: true
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     update

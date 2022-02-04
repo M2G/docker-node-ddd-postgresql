@@ -1,21 +1,18 @@
 /*eslint-disable*/
+import Store from 'domain/store';
+
 /**
-  * function for getter post.
+  * function for getter store.
   */
 export default ({ storeRepository }: any) => {
-  const one = ({ store_id }: any) =>
-     Promise.resolve()
-      .then(() =>
-        storeRepository.findById({
-          attributes: [
-            'store_id', 'name', 'city_id'
-          ],
-          where: { store_id }
-        })
-      )
-      .catch(error => {
-        throw new Error(error);
-      });
+  const one = ({ id }: any) => {
+    try {
+      const { store_id }: any = Store({ status_name_id: +id });
+      return storeRepository.findById({ store_id });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
 
   return {
     one
