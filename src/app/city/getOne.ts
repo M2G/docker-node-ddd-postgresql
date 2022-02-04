@@ -9,8 +9,8 @@ export default ({ cityRepository }: any) => {
 
   const one = ({ id }: any) => {
     try {
-      const { city_id: cityId }: any = City({ city_id: +id });
-      return cityRepository.findById({ where: { city_id: cityId }});
+      const { city_id }: any = City({ city_id: +id });
+      return cityRepository.findById({ where: { city_id }});
     } catch (error) {
       throw new Error(error);
     }

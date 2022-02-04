@@ -10,13 +10,7 @@ import { cleanData } from 'interfaces/http/utils';
 export default ({ cityRepository }: any) => {
   const update = ({ id, ...args }: any) => {
     try {
-
-      console.log('::::::::::::::::: body body', { ...args })
-
       const post = Product(args);
-
-      console.log('::::::::::::::::: post post', post)
-
       return cityRepository.update(cleanData(post), {
         where: { city_id: id },
         returning: true,
@@ -26,6 +20,7 @@ export default ({ cityRepository }: any) => {
       throw new Error(error);
     }
   }
+
   return {
     update
   }
