@@ -9,14 +9,15 @@ import { cleanData } from 'interfaces/http/utils';
   * function for create status name.
   */
 export default ({ statusNameRepository }: any) => {
-  const create = ({ ...body }: any) => {
+  const create = ({ ...args }: any) => {
     try {
-      const status = StatusName({ ...body });
-      return statusNameRepository.create(cleanData(status));
+      const statusName = StatusName(args);
+      return statusNameRepository.create(cleanData(statusName));
     } catch (error) {
       throw new Error(error);
     }
   }
+
   return {
     create
   }

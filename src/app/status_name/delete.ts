@@ -7,10 +7,10 @@ import StatusName from 'domain/status_name';
 export default ({ statusNameRepository }: any) => {
   const remove = ({ id }: number | any) => {
     try {
-      const { status_name_id: statusNameId }: any = StatusName({
+      const { status_name_id }: any = StatusName({
         status_name_id: +id,
       });
-      return statusNameRepository.destroy({ where: { status_name_id: statusNameId } });
+      return statusNameRepository.destroy({ where: { status_name_id } });
     } catch (error) {
       throw new Error(error);
     }
