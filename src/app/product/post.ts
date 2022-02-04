@@ -8,14 +8,15 @@ import { cleanData } from 'interfaces/http/utils';
   * function for create product.
   */
 export default ({ productRepository }: any) => {
-  const create = ({ ...body }: any) => {
+  const create = ({ ...args }: any) => {
     try {
-      const product = Product({ ...body });
+      const product = Product(args);
       return productRepository.create(cleanData(product));
     } catch (error) {
       throw new Error(error);
     }
   }
+
   return {
     create
   }

@@ -9,8 +9,8 @@ export default ({ productRepository }: any) => {
 
   const one = ({ id }: any) => {
     try {
-      const { product_id: productId }: any = Product({ product_id: +id });
-      return productRepository.findById({ product_id: productId });
+      const { product_id }: any = Product({ product_id: +id });
+      return productRepository.findById({ product_id });
     } catch (error) {
       throw new Error(error);
     }
