@@ -2,21 +2,21 @@
 /**
  * this file will hold all the get use-case for order status domain
  */
-import OrderStatus from '../../domain/order_status';
+import OrderStatus from 'domain/order_status';
+import { cleanData } from 'interfaces/http/utils';
 
 /**
   * function for create order_status.
   */
-export default ({ postRepository }: any) => {
-  const create = ({ body }: any) =>
-    Promise.resolve()
-      .then(() => {
-        const order_status = new OrderStatus(body);
-        return postRepository.create(order_status);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
+export default ({ orderStatusRepository }: any) => {
+  const create = ({ ...args }: any) => {
+    try {
+      const orderStatus = OrderStatus(args);
+      return orderStatusRepository.create(cleanData(orderStatus));
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
   return {
     create
