@@ -58,7 +58,7 @@ describe('Routes: GET productsEntity', () => {
         productRepository.create({
           product_id: PRODUCT_1.product_id,
           product_name: PRODUCT_1.product_name,
-        })
+        });
         done();
       })
     });

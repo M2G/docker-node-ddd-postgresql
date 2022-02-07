@@ -11,6 +11,9 @@ export default ({ productRepository }: any) => {
   const create = ({ ...args }: any) => {
     try {
       const product = Product(args);
+
+      console.log('--------> product', product)
+
       return productRepository.create(cleanData(product));
     } catch (error) {
       throw new Error(error);

@@ -53,7 +53,6 @@ export default ({
     .post('/', async (req: any, res: any) => {
 
       const { body } = req || {};
-      console.log('----> body', body)
       const { city_id, city_name, country_id } = body || {};
 
       if (!city_id || !city_name || !country_id)
@@ -74,13 +73,17 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
-      const { product_name } = body;
+      const { city_name, country_id } = body;
 
-      if (!product_name || !id)
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
+
+
+      if (!city_name || !country_id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const data = await putUseCase.update({ body, id });
+        const data = await putUseCase.update({ id, ...body });
 
         if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 

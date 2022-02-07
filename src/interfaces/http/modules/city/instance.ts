@@ -4,14 +4,10 @@ import {
 } from 'app/city';
 
 export default () => {
-  const {cradle} = container;
-  const {
- repository: {
-   cityRepository
-    }
-  } = cradle;
+  const { cradle } = container;
+  const { redis, repository: { cityRepository } } = cradle;
 
-  const getUseCase = get({cityRepository});
+  const getUseCase = get({ cityRepository, redis });
   const getOneUseCase = getOne({cityRepository});
   const postUseCase = post({cityRepository});
   const putUseCase = put({cityRepository});

@@ -11,7 +11,7 @@ export default ({ productRepository, redis }: any) => {
 
       const cachingListProduct = await redis.get(KEY);
 
-        if (cachingListProduct) return cachingListProduct;
+     if (cachingListProduct) return cachingListProduct;
 
       const productList =  productRepository.getAll(params);
 

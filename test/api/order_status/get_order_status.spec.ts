@@ -47,13 +47,13 @@ describe('Routes: GET orderStatusEntity', () => {
   });
 
   const ORDER_STATUS_1 = {
-    order_status_id: 1,
+    order_status_id: faker.datatype.uuid(),
     update_at: new Date().toISOString(),
     sale_id: faker.datatype.uuid(),
     status_name_id: 1,
   };
   const ORDER_STATUS_2 = {
-    order_status_id: 2,
+    order_status_id: faker.datatype.uuid(),
     update_at: new Date().toISOString(),
     sale_id: faker.datatype.uuid(),
     status_name_id: 2,
@@ -66,16 +66,16 @@ describe('Routes: GET orderStatusEntity', () => {
         .destroy({ where: {} })
         .then(() =>
           orderStatusRepository.create({
-            order_status_id: 1,
+            order_status_id: ORDER_STATUS_1.order_status_id,
             update_at: new Date().toISOString(),
-            sale_id: faker.datatype.uuid(),
+            sale_id: ORDER_STATUS_1.sale_id,
             status_name_id: 1,
           })
         ).then(() => {
         orderStatusRepository.create({
-          order_status_id: 2,
+          order_status_id: ORDER_STATUS_2.order_status_id,
           update_at: new Date().toISOString(),
-          sale_id: faker.datatype.uuid(),
+          sale_id: ORDER_STATUS_2.sale_id,
           status_name_id: 2,
         });
         done();
@@ -89,11 +89,9 @@ describe('Routes: GET orderStatusEntity', () => {
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
           expect(res.body.data[0].order_status_id).toEqual(ORDER_STATUS_1.order_status_id);
-          expect(res.body.data[0].update_at).toEqual(ORDER_STATUS_1.update_at);
           expect(res.body.data[0].sale_id).toEqual(ORDER_STATUS_1.sale_id);
           expect(res.body.data[0].status_name_id).toEqual(ORDER_STATUS_1.status_name_id);
           expect(res.body.data[1].order_status_id).toEqual(ORDER_STATUS_2.order_status_id);
-          expect(res.body.data[1].update_at).toEqual(ORDER_STATUS_2.update_at);
           expect(res.body.data[1].sale_id).toEqual(ORDER_STATUS_2.sale_id);
           expect(res.body.data[1].status_name_id).toEqual(ORDER_STATUS_2.status_name_id);
          done();

@@ -1,7 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
 import container from 'container';
-import faker from 'faker';
 
 const server: any = container.resolve('server');
 
@@ -10,7 +9,7 @@ const { storeRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET saleEntity', () => {
-  const BASE_URI = `/api/sale`;
+  const BASE_URI = `/api/store`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -45,66 +44,52 @@ describe('Routes: GET saleEntity', () => {
     })
   });
 
-  const SALE = {
-    sale_id:  faker.datatype.uuid(),
-    amount: 2,
-    date_sale: new Date().toISOString(),
-    product_id: 1,
-    user_id: 1,
-    store_id: 1
+  const STORE = {
+    store_id:  1,
+    store_name: 'Store name 1',
+    city_id: 1,
   };
 
-  describe('Should return sale', () => {
+  describe('Should return store', () => {
 
-    let saleId: number | any;
+    let storeId: number | any;
 
     beforeEach((done) => {
-      // we need to add user before we can request our token
+
       storeRepository
         .destroy({ where: {} })
-        .then(() => {
-          storeRepository.create({
-            sale_id:  faker.datatype.uuid(),
-            amount: 2,
-            date_sale: new Date().toISOString(),
-            product_id: 1,
-            user_id: 1,
-            store_id: 1
-        })
-        done();
-        }).then((res: any) => {
-        saleId = res.body.data.sale_id;
-            done();
-          });
+        .then(() =>
+          rqt.post(BASE_URI)
+            .set('Authorization', `Bearer ${token}`)
+            .send(STORE))
+        .then((res: any) => {
+          storeId = res.body.data.store_id;
+          done();
+        });
     });
 
-    it('should return one sale', (done) => {
-      rqt.get(`${BASE_URI}/${saleId}`)
+    it('should return one store', (done) => {
+      rqt.get(`${BASE_URI}/${storeId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
-          expect(res.body.data.sale_id).toEqual(SALE.sale_id);
-          expect(res.body.data.amount).toEqual(SALE.amount);
-          expect(res.body.data.date_sale).toEqual(SALE.date_sale);
-          expect(res.body.data.product_id).toEqual(SALE.product_id);
-          expect(res.body.data.user_id).toEqual(SALE.user_id);
-          expect(res.body.data.store_id).toEqual(SALE.store_id);
+          expect(res.body.data.store_id).toEqual(STORE.store_id);
+          expect(res.body.data.store_name).toEqual(STORE.store_name);
+          expect(res.body.data.city_id).toEqual(STORE.city_id);
           done();
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.get(`${BASE_URI}/${saleId}`)
+      rqt.get(`${BASE_URI}/${storeId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
-
           const result = JSON.parse(res.text);
-
           expect(err).toEqual(null);
           expect(result.error.success).toBeFalsy();
           expect(result.error.message).toEqual('No token provided.');
           done(err)
-        })
-    })
-  })
+        });
+    });
+  });
 })

@@ -9,7 +9,7 @@ const { countryRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET countryEntity', () => {
-  const BASE_URI = `/api/order_status`;
+  const BASE_URI = `/api/country`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();

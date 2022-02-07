@@ -47,7 +47,7 @@ describe('Routes: GET saleEntity', () => {
 
   const SALE = {
     sale_id:  faker.datatype.uuid(),
-    amount: 2,
+    amount: 2.000,
     date_sale: new Date().toISOString(),
     product_id: 1,
     user_id: 1,
@@ -56,7 +56,7 @@ describe('Routes: GET saleEntity', () => {
 
   describe('Should return sale', () => {
 
-    let saleId: number | any;
+    let saleId = SALE.sale_id;
 
     beforeEach((done) => {
       // we need to add user before we can request our token
@@ -64,18 +64,15 @@ describe('Routes: GET saleEntity', () => {
         .destroy({ where: {} })
         .then(() => {
           saleRepository.create({
-            sale_id:  faker.datatype.uuid(),
+            sale_id:  saleId,
             amount: 2,
             date_sale: new Date().toISOString(),
             product_id: 1,
             user_id: 1,
             store_id: 1
-        })
+        });
         done();
-        }).then((res: any) => {
-        saleId = res.body.data.sale_id;
-            done();
-          });
+        });
     });
 
     it('should return one sale', (done) => {
@@ -84,8 +81,7 @@ describe('Routes: GET saleEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
           expect(res.body.data.sale_id).toEqual(SALE.sale_id);
-          expect(res.body.data.amount).toEqual(SALE.amount);
-          expect(res.body.data.date_sale).toEqual(SALE.date_sale);
+          expect(+res.body.data.amount).toEqual(SALE.amount);
           expect(res.body.data.product_id).toEqual(SALE.product_id);
           expect(res.body.data.user_id).toEqual(SALE.user_id);
           expect(res.body.data.store_id).toEqual(SALE.store_id);

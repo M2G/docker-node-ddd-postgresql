@@ -70,7 +70,7 @@ describe('Routes: GET countryEntity', () => {
     });
 
     it('should return one country', (done) => {
-      rqt.get(`${BASE_URI}/235235`)
+      rqt.get(`${BASE_URI}/${countryId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {

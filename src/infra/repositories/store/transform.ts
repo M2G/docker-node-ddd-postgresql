@@ -1,4 +1,4 @@
-import Store from '../../../domain/store';
+import Store from 'domain/store';
 
 const toEntity = Store;
 

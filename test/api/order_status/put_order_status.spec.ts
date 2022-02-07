@@ -52,7 +52,7 @@ describe('Routes: GET orderStatusEntity', () => {
     beforeEach((done) => {
 
       const ORDER_STATUS = {
-        order_status_id: 1,
+        order_status_id: faker.datatype.uuid(),
         update_at: new Date().toISOString(),
         sale_id: faker.datatype.uuid(),
         status_name_id: 1,
@@ -65,7 +65,7 @@ describe('Routes: GET orderStatusEntity', () => {
         .set('Authorization', `Bearer ${token}`)
         .send(ORDER_STATUS))
         .then((res: any) => {
-          orderStatusId = res.body.data.order_status_id;
+          orderStatusId = ORDER_STATUS.order_status_id;
           done();
         })
     });
@@ -73,7 +73,7 @@ describe('Routes: GET orderStatusEntity', () => {
     it('should return update order_status', (done) => {
 
       const ORDER_STATUS = {
-        order_status_id: 1,
+        order_status_id: faker.datatype.uuid(),
         update_at: new Date().toISOString(),
         sale_id: faker.datatype.uuid(),
         status_name_id: 1,
@@ -86,7 +86,6 @@ describe('Routes: GET orderStatusEntity', () => {
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
           expect(res.body.data.order_status_id).toEqual(ORDER_STATUS.order_status_id);
-          expect(res.body.data.update_at).toEqual(ORDER_STATUS.update_at);
           expect(res.body.data.sale_id).toEqual(ORDER_STATUS.sale_id);
           expect(res.body.data.status_name_id).toEqual(ORDER_STATUS.status_name_id);
           done();
@@ -96,7 +95,7 @@ describe('Routes: GET orderStatusEntity', () => {
     it('should return fail update order_status', (done) => {
 
       const ORDER_STATUS = {
-        order_status_id: 1,
+        order_status_id: faker.datatype.uuid(),
         update_at: new Date().toISOString(),
         sale_id: faker.datatype.uuid(),
         status_name_id: 1,
@@ -109,7 +108,7 @@ describe('Routes: GET orderStatusEntity', () => {
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          expect(result.error).toEqual('Not found.');
           done(err);
         });
     });

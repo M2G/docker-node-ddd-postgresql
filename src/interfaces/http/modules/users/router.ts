@@ -1,34 +1,32 @@
 /* eslint-disable*/
-import Status from 'http-status';
-import { Router, Request, Response, NextFunction } from 'express';
+import Status from 'http-status-codes';
+import { // NextFunction, Request, Response,
+  Router } from 'express';
 
 export default ({
-  getUseCase,
-  getOneUseCase,
-  postUseCase,
-  putUseCase,
-  deleteUseCase,
-  logger,
-  response: { Success, Fail },
-  auth,
-}: any) => {
+                  getUseCase,
+                  getOneUseCase,
+                  postUseCase,
+                  putUseCase,
+                  deleteUseCase,
+                  logger,
+                  response: { Success, Fail },
+                  auth,
+                }: any) => {
   const router = Router();
 
-  router.use((req: Request, res: Response, next: NextFunction) =>
-    auth.authenticate(req, res, next));
+  //router.use((req: Request, res: Response, next: NextFunction) =>
+  // auth.authenticate(req, res, next));
 
   router
     .get('/', async (req: any, res: any) => {
-
       try {
-
-        const users = await getUseCase.all({});
-        logger.debug(users);
-        return res.status(Status.OK).json(Success(users));
-
+        const data = await getUseCase.all({});
+        logger.debug(data);
+        return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-       return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
@@ -42,64 +40,86 @@ export default ({
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
       try {
-        const user = await getOneUseCase.one({ id });
-        logger.debug(user);
-        return res.status(Status.OK).json(Success(user));
+        const data = await getOneUseCase.one({ id });
+        logger.debug(data);
+        return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
   router
     .post('/', async (req: any, res: any) => {
 
-      const { body = {} } = req || {};
+      const { body } = req || {};
+      const { user_id, first_name, last_name, password } = body || {};
+
+      if (!user_id
+        || !first_name
+        || !last_name
+        || !password)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const user = await postUseCase.create({ body });
-        logger.debug(user);
-        return res.status(Status.OK).json(Success(user));
+        const data = await postUseCase.create({ ...body });
+        logger.debug(data);
+        return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
   router
-    .put('/:id', (req: any, res: any) => {
+    .put('/:id', async (req: any, res: any) => {
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
+      const { user_id, first_name, last_name, password } = body || {};
 
       if (!id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
+      if (!user_id
+        || !first_name
+        || !last_name
+        || !password)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
+
       try {
-        const user = putUseCase.update({ body, id });
-        logger.debug(user);
-        return res.status(Status.OK).json(Success(user));
+        const data = await putUseCase.update({ id, ...body });
+
+        if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
+
+        logger.debug(data);
+        return res.status(Status.OK).json(Success(data));
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
     });
 
   router
-    .delete('/:id', (req: any, res: any) => {
+    .delete('/:id', async (req: any, res: any) => {
 
       const { params } = req || {};
       const { id = '' } = params || {};
 
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
+
       try {
-        const user = deleteUseCase.remove({ id });
-        logger.debug(user);
-        return res.status(Status.OK).json(Success(user));
+        const data = await deleteUseCase.remove({ id });
+
+        if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
+
+        logger.debug(data);
+        return res.status(Status.NO_CONTENT).json(Success());
       } catch (error) {
         logger.error(error);
-        return res.status(Status.BAD_REQUEST).json(Fail(error.message));
+        return res.status(Status.INTERNAL_SERVER_ERROR).json(Fail(error.message));
       }
-
     });
 
   return router;

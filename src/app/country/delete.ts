@@ -7,8 +7,8 @@ export default ({ countryRepository }: any) => {
 
   const remove = ({ id }: number | any) => {
     try {
-      const { country_id: countryId }: any = Country({ country_id: +id });
-      return countryRepository.destroy({ where: { country_id: countryId } });
+      const { country_id }: any = Country({ country_id: +id });
+      return countryRepository.destroy({ where: { country_id } });
     } catch (error) {
       throw new Error(error);
     }

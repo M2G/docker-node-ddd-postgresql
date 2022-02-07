@@ -47,13 +47,13 @@ describe('Routes: DELETE orderStatusEntity', () => {
 
   describe('Should DELETE order status', () => {
 
-    let orderStatusId: number | any;
+    let orderStatusId = faker.datatype.uuid();
 
     beforeEach((done) => {
 
       const ORDER_STATUS = {
-        order_status_id: 1,
-        update_at: new Date().toISOString(),
+        order_status_id: orderStatusId,
+        update_at: new Date().getTime(),
         sale_id: faker.datatype.uuid(),
         status_name_id: 1,
       };
@@ -64,8 +64,7 @@ describe('Routes: DELETE orderStatusEntity', () => {
           rqt.post(BASE_URI)
             .set('Authorization', `Bearer ${token}`)
             .send(ORDER_STATUS))
-        .then((res: any) => {
-          orderStatusId = res.body.data.order_status_id;
+        .then(() => {
           done();
         });
     });

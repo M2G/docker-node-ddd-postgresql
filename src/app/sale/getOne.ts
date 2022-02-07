@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import Product from 'domain/product';
+import Sale from 'domain/sale';
 
 /**
   * function for getter post.
@@ -7,7 +7,7 @@ import Product from 'domain/product';
 export default ({ saleRepository }: any) => {
   const one = ({ id }: any) => {
     try {
-      const { sale_id }: any = Product({ sale_id: +id });
+      const { sale_id }: any = Sale({ sale_id: id });
       return saleRepository.findById({ sale_id });
     } catch (error) {
       throw new Error(error);

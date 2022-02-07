@@ -8,11 +8,11 @@ import { cleanData } from 'interfaces/http/utils';
 /**
   * function for update store.
   */
-export default ({ postRepository }: any) => {
+export default ({ storeRepository }: any) => {
   const update = ({ id, ...args }: any) => {
     try {
       const store = Store(args);
-      return postRepository.update(cleanData(store), {
+      return storeRepository.update(cleanData(store), {
         where: { store_id: id },
         returning: true,
         plain: true

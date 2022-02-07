@@ -1,15 +1,11 @@
-import container from '../../../../container';
-import { get, getOne, post, put, remove } from '../../../../app/store';
+import container from 'container';
+import { get, getOne, post, put, remove } from 'app/store';
 
 export default () => {
   const { cradle } = container;
-  const {
- repository: {
-   storeRepository
-    }
-  } = cradle;
+  const { redis, repository: { storeRepository } } = cradle;
 
-  const getUseCase = get({storeRepository});
+  const getUseCase = get({redis, storeRepository});
   const getOneUseCase = getOne({storeRepository});
   const postUseCase = post({storeRepository});
   const putUseCase = put({storeRepository});

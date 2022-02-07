@@ -1,7 +1,6 @@
 /* eslint-disable */
 import request from 'supertest';
 import container from 'container';
-import faker from 'faker';
 
 const server: any = container.resolve('server');
 
@@ -9,8 +8,8 @@ const { storeRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET saleEntity', () => {
-  const BASE_URI = `/api/sale`;
+describe('Routes: PUT storeEntity', () => {
+  const BASE_URI = `/api/store`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -51,13 +50,10 @@ describe('Routes: GET saleEntity', () => {
 
     beforeEach((done) => {
 
-      const SALE = {
-        sale_id:  faker.datatype.uuid(),
-        amount: 2,
-        date_sale: new Date().toISOString(),
-        product_id: 1,
-        user_id: 1,
-        store_id: 1
+      const STORE = {
+        store_id:  1,
+        store_name: 'Store name 1',
+        city_id: 1,
       };
 
       storeRepository
@@ -65,59 +61,50 @@ describe('Routes: GET saleEntity', () => {
         .then(() =>
       rqt.post(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
-        .send(SALE))
+        .send(STORE))
         .then((res: any) => {
-          saleId = res.body.data.sale_id;
+          saleId = res.body.data.store_id;
           done();
         })
     });
 
-    it('should return update sale', (done) => {
+    it('should return update store', (done) => {
 
-      const SALE = {
-        sale_id:  faker.datatype.uuid(),
-        amount: 2,
-        date_sale: new Date().toISOString(),
-        product_id: 1,
-        user_id: 1,
-        store_id: 1
+      const STORE = {
+        store_id:  1,
+        store_name: 'Store name 1',
+        city_id: 1,
       };
 
       rqt.put(`${BASE_URI}/${saleId}`)
         .set('Authorization', `Bearer ${token}`)
-        .send(SALE)
+        .send(STORE)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.sale_id).toEqual(SALE.sale_id);
-          expect(res.body.data.amount).toEqual(SALE.amount);
-          expect(res.body.data.date_sale).toEqual(SALE.date_sale);
-          expect(res.body.data.product_id).toEqual(SALE.product_id);
-          expect(res.body.data.user_id).toEqual(SALE.user_id);
-          expect(res.body.data.store_id).toEqual(SALE.store_id);
+          expect(res.body.data.store_id).toEqual(STORE.store_id);
+          expect(res.body.data.store_name).toEqual(STORE.store_name);
+          expect(res.body.data.city_id).toEqual(STORE.city_id);
           done();
         });
     });
 
-    it('should return fail update sale', (done) => {
+    it('should return fail update store', (done) => {
 
-      const SALE = {
-        sale_id:  faker.datatype.uuid(),
-        amount: 2,
-        date_sale: new Date().toISOString(),
-        product_id: 1,
-        user_id: 1,
-        store_id: 1
+      const STORE = {
+        store_id:  1,
+        store_name: 'Store name 1',
+        city_id: 1,
       };
 
       rqt.put(`${BASE_URI}/${11111}`)
         .set('Authorization', `Bearer ${token}`)
-        .send(SALE)
+        .send(STORE)
         .expect(404)
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          expect(result.error).toEqual('Not found.');
           done(err);
         });
     });

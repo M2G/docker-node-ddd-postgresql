@@ -53,7 +53,7 @@ describe('Routes: GET saleEntity', () => {
 
       const SALE = {
         sale_id:  faker.datatype.uuid(),
-        amount: 2,
+        amount: 2.000,
         date_sale: new Date().toISOString(),
         product_id: 1,
         user_id: 1,
@@ -76,7 +76,7 @@ describe('Routes: GET saleEntity', () => {
 
       const SALE = {
         sale_id:  faker.datatype.uuid(),
-        amount: 2,
+        amount: 2.000,
         date_sale: new Date().toISOString(),
         product_id: 1,
         user_id: 1,
@@ -90,8 +90,7 @@ describe('Routes: GET saleEntity', () => {
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
           expect(res.body.data.sale_id).toEqual(SALE.sale_id);
-          expect(res.body.data.amount).toEqual(SALE.amount);
-          expect(res.body.data.date_sale).toEqual(SALE.date_sale);
+          expect(+res.body.data.amount).toEqual(SALE.amount);
           expect(res.body.data.product_id).toEqual(SALE.product_id);
           expect(res.body.data.user_id).toEqual(SALE.user_id);
           expect(res.body.data.store_id).toEqual(SALE.store_id);
@@ -103,7 +102,7 @@ describe('Routes: GET saleEntity', () => {
 
       const SALE = {
         sale_id:  faker.datatype.uuid(),
-        amount: 2,
+        amount: 2.000,
         date_sale: new Date().toISOString(),
         product_id: 1,
         user_id: 1,
@@ -117,7 +116,7 @@ describe('Routes: GET saleEntity', () => {
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          expect(result.error).toEqual('Not found.');
           done(err);
         });
     });

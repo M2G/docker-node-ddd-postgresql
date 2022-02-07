@@ -1,5 +1,4 @@
 /* eslint-disable */
-import faker from 'faker';
 import request from 'supertest';
 import container from 'container';
 
@@ -9,8 +8,8 @@ const { storeRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: DELETE saleEntity', () => {
-  const BASE_URI = `/api/sale`;
+describe('Routes: DELETE storeEntity', () => {
+  const BASE_URI = `/api/store`;
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -45,19 +44,16 @@ describe('Routes: DELETE saleEntity', () => {
     })
   });
 
-  describe('Should DELETE sale', () => {
+  describe('Should DELETE store', () => {
 
-    let saleId: number | any;
+    let storeId: number | any;
 
     beforeEach((done) => {
 
-      const SALE = {
-        sale_id:  faker.datatype.uuid(),
-        amount: 2,
-        date_sale: new Date().toISOString(),
-        product_id: 1,
-        user_id: 1,
-        store_id: 1
+      const STORE = {
+        store_id: 1,
+        store_name: 'Store name 1',
+        city_id: 1,
       };
 
       storeRepository
@@ -65,16 +61,21 @@ describe('Routes: DELETE saleEntity', () => {
         .then(() =>
           rqt.post(BASE_URI)
             .set('Authorization', `Bearer ${token}`)
-            .send(SALE))
+            .send(STORE))
         .then((res: any) => {
-          saleId = res.body.data.sale_id;
+
+          console.log('------------> res.body', res.body)
+
+          storeId = res.body.data.store_id;
           done();
         });
     });
 
-    it('should delete sale', (done) => {
+    it('should delete store', (done) => {
 
-      rqt.delete(`${BASE_URI}/${saleId}`)
+      console.log('------------> storeId', storeId)
+
+      rqt.delete(`${BASE_URI}/${storeId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(204)
         .end((err: any) => {
@@ -95,7 +96,7 @@ describe('Routes: DELETE saleEntity', () => {
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.delete(`${BASE_URI}/${saleId}`)
+      rqt.delete(`${BASE_URI}/${storeId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);

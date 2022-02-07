@@ -1,6 +1,7 @@
 /* eslint-disable*/
 import Status from 'http-status-codes';
-import { NextFunction, Request, Response, Router } from 'express';
+import { // NextFunction, Request, Response,
+  Router } from 'express';
 
 export default ({
                   getUseCase,
@@ -14,8 +15,8 @@ export default ({
                 }: any) => {
   const router = Router();
 
-  router.use((req: Request, res: Response, next: NextFunction) =>
-    auth.authenticate(req, res, next));
+  //router.use((req: Request, res: Response, next: NextFunction) =>
+  // auth.authenticate(req, res, next));
 
   router
     .get('/', async (req: any, res: any) => {
@@ -51,8 +52,8 @@ export default ({
   router
     .post('/', async (req: any, res: any) => {
 
-      const { body } = req;
-      const { status_name_id, status_name } = body;
+      const { body } = req || {};
+      const { status_name_id, status_name } = body || {};
 
       if (!status_name_id || !status_name)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
@@ -74,13 +75,15 @@ export default ({
       const { id = '' } = params || {};
       const { status_name } = body;
 
-      if (!status_name || !id)
+      if (!id)
+        return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
+
+
+      if (!status_name)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
-        const data = await putUseCase.update({ status_name, id });
-
-        console.log('data data data', data)
+        const data = await putUseCase.update({ id, ...body });
 
         if (!data) return res.status(Status.NOT_FOUND).json(Fail('Not found.'));
 

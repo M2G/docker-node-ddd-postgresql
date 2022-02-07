@@ -70,6 +70,7 @@ describe('Routes: GET productsEntity', () => {
     it('should return update product', (done) => {
 
       const PRODUCT_2 = {
+        product_id: 235235,
         product_name: 'Product 235236',
       }
 
@@ -93,11 +94,11 @@ describe('Routes: GET productsEntity', () => {
       rqt.put(`${BASE_URI}/${11111}`)
         .set('Authorization', `Bearer ${token}`)
         .send(PRODUCT_2)
-        .expect(404)
+        .expect(422)
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          expect(result.error).toEqual('Invalid parameters in request.');
           done(err);
         });
     });

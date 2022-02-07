@@ -15,8 +15,8 @@ describe('Routes: GET cityEntity', () => {
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeAll( () => {});
   beforeEach( (done) => {
+
     // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
@@ -77,7 +77,7 @@ describe('Routes: GET cityEntity', () => {
       });
     });
 
-    it('should return all products', (done) => {
+    it('should return all city', (done) => {
       rqt.get(BASE_URI)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)

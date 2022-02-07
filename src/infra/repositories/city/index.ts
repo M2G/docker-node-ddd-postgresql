@@ -13,9 +13,9 @@ export default ({ model }: any) => {
   }
 
   const findById = async (...args: any[]): Promise<unknown> => {
-    const [{ ...params }] = args;
+    const { ...params } = args;
     try {
-      const data = await model.findByPk(params);
+      const data = await model.findOne(params);
       return toEntity(data);
     } catch (error) {
       throw new Error(error);
@@ -24,12 +24,9 @@ export default ({ model }: any) => {
 
   const create = async (...args: any[]): Promise<unknown> => {
     const [{ ...params }] = args;
-
-    console.log('-------> params', params)
-
     try {
-      const data = await model.create(params);
-      return toEntity(data);
+      const { dataValues } = await model.create(params);
+      return toEntity(dataValues);
     } catch (error) {
       throw new Error(error);
     }
@@ -37,11 +34,11 @@ export default ({ model }: any) => {
 
   const update = async (...args: any[]): Promise<unknown> => {
     try {
+      console.log('-------> update update update', args)
       const updateData = await model.update(...args);
+      console.log('-------> updateData updateData updateData', updateData)
       const { dataValues } = updateData?.[1];
-
       return toEntity(dataValues);
-
     } catch {
 
       return false;
@@ -49,7 +46,6 @@ export default ({ model }: any) => {
   }
 
   const destroy = async (...args: any[]): Promise<unknown> => {
-
     try {
       return await model.destroy(...args);
     } catch (error) {

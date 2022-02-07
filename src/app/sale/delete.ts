@@ -7,7 +7,7 @@ import Sale from 'domain/sale';
 export default ({ saleRepository }: any) => {
   const remove = ({ id }: number | any) => {
     try {
-      const { sale_id }: any = Sale({ sale_id: +id });
+      const { sale_id }: any = Sale({ sale_id: id });
       return saleRepository.destroy({ where: { sale_id } });
     } catch (error) {
       throw new Error(error);

@@ -7,8 +7,6 @@ export default () => {
   const { cradle } = container;
   const { redis, repository: { statusNameRepository } } = cradle;
 
-  console.log('-----cradle', cradle)
-
   const getUseCase = get({ redis, statusNameRepository});
   const getOneUseCase = getOne({statusNameRepository});
   const postUseCase = post({statusNameRepository});

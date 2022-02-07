@@ -100,7 +100,7 @@ describe('Routes: GET countryEntity', () => {
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('An unexpected error occurred during the update process.');
+          expect(result.error).toEqual('Not found.');
           done(err);
         });
     });

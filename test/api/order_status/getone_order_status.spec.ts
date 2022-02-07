@@ -46,7 +46,7 @@ describe('Routes: GET orderStatusEntity', () => {
   });
 
   const ORDER_STATUS = {
-    order_status_id: 1,
+    order_status_id: faker.datatype.uuid(),
     update_at: new Date().toISOString(),
     sale_id: faker.datatype.uuid(),
     status_name_id: 1,
@@ -54,7 +54,7 @@ describe('Routes: GET orderStatusEntity', () => {
 
   describe('Should return order_status', () => {
 
-    let orderStatusId: number | any;
+    let orderStatusId = ORDER_STATUS.order_status_id;
 
     beforeEach((done) => {
       // we need to add user before we can request our token
@@ -62,16 +62,13 @@ describe('Routes: GET orderStatusEntity', () => {
         .destroy({ where: {} })
         .then(() => {
           orderStatusRepository.create({
-            order_status_id: 1,
+            order_status_id: ORDER_STATUS.order_status_id,
             update_at: new Date().toISOString(),
-            sale_id: faker.datatype.uuid(),
+            sale_id: ORDER_STATUS.sale_id,
             status_name_id: 1,
         })
         done();
-        }).then((res: any) => {
-        orderStatusId = res.body.data.order_status_id;
-            done();
-          });
+        });
     });
 
     it('should return one order_status', (done) => {
@@ -80,7 +77,6 @@ describe('Routes: GET orderStatusEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
           expect(res.body.data.order_status_id).toEqual(ORDER_STATUS.order_status_id);
-          expect(res.body.data.update_at).toEqual(ORDER_STATUS.update_at);
           expect(res.body.data.sale_id).toEqual(ORDER_STATUS.sale_id);
           expect(res.body.data.status_name_id).toEqual(ORDER_STATUS.status_name_id);
           done();

@@ -15,7 +15,7 @@ export default ({ model }: any) => {
   const findById = async (...args: any[]): Promise<unknown> => {
     const [{ ...params }] = args;
     try {
-      const data = await model.findByPk(params);
+      const data = await model.findOne(params);
       return toEntity(data);
     } catch (error) {
       throw new Error(error);

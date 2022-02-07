@@ -47,12 +47,12 @@ describe('Routes: DELETE saleEntity', () => {
 
   describe('Should DELETE sale', () => {
 
-    let saleId: number | any;
+    let saleId = faker.datatype.uuid();
 
     beforeEach((done) => {
 
       const SALE = {
-        sale_id:  faker.datatype.uuid(),
+        sale_id:  saleId,
         amount: 2,
         date_sale: new Date().toISOString(),
         product_id: 1,
@@ -66,8 +66,7 @@ describe('Routes: DELETE saleEntity', () => {
           rqt.post(BASE_URI)
             .set('Authorization', `Bearer ${token}`)
             .send(SALE))
-        .then((res: any) => {
-          saleId = res.body.data.sale_id;
+        .then(() => {
           done();
         });
     });

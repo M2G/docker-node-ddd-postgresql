@@ -32,10 +32,11 @@ module.exports = (sequelize, DataTypes) => {
   const Store = sequelize.define(table, {
     store_id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },
-    name: {
+    store_name: {
       type: DataTypes.STRING(250),
       allowNull: false
     },

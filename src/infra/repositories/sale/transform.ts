@@ -1,4 +1,4 @@
-import Sale from '../../../domain/sale';
+import Sale from 'domain/sale';
 
 const toEntity = Sale;
 

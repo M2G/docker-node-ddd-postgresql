@@ -1,4 +1,4 @@
-import OrderStatus from '../../../domain/order_status';
+import OrderStatus from 'domain/order_status';
 
 const toEntity = OrderStatus;
 
