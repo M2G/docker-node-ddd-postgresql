@@ -9,14 +9,13 @@ const { cityRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE cityEntity', () => {
-  const BASE_URI = `/api/city`;
+  const BASE_URI = '/api/city';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {} })
       .then(() =>
@@ -55,8 +54,6 @@ describe('Routes: DELETE cityEntity', () => {
         city_id: 1,
         city_name: 'City 235235',
       };
-
-      console.log('----> token', token)
 
       cityRepository
         .destroy({ where: {} })
