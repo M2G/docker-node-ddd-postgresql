@@ -51,12 +51,11 @@ describe('Routes: DELETE cityEntity', () => {
 
       const CITY = {
         country_id: 1,
-        city_id: 1,
         city_name: 'City 235235',
       };
 
       cityRepository
-        .destroy({ where: {} })
+        .destroy({ where: {}, truncate : true, cascade: false })
         .then(() =>
           rqt.post(BASE_URI)
             .set('Authorization', `Bearer ${token}`)

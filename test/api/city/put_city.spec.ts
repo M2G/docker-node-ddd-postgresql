@@ -51,7 +51,6 @@ describe('Routes: GET cityEntity', () => {
 
       const CITY = {
         country_id: 1,
-        city_id: 1,
         city_name: 'City 235235',
       };
 
@@ -92,7 +91,6 @@ describe('Routes: GET cityEntity', () => {
 
       const CITY = {
         country_id: 1,
-        city_id: 1,
         city_name: 'City 235235',
       };
 

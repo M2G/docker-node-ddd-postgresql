@@ -58,7 +58,6 @@ describe('Routes: GET cityEntity', () => {
 
       const CITY = {
         country_id: 1,
-        city_id: 1,
         city_name: 'City 235235',
       };
 
@@ -69,7 +68,7 @@ describe('Routes: GET cityEntity', () => {
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
           expect(res.body.data.country_id).toEqual(CITY.country_id);
-          expect(res.body.data.city_id).toEqual(CITY.city_id);
+          //expect(res.body.data.city_id).toEqual(CITY.city_id);
           expect(res.body.data.city_name).toEqual(CITY.city_name);
           done();
         });

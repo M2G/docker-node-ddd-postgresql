@@ -47,12 +47,10 @@ describe('Routes: GET cityEntity', () => {
 
   const CITY_1 = {
     country_id: 1,
-    city_id: 1,
     city_name: 'City 235235',
   };
   const CITY_2 = {
     country_id: 2,
-    city_id: 2,
     city_name: 'City 235236',
   };
 
@@ -62,17 +60,9 @@ describe('Routes: GET cityEntity', () => {
       cityRepository
         .destroy({ where: {} })
         .then(() =>
-          cityRepository.create({
-            country_id: CITY_1.country_id,
-            city_id: CITY_1.city_id,
-            city_name: CITY_1.city_name,
-          })
+          cityRepository.create({ ...CITY_1 })
         ).then(() => {
-        cityRepository.create({
-          country_id: CITY_2.country_id,
-          city_id: CITY_2.city_id,
-          city_name: CITY_2.city_name,
-        });
+        cityRepository.create({ ...CITY_2 });
         done();
       });
     });
@@ -82,12 +72,13 @@ describe('Routes: GET cityEntity', () => {
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
+
+          console.log('------->', res.body)
+
          expect(res.body.data.length).toEqual(2);
           expect(res.body.data[0].country_id).toEqual(CITY_1.country_id);
-          expect(res.body.data[0].city_id).toEqual(CITY_1.city_id);
           expect(res.body.data[0].city_name).toEqual(CITY_1.city_name);
           expect(res.body.data[1].country_id).toEqual(CITY_2.country_id);
-          expect(res.body.data[1].city_id).toEqual(CITY_2.city_id);
           expect(res.body.data[1].city_name).toEqual(CITY_2.city_name);
          done();
         })
