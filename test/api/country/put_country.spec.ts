@@ -8,8 +8,8 @@ const { countryRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET countryEntity', () => {
-  const BASE_URI = `/api/country`;
+describe('Routes: PUT countryEntity', () => {
+  const BASE_URI = '/api/country';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -51,26 +51,23 @@ describe('Routes: GET countryEntity', () => {
     beforeEach((done) => {
 
       const COUNTRY = {
-        country_id: 1,
         country_name: 'Country 235235',
       };
 
       countryRepository
-        .destroy({ where: {} })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(COUNTRY))
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
+        .then(() => countryRepository.create({ ...COUNTRY }))
         .then((res: any) => {
-          countryId = res.body.data.country_id;
-          done();
-        })
+          countryId = res.country_id;
+        }).then(() => done())
     });
 
     it('should return update country', (done) => {
 
       const COUNTRY = {
-        country_id: 1,
         country_name: 'Country 235235',
       };
 
@@ -80,7 +77,7 @@ describe('Routes: GET countryEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.country_id).toEqual(COUNTRY.country_id);
+          expect(res.body.data.country_id).toEqual(countryId);
           expect(res.body.data.country_name).toEqual(COUNTRY.country_name);
           done();
         });
@@ -89,7 +86,6 @@ describe('Routes: GET countryEntity', () => {
     it('should return fail update country', (done) => {
 
       const COUNTRY = {
-        country_id: 1,
         country_name: 'City 235235',
       };
 

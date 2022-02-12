@@ -9,7 +9,7 @@ const { countryRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET countryEntity', () => {
-  const BASE_URI = `/api/country`;
+  const BASE_URI = '/api/country';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -46,18 +46,17 @@ describe('Routes: GET countryEntity', () => {
 
   describe('Should return country', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       countryRepository
-        .destroy({ where: {} })
-        .then(() => {
-        done();
-      });
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
+        .then(() => done());
     });
 
     it('should return create country', (done) => {
 
       const COUNTRY = {
-        country_id: 1,
         country_name: 'City 235235',
       };
 
@@ -66,8 +65,11 @@ describe('Routes: GET countryEntity', () => {
         .send(COUNTRY)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
+
+          console.log('----->', res.body)
+
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.country_id).toEqual(COUNTRY.country_id);
+          expect(res.body.data.country_id).toEqual(1);
           expect(res.body.data.country_name).toEqual(COUNTRY.country_name);
           done();
         });

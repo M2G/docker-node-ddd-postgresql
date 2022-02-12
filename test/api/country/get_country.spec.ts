@@ -9,7 +9,7 @@ const { countryRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET countryEntity', () => {
-  const BASE_URI = `/api/country`;
+  const BASE_URI = '/api/country';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -45,32 +45,32 @@ describe('Routes: GET countryEntity', () => {
     })
   });
 
+  let countryId1: number | any;
+
+  let countryId2: number | any;
+
   const CITY_1 = {
-    country_id: 1,
     country_name: 'Country 235235',
   };
   const CITY_2 = {
-    country_id: 2,
     country_name: 'Country 235236',
   };
 
   describe('Should return country', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       countryRepository
-        .destroy({ where: {} })
-        .then(() =>
-          countryRepository.create({
-            country_id: CITY_1.country_id,
-            country_name: CITY_1.country_name,
-          })
-        ).then(() => {
-        countryRepository.create({
-          country_id: CITY_2.country_id,
-          country_name: CITY_2.country_name,
-        });
-        done();
-      });
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
+        .then(() => countryRepository.create({ ...CITY_1 }))
+        .then((res: any) => {
+          countryId1 = res.country_id;
+        }).then(() => countryRepository.create({ ...CITY_2 }))
+        .then((res: any) => {
+          countryId2 = res.country_id;
+          done();
+        })
     });
 
     it('should return all country', (done) => {
@@ -79,9 +79,9 @@ describe('Routes: GET countryEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].country_id).toEqual(CITY_1.country_id);
+          expect(res.body.data[0].country_id).toEqual(countryId1);
           expect(res.body.data[0].country_name).toEqual(CITY_1.country_name);
-          expect(res.body.data[1].country_id).toEqual(CITY_2.country_id);
+          expect(res.body.data[1].country_id).toEqual(countryId2);
           expect(res.body.data[1].country_name).toEqual(CITY_2.country_name);
          done();
         })

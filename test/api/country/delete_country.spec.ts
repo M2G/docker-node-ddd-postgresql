@@ -9,7 +9,7 @@ const { countryRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE countryEntity', () => {
-  const BASE_URI = `/api/country`;
+  const BASE_URI = '/api/country';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -51,20 +51,20 @@ describe('Routes: DELETE countryEntity', () => {
     beforeEach((done) => {
 
       const COUNTRY = {
-        country_id: 1,
         country_name: 'Country 235235',
       };
 
       countryRepository
-        .destroy({ where: {} })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(COUNTRY))
-        .then((res: any) => {
-          countryId = res.body.data.country_id;
-          done();
-        });
+          countryRepository.create({ ...COUNTRY })
+        ).then((res: any) => {
+        countryId = res.country_id;
+        done();
+      });
     });
 
     it('should delete country', (done) => {
