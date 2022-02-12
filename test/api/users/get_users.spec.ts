@@ -18,7 +18,10 @@ describe('Routes: GET usersEntity', () => {
   beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
-      .destroy({ where: {} })
+      .destroy({ where: {},
+        truncate : true,
+        cascade: false,
+        restartIdentity: true })
       .then(() =>
         usersRepository.create({
           user_id: 1,
@@ -73,7 +76,10 @@ describe('Routes: GET usersEntity', () => {
   describe('Should return users', () => {
     beforeEach((done) => {
       usersRepository
-        .destroy({ where: {} })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() =>
           usersRepository.create({ ...USER_1 })
         .then(() => {

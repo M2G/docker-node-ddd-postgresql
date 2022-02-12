@@ -18,7 +18,10 @@ describe('Routes: DELETE storeEntity', () => {
   beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
-      .destroy({ where: {} })
+      .destroy({ where: {},
+        truncate : true,
+        cascade: false,
+        restartIdentity: true })
       .then(() =>
         usersRepository.create({
           user_id: 1,
@@ -57,7 +60,10 @@ describe('Routes: DELETE storeEntity', () => {
       };
 
       storeRepository
-        .destroy({ where: {} })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() =>
           rqt.post(BASE_URI)
             .set('Authorization', `Bearer ${token}`)

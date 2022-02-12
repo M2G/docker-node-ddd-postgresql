@@ -19,7 +19,10 @@ describe('Routes: GET saleEntity', () => {
   beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
-      .destroy({ where: {} })
+      .destroy({ where: {},
+        truncate : true,
+        cascade: false,
+        restartIdentity: true })
       .then(() =>
         usersRepository.create({
           user_id: 1,
@@ -61,7 +64,10 @@ describe('Routes: GET saleEntity', () => {
     beforeEach((done) => {
       // we need to add user before we can request our token
       saleRepository
-        .destroy({ where: {} })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() => {
           saleRepository.create({
             sale_id:  saleId,

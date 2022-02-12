@@ -18,7 +18,10 @@ describe('Routes: GET productsEntity', () => {
   beforeEach((done) => {
     // we need to add user before we can request our token
     usersRepository
-      .destroy({ where: {} })
+      .destroy({ where: {},
+        truncate : true,
+        cascade: false,
+        restartIdentity: true })
       .then(() =>
         usersRepository.create({
           user_id: 1,
@@ -53,7 +56,10 @@ describe('Routes: GET productsEntity', () => {
     beforeEach((done) => {
       // we need to add user before we can request our token
       productRepository
-        .destroy({ where: {} })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() => {
         productRepository.create({
           product_id: PRODUCT_1.product_id,

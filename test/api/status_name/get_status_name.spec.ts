@@ -19,7 +19,10 @@ describe('Routes: GET statusNameEntity', () => {
   beforeEach( (done) => {
     // we need to add user before we can request our token
     usersRepository
-      .destroy({ where: {} })
+      .destroy({ where: {},
+        truncate : true,
+        cascade: false,
+        restartIdentity: true })
       .then(() =>
         usersRepository.create({
           user_id: 1,
@@ -58,7 +61,10 @@ describe('Routes: GET statusNameEntity', () => {
     beforeEach((done) => {
       // we need to add user before we can request our token
       statusNameRepository
-        .destroy({ where: {} })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() =>
           statusNameRepository.create({
             status_name_id: STATUS_NAME_1.status_name_id,

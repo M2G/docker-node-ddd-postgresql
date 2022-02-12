@@ -17,7 +17,10 @@ describe('Routes: DELETE cityEntity', () => {
 
   beforeEach( (done) => {
     usersRepository
-      .destroy({ where: {} })
+      .destroy({ where: {},
+        truncate : true,
+        cascade: false,
+        restartIdentity: true })
       .then(() =>
         usersRepository.create({
           user_id: 1,
