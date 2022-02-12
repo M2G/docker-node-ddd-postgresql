@@ -32,7 +32,6 @@ describe('Routes: GET cityEntity', () => {
           updated_by: 11
         })
       ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -40,8 +39,10 @@ describe('Routes: GET cityEntity', () => {
         email: user.email
       })
       done()
-    })
+    });
   });
+
+  let cityId: number | any;
 
   const CITY = {
     country_id: 1,
@@ -50,22 +51,24 @@ describe('Routes: GET cityEntity', () => {
 
   describe('Should return city', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       cityRepository
-        .destroy({ where: {} })
-        .then(() => {
-          cityRepository.create({ ...CITY })
-        done();
-      })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
+        .then(() => cityRepository.create({ ...CITY }))
+        .then((res: any) => {
+          cityId = res.city_id;
+        }).then(() => done())
     });
 
     it('should return one city', (done) => {
-      rqt.get(`${BASE_URI}/1`)
+      rqt.get(`${BASE_URI}/${cityId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
+          expect(res.body.data.city_id).toEqual(cityId);
           expect(res.body.data.country_id).toEqual(CITY.country_id);
-          // expect(res.body.data.city_id).toEqual(CITY.city_id);
           expect(res.body.data.city_name).toEqual(CITY.city_name);
           done();
         });

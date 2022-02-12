@@ -45,6 +45,10 @@ describe('Routes: GET cityEntity', () => {
     })
   });
 
+  let cityId1: number | any;
+
+  let cityId2: number | any;
+
   const CITY_1 = {
     country_id: 1,
     city_name: 'City 235235',
@@ -56,15 +60,19 @@ describe('Routes: GET cityEntity', () => {
 
   describe('Should return City', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       cityRepository
-        .destroy({ where: {} })
-        .then(() =>
-          cityRepository.create({ ...CITY_1 })
-        ).then(() => {
-        cityRepository.create({ ...CITY_2 });
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
+        .then(() => cityRepository.create({ ...CITY_1 }))
+        .then((res: any) => {
+          cityId1 = res.city_id;
+        }).then(() => cityRepository.create({ ...CITY_2 }))
+        .then((res: any) => {
+        cityId2 = res.city_id;
         done();
-      });
+      })
     });
 
     it('should return all city', (done) => {
@@ -72,12 +80,11 @@ describe('Routes: GET cityEntity', () => {
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
-
-          console.log('------->', res.body)
-
          expect(res.body.data.length).toEqual(2);
+          expect(res.body.data[0].city_id).toEqual(cityId1);
           expect(res.body.data[0].country_id).toEqual(CITY_1.country_id);
           expect(res.body.data[0].city_name).toEqual(CITY_1.city_name);
+          expect(res.body.data[1].city_id).toEqual(cityId2);
           expect(res.body.data[1].country_id).toEqual(CITY_2.country_id);
           expect(res.body.data[1].city_name).toEqual(CITY_2.city_name);
          done();
@@ -89,7 +96,6 @@ describe('Routes: GET cityEntity', () => {
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
-
           expect(err).toEqual(null);
           expect(result.error.success).toBeFalsy();
           expect(result.error.message).toEqual('No token provided.');

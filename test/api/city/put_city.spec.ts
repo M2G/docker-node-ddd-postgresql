@@ -55,15 +55,15 @@ describe('Routes: GET cityEntity', () => {
       };
 
       cityRepository
-        .destroy({ where: {} })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(CITY))
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
+        .then(() => cityRepository.create({ ...CITY }))
         .then((res: any) => {
-          cityId = res.body.data.city_id;
-          done();
-        })
+          cityId = res.city_id;
+        }).then(() => done())
+
     });
 
     it('should return update city', (done) => {
@@ -73,14 +73,13 @@ describe('Routes: GET cityEntity', () => {
         city_name: 'City 22',
       };
 
-      console.log('cityId cityId cityId', cityId)
-
       rqt.put(`${BASE_URI}/${cityId}`)
         .set('Authorization', `Bearer ${token}`)
         .send(CITY)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
+          expect(res.body.data.city_id).toEqual(cityId);
           expect(res.body.data.country_id).toEqual(CITY.country_id);
           expect(res.body.data.city_name).toEqual(CITY.city_name);
           done();

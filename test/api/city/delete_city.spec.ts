@@ -55,15 +55,16 @@ describe('Routes: DELETE cityEntity', () => {
       };
 
       cityRepository
-        .destroy({ where: {}, truncate : true, cascade: false })
+        .destroy({ where: {},
+          truncate : true,
+          cascade: false,
+          restartIdentity: true })
         .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(CITY))
-        .then((res: any) => {
-          cityId = res.body.data.city_id;
-          done();
-        });
+          cityRepository.create({ ...CITY })
+        ).then((res: any) => {
+        cityId = res.city_id;
+        done();
+      });
     });
 
     it('should delete city', (done) => {
