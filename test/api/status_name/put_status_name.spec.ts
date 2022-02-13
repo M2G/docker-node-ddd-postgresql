@@ -9,14 +9,13 @@ const { statusNameRepository, usersRepository } = container.resolve('repository'
 const rqt: any = request(server.app);
 
 describe('Routes: GET statusNameEntity', () => {
-  const BASE_URI = `/api/status_name`;
+  const BASE_URI = '/api/status_name';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -54,7 +53,6 @@ describe('Routes: GET statusNameEntity', () => {
     beforeEach((done) => {
 
       const STATUS_NAME = {
-        status_name_id: 235235,
         status_name: 'Status Name 235235',
       };
 
@@ -63,14 +61,11 @@ describe('Routes: GET statusNameEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(STATUS_NAME))
+        .then(() => statusNameRepository.create({ ...STATUS_NAME }))
         .then((res: any) => {
-          statusNameId = res.body.data.status_name_id;
+          statusNameId = res.status_name_id;
           done();
-        })
+        });
     });
 
     it('should return update status name', (done) => {
@@ -79,17 +74,13 @@ describe('Routes: GET statusNameEntity', () => {
         status_name: 'Status Name 235236',
       }
 
-      console.log('-------> statusNameId', statusNameId)
-
       rqt.put(`${BASE_URI}/${statusNameId}`)
         .set('Authorization', `Bearer ${token}`)
         .send(STATUS_NAME_2)
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
-
-          console.log(':::::::::', res.body)
-
           expect(res.body.success).toBeTruthy();
+          expect(res.body.data.status_name_id).toEqual(statusNameId);
           expect(res.body.data.status_name).toEqual(STATUS_NAME_2.status_name);
           done();
         });

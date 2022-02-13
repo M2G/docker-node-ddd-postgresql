@@ -9,15 +9,13 @@ const { statusNameRepository, usersRepository } = container.resolve('repository'
 const rqt: any = request(server.app);
 
 describe('Routes: GET statusNameEntity', () => {
-  const BASE_URI = `/api/status_name`;
+  const BASE_URI = '/api/status_name';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
-  beforeAll( () => {});
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -35,48 +33,44 @@ describe('Routes: GET statusNameEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email
-      })
-      done()
+      });
+      done();
     })
   });
 
+  let statusNameId1: any;
+
+  let statusNameId2: any;
+
   const STATUS_NAME_1 = {
-    status_name_id: 235235,
     status_name: 'Status Name 235235',
   };
   const STATUS_NAME_2 = {
-    status_name_id: 235236,
     status_name: 'Status Name 235236',
   };
 
   describe('Should return status name', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       statusNameRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          statusNameRepository.create({
-            status_name_id: STATUS_NAME_1.status_name_id,
-            status_name: STATUS_NAME_1.status_name,
-          })
-        ).then(() => {
-        statusNameRepository.create({
-          status_name_id: STATUS_NAME_2.status_name_id,
-          status_name: STATUS_NAME_2.status_name,
-        });
-        done();
-      });
+        .then(() => statusNameRepository.create({ ...STATUS_NAME_1 }))
+        .then((res: any) => {
+          statusNameId1 = res.status_name_id;
+        })
+        .then(() => statusNameRepository.create({ ...STATUS_NAME_2 }))
+        .then((res: any) => {
+          statusNameId2 = res.status_name_id;
+          done();
+        })
     });
 
     it('should return all status name', (done) => {
@@ -85,9 +79,9 @@ describe('Routes: GET statusNameEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].status_name_id).toEqual(STATUS_NAME_1.status_name_id);
+          expect(res.body.data[0].status_name_id).toEqual(statusNameId1);
           expect(res.body.data[0].status_name).toEqual(STATUS_NAME_1.status_name);
-          expect(res.body.data[1].status_name_id).toEqual(STATUS_NAME_2.status_name_id);
+          expect(res.body.data[1].status_name_id).toEqual(statusNameId2);
           expect(res.body.data[1].status_name).toEqual(STATUS_NAME_2.status_name);
          done();
         })

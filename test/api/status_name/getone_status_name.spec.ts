@@ -9,14 +9,13 @@ const { statusNameRepository, usersRepository } = container.resolve('repository'
 const rqt: any = request(server.app);
 
 describe('Routes: GET statusNameEntity', () => {
-  const BASE_URI = `/api/status_name`;
+  const BASE_URI = '/api/status_name';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -47,41 +46,40 @@ describe('Routes: GET statusNameEntity', () => {
     })
   });
 
-  const STATUS_NAME_1 = {
-    status_name_id: 235235,
-    status_name: 'Status Name 235235',
-  };
-
   describe('Should return status name', () => {
+
+    let statusNameId: any;
+
+    const STATUS_NAME_1 = {
+      status_name: 'Status Name 235235',
+    };
+
     beforeEach((done) => {
-      // we need to add user before we can request our token
       statusNameRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() => {
-          statusNameRepository.create({
-          status_name_id: STATUS_NAME_1.status_name_id,
-          status_name: STATUS_NAME_1.status_name,
-        })
+        .then(() => statusNameRepository.create({ ...STATUS_NAME_1 }))
+        .then((res: any) => {
+          statusNameId = res.status_name_id;
         done();
-      })
+      });
     });
 
     it('should return one status name', (done) => {
-      rqt.get(`${BASE_URI}/235235`)
+      rqt.get(`${BASE_URI}/${statusNameId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
-          expect(res.body.data.status_name_id).toEqual(STATUS_NAME_1.status_name_id);
+          expect(res.body.data.status_name_id).toEqual(statusNameId);
           expect(res.body.data.status_name).toEqual(STATUS_NAME_1.status_name);
           done();
         });
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.get(`${BASE_URI}/235235`)
+      rqt.get(`${BASE_URI}/${statusNameId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
 

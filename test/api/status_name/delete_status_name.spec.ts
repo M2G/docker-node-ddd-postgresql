@@ -9,14 +9,13 @@ const { statusNameRepository, usersRepository } = container.resolve('repository'
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE Status name', () => {
-  const BASE_URI = `/api/status_name`;
+  const BASE_URI = '/api/status_name';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -34,8 +33,7 @@ describe('Routes: DELETE Status name', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
 
       token = signIn({
         user_id: user.user_id,
@@ -54,7 +52,6 @@ describe('Routes: DELETE Status name', () => {
     beforeEach((done) => {
 
       const STATUS_NAME = {
-        status_name_id: 235235,
         status_name: 'Status Name 235235',
       }
 
@@ -63,12 +60,9 @@ describe('Routes: DELETE Status name', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(STATUS_NAME))
+        .then(() => statusNameRepository.create({ ...STATUS_NAME }))
         .then((res: any) => {
-          statusNameId = res.body.data.status_name_id;
+          statusNameId = res.status_name_id;
           done();
         });
     });
