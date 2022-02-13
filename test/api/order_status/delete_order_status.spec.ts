@@ -10,14 +10,13 @@ const { orderStatusRepository, usersRepository } = container.resolve('repository
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+  const BASE_URI = '/api/order_status';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -67,12 +66,8 @@ describe('Routes: DELETE orderStatusEntity', () => {
           cascade: false,
           restartIdentity: true })
         .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(ORDER_STATUS))
-        .then(() => {
-          done();
-        });
+          orderStatusRepository.create({ ...ORDER_STATUS }))
+        .then(() => done());
     });
 
     it('should delete order status', (done) => {

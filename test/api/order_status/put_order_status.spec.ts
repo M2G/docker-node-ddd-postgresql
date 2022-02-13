@@ -10,14 +10,13 @@ const { orderStatusRepository, usersRepository } = container.resolve('repository
 const rqt: any = request(server.app);
 
 describe('Routes: GET orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+  const BASE_URI = '/api/order_status';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -35,9 +34,7 @@ describe('Routes: GET orderStatusEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -66,14 +63,10 @@ describe('Routes: GET orderStatusEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(ORDER_STATUS))
+        .then(() => orderStatusRepository.create({ ...ORDER_STATUS }))
         .then((res: any) => {
-          orderStatusId = ORDER_STATUS.order_status_id;
-          done();
-        })
+          orderStatusId = res.order_status_id;
+        }).then(() => done())
     });
 
     it('should return update order_status', (done) => {

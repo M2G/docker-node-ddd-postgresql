@@ -10,7 +10,7 @@ const { orderStatusRepository, usersRepository } = container.resolve('repository
 const rqt: any = request(server.app);
 
 describe('Routes: GET orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+  const BASE_URI = '/api/order_status';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -56,9 +56,7 @@ describe('Routes: GET orderStatusEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() => {
-        done();
-      });
+        .then(() => done());
     });
 
     it('should return create order_status', (done) => {

@@ -10,7 +10,7 @@ const { orderStatusRepository, usersRepository } = container.resolve('repository
 const rqt: any = request(server.app);
 
 describe('Routes: GET orderStatusEntity', () => {
-  const BASE_URI = `/api/order_status`;
+  const BASE_URI = '/api/order_status';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -76,8 +76,8 @@ describe('Routes: GET orderStatusEntity', () => {
             update_at: new Date().toISOString(),
             sale_id: ORDER_STATUS_1.sale_id,
             status_name_id: 1,
-          })
-        ).then(() => {
+          }))
+        .then(() => {
         orderStatusRepository.create({
           order_status_id: ORDER_STATUS_2.order_status_id,
           update_at: new Date().toISOString(),
