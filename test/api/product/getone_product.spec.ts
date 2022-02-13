@@ -9,14 +9,13 @@ const { productRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET productsEntity', () => {
-  const BASE_URI = `/api/product`;
+  const BASE_URI = '/api/product';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -34,48 +33,45 @@ describe('Routes: GET productsEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        }))
+      .then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email
-      })
-      done()
-    })
+      });
+      done();
+    });
   });
 
-  const PRODUCT_1 = {
-    product_id: 235235,
+  let productId: any;
+
+  const PRODUCT = {
     product_name: 'Product 235235',
   };
 
   describe('Should return product', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       productRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() => {
-        productRepository.create({
-          product_id: PRODUCT_1.product_id,
-          product_name: PRODUCT_1.product_name,
-        });
+        .then(() => productRepository.create({ ...PRODUCT }))
+        .then((res: any) => {
+        productId = res.product_id;
         done();
-      })
+      });
     });
 
     it('should return one product', (done) => {
-      rqt.get(`${BASE_URI}/235235`)
+      rqt.get(`${BASE_URI}/${productId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
-          expect(res.body.data.product_id).toEqual(PRODUCT_1.product_id);
-          expect(res.body.data.product_name).toEqual(PRODUCT_1.product_name);
+          expect(res.body.data.product_id).toEqual(productId);
+          expect(res.body.data.product_name).toEqual(PRODUCT.product_name);
           done();
         });
     });

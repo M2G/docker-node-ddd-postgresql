@@ -9,7 +9,7 @@ const { productRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET productsEntity', () => {
-  const BASE_URI = `/api/product`;
+  const BASE_URI = '/api/product';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -48,35 +48,33 @@ describe('Routes: GET productsEntity', () => {
     })
   });
 
+  let productId1: any;
+
+  let productId2: any;
+
   const PRODUCT_1 = {
-    product_id: 235235,
     product_name: 'Product 235235',
   };
   const PRODUCT_2 = {
-    product_id: 235234,
     product_name: 'Product 235234',
   };
 
   describe('Should return product', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       productRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          productRepository.create({
-            product_id: PRODUCT_1.product_id,
-            product_name: PRODUCT_1.product_name,
-          })
-        ).then(() => {
-        productRepository.create({
-          product_id: PRODUCT_2.product_id,
-          product_name: PRODUCT_2.product_name,
-        });
-        done();
-      });
+        .then(() => productRepository.create({ ...PRODUCT_1 }))
+        .then((res: any) => {
+          productId1 = res.product_id;
+        })
+        .then(() => productRepository.create({ ...PRODUCT_2 }))
+        .then((res: any) => {
+            productId2 = res.product_id;
+            done();
+          });
     });
 
     it('should return all products', (done) => {
@@ -85,9 +83,9 @@ describe('Routes: GET productsEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].product_id).toEqual(PRODUCT_1.product_id);
+          expect(res.body.data[0].product_id).toEqual(productId1);
           expect(res.body.data[0].product_name).toEqual(PRODUCT_1.product_name);
-          expect(res.body.data[1].product_id).toEqual(PRODUCT_2.product_id);
+          expect(res.body.data[1].product_id).toEqual(productId2);
           expect(res.body.data[1].product_name).toEqual(PRODUCT_2.product_name);
          done();
         })

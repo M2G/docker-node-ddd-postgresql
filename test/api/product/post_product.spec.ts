@@ -9,14 +9,13 @@ const { productRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET productsEntity', () => {
-  const BASE_URI = `/api/product`;
+  const BASE_URI = '/api/product';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -49,7 +48,6 @@ describe('Routes: GET productsEntity', () => {
 
   describe('Should return product', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       productRepository
         .destroy({ where: {},
           truncate : true,
@@ -61,7 +59,6 @@ describe('Routes: GET productsEntity', () => {
     it('should return create product', (done) => {
 
       const PRODUCT = {
-        product_id: 235235,
         product_name: 'Product 235235',
       }
 
@@ -71,7 +68,7 @@ describe('Routes: GET productsEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.product_id).toEqual(PRODUCT.product_id);
+          expect(res.body.data.product_id).toEqual(1);
           expect(res.body.data.product_name).toEqual(PRODUCT.product_name);
           done();
         });

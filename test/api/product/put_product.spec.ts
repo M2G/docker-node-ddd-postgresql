@@ -8,15 +8,14 @@ const { productRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: GET productsEntity', () => {
-  const BASE_URI = `/api/product`;
+describe('Routes: PUT productsEntity', () => {
+  const BASE_URI = '/api/product';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -54,7 +53,6 @@ describe('Routes: GET productsEntity', () => {
     beforeEach((done) => {
 
       const PRODUCT = {
-        product_id: 235235,
         product_name: 'Product 235235',
       }
 
@@ -63,20 +61,16 @@ describe('Routes: GET productsEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(PRODUCT))
+        .then(() => productRepository.create({ ...PRODUCT }))
         .then((res: any) => {
-          productId = res.body.data.product_id;
+          productId = res.product_id;
           done();
-        })
+        });
     });
 
     it('should return update product', (done) => {
 
       const PRODUCT_2 = {
-        product_id: 235235,
         product_name: 'Product 235236',
       }
 
@@ -86,6 +80,7 @@ describe('Routes: GET productsEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
+          expect(res.body.data.product_id).toEqual(productId);
           expect(res.body.data.product_name).toEqual(PRODUCT_2.product_name);
           done();
         });
@@ -100,11 +95,11 @@ describe('Routes: GET productsEntity', () => {
       rqt.put(`${BASE_URI}/${11111}`)
         .set('Authorization', `Bearer ${token}`)
         .send(PRODUCT_2)
-        .expect(422)
+        .expect(404)
         .end((err: any, res: { text: any; body: { success: boolean; data: any; }; }) => {
           const result = JSON.parse(res.text);
           expect(result.success).toBeFalsy();
-          expect(result.error).toEqual('Invalid parameters in request.');
+          expect(result.error).toEqual('Not found.');
           done(err);
         });
     });

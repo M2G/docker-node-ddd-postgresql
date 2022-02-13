@@ -4,12 +4,12 @@ import container from 'container';
 
 const server: any = container.resolve('server');
 
-const { cityRepository, usersRepository } = container.resolve('repository');
+const { productRepository, usersRepository } = container.resolve('repository');
 
 const rqt: any = request(server.app);
 
-describe('Routes: DELETE cityEntity', () => {
-  const BASE_URI = `/api/city`;
+describe('Routes: DELETE productEntity', () => {
+  const BASE_URI = '/api/product';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -47,36 +47,32 @@ describe('Routes: DELETE cityEntity', () => {
     })
   });
 
-  describe('Should DELETE City', () => {
+  describe('Should DELETE Product', () => {
 
-    let cityId: number | any;
+    let productId: number | any;
 
     beforeEach((done) => {
 
-      const CITY = {
-        country_id: 1,
-        city_id: 1,
-        city_name: 'Product 235235',
+      const PRODUCT = {
+        product_id: 1,
+        product_name: 'Product 235235',
       }
 
-      cityRepository
+      productRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(CITY))
+        .then(() => productRepository.create({ ...PRODUCT }))
         .then((res: any) => {
-          cityId = res.body.data.city_id;
+          productId = res.product_id;
           done();
         });
     });
 
-    it('should delete City', (done) => {
+    it('should delete Product', (done) => {
 
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      rqt.delete(`${BASE_URI}/${productId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(204)
         .end((err: any) => {
@@ -97,7 +93,7 @@ describe('Routes: DELETE cityEntity', () => {
     });
 
     it('should return unauthorized if no token', (done) => {
-      rqt.delete(`${BASE_URI}/${cityId}`)
+      rqt.delete(`${BASE_URI}/${productId}`)
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
