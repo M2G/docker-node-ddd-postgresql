@@ -10,14 +10,13 @@ const { saleRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET saleEntity', () => {
-  const BASE_URI = `/api/sale`;
+  const BASE_URI = '/api/sale';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -48,38 +47,31 @@ describe('Routes: GET saleEntity', () => {
     })
   });
 
-  const SALE = {
-    sale_id:  faker.datatype.uuid(),
-    amount: 2.000,
-    date_sale: new Date().toISOString(),
-    product_id: 1,
-    user_id: 1,
-    store_id: 1
-  };
-
   describe('Should return sale', () => {
 
-    let saleId = SALE.sale_id;
+    let saleId: any;
+
+    const SALE = {
+      sale_id:  faker.datatype.uuid(),
+      amount: 2.000,
+      date_sale: new Date().toISOString(),
+      product_id: 1,
+      user_id: 1,
+      store_id: 1
+    };
 
     beforeEach((done) => {
-      // we need to add user before we can request our token
       saleRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() => {
-          saleRepository.create({
-            sale_id:  saleId,
-            amount: 2,
-            date_sale: new Date().toISOString(),
-            product_id: 1,
-            user_id: 1,
-            store_id: 1
+        .then(() => saleRepository.create({ ...SALE }))
+        .then((res: any) => {
+            saleId = res.sale_id;
+            done();
+          });
         });
-        done();
-        });
-    });
 
     it('should return one sale', (done) => {
       rqt.get(`${BASE_URI}/${saleId}`)

@@ -10,14 +10,13 @@ const { saleRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE saleEntity', () => {
-  const BASE_URI = `/api/sale`;
+  const BASE_URI = '/api/sale';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -68,13 +67,8 @@ describe('Routes: DELETE saleEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(SALE))
-        .then(() => {
-          done();
-        });
+        .then(() => saleRepository.create({ ...SALE }))
+        .then(() => done());
     });
 
     it('should delete sale', (done) => {

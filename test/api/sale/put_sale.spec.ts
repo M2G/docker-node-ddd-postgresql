@@ -10,14 +10,13 @@ const { saleRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET saleEntity', () => {
-  const BASE_URI = `/api/sale`;
+  const BASE_URI = '/api/sale';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -68,14 +67,11 @@ describe('Routes: GET saleEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(SALE))
+        .then(() => saleRepository.create({ ...SALE }))
         .then((res: any) => {
-          saleId = res.body.data.sale_id;
+          saleId = res.sale_id;
           done();
-        })
+        });
     });
 
     it('should return update sale', (done) => {
