@@ -9,7 +9,7 @@ const { storeRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET storeEntity', () => {
-  const BASE_URI = `/api/store`;
+  const BASE_URI = '/api/store';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
@@ -17,7 +17,6 @@ describe('Routes: GET storeEntity', () => {
 
   beforeAll( () => {});
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -35,9 +34,7 @@ describe('Routes: GET storeEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -48,38 +45,35 @@ describe('Routes: GET storeEntity', () => {
     })
   });
 
+  let storeId1: any;
+
+  let storeId2: any;
+
   const STORE_1 = {
-    store_id:  1,
     store_name: 'Store name 1',
     city_id: 1,
   };
   const STORE_2 = {
-    store_id:  2,
     store_name: 'Store name 2',
     city_id: 2,
   };
 
   describe('Should return sale', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       storeRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          storeRepository.create({
-            store_id:  1,
-            store_name: 'Store name 1',
-            city_id: 1,
-          })).then(() => {
-        storeRepository.create({
-          store_id:  2,
-          store_name: 'Store name 2',
-          city_id: 2,
-        });
-        done();
-      });
+        .then(() => storeRepository.create({ ...STORE_1 }))
+        .then((res: any) => {
+          storeId1 = res.store_id;
+        })
+        .then(() => storeRepository.create({ ...STORE_2 }))
+        .then((res: any) => {
+          storeId2 = res.store_id;
+          done();
+        })
     });
 
     it('should return all sale', (done) => {
@@ -88,15 +82,15 @@ describe('Routes: GET storeEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].store_id).toEqual(STORE_1.store_id);
+          expect(res.body.data[0].store_id).toEqual(storeId1);
           expect(res.body.data[0].store_name).toEqual(STORE_1.store_name);
           expect(res.body.data[0].city_id).toEqual(STORE_1.city_id);
 
-          expect(res.body.data[1].store_id).toEqual(STORE_2.store_id);
+          expect(res.body.data[1].store_id).toEqual(storeId2);
           expect(res.body.data[1].store_name).toEqual(STORE_2.store_name);
           expect(res.body.data[1].city_id).toEqual(STORE_2.city_id);
          done();
-        })
+        });
     })
 
     it('should return unauthorized if no token', (done) => {

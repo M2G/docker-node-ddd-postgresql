@@ -16,7 +16,6 @@ describe('Routes: GET saleEntity', () => {
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -49,21 +48,17 @@ describe('Routes: GET saleEntity', () => {
 
   describe('Should return sale', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       storeRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() => {
-        done();
-      });
+        .then(() => done());
     });
 
     it('should return create store', (done) => {
 
       const STORE = {
-        store_id:  1,
         store_name: 'Store name 1',
         city_id: 1,
       };
@@ -74,7 +69,7 @@ describe('Routes: GET saleEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.store_id).toEqual(STORE.store_id);
+          expect(res.body.data.store_id).toEqual(1);
           expect(res.body.data.store_name).toEqual(STORE.store_name);
           expect(res.body.data.city_id).toEqual(STORE.city_id);
           done();

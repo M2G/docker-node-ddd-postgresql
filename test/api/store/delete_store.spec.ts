@@ -9,14 +9,13 @@ const { storeRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE storeEntity', () => {
-  const BASE_URI = `/api/store`;
+  const BASE_URI = '/api/store';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -34,9 +33,7 @@ describe('Routes: DELETE storeEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -54,7 +51,6 @@ describe('Routes: DELETE storeEntity', () => {
     beforeEach((done) => {
 
       const STORE = {
-        store_id: 1,
         store_name: 'Store name 1',
         city_id: 1,
       };
@@ -64,23 +60,14 @@ describe('Routes: DELETE storeEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(STORE))
+        .then(() => storeRepository.create({ ...STORE }))
         .then((res: any) => {
-
-          console.log('------------> res.body', res.body)
-
-          storeId = res.body.data.store_id;
+          storeId = res.store_id;
           done();
         });
     });
 
     it('should delete store', (done) => {
-
-      console.log('------------> storeId', storeId)
-
       rqt.delete(`${BASE_URI}/${storeId}`)
         .set('Authorization', `Bearer ${token}`)
         .expect(204)

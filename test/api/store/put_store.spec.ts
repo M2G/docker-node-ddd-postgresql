@@ -9,14 +9,13 @@ const { storeRepository, usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: PUT storeEntity', () => {
-  const BASE_URI = `/api/store`;
+  const BASE_URI = '/api/store';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -34,9 +33,7 @@ describe('Routes: PUT storeEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -54,7 +51,6 @@ describe('Routes: PUT storeEntity', () => {
     beforeEach((done) => {
 
       const STORE = {
-        store_id:  1,
         store_name: 'Store name 1',
         city_id: 1,
       };
@@ -64,20 +60,16 @@ describe('Routes: PUT storeEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-      rqt.post(BASE_URI)
-        .set('Authorization', `Bearer ${token}`)
-        .send(STORE))
+        .then(() => storeRepository.create({ ...STORE }))
         .then((res: any) => {
-          saleId = res.body.data.store_id;
+          saleId = res.store_id;
           done();
-        })
+        });
     });
 
     it('should return update store', (done) => {
 
       const STORE = {
-        store_id:  1,
         store_name: 'Store name 1',
         city_id: 1,
       };
@@ -88,7 +80,7 @@ describe('Routes: PUT storeEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.store_id).toEqual(STORE.store_id);
+          expect(res.body.data.store_id).toEqual(saleId);
           expect(res.body.data.store_name).toEqual(STORE.store_name);
           expect(res.body.data.city_id).toEqual(STORE.city_id);
           done();
@@ -98,7 +90,6 @@ describe('Routes: PUT storeEntity', () => {
     it('should return fail update store', (done) => {
 
       const STORE = {
-        store_id:  1,
         store_name: 'Store name 1',
         city_id: 1,
       };
