@@ -9,14 +9,13 @@ const { usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: DELETE usersEntity', () => {
-  const BASE_URI = `/api/users`;
+  const BASE_URI = '/api/users';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -34,9 +33,8 @@ describe('Routes: DELETE usersEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        }))
+      .then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -54,7 +52,6 @@ describe('Routes: DELETE usersEntity', () => {
     beforeEach((done) => {
 
       const USER = {
-        user_id: 2,
         first_name: 'Thomas',
         last_name: 'David',
         password: 'test',
@@ -71,12 +68,9 @@ describe('Routes: DELETE usersEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(USER))
+        .then(() => usersRepository.create({ ...USER }))
         .then((res: any) => {
-          userId = res.body.data.user_id;
+          userId = res.user_id;
           done();
         });
     });

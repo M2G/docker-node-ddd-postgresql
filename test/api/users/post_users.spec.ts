@@ -9,14 +9,13 @@ const { usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET usersEntity', () => {
-  const BASE_URI = `/api/users`;
+  const BASE_URI = '/api/users';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -24,7 +23,6 @@ describe('Routes: GET usersEntity', () => {
         restartIdentity: true })
       .then(() =>
         usersRepository.create({
-          user_id: 1,
           first_name: 'John',
           last_name: 'Doe',
           password: 'test',
@@ -34,9 +32,7 @@ describe('Routes: GET usersEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -49,7 +45,6 @@ describe('Routes: GET usersEntity', () => {
 
   describe('Should return users', () => {
     beforeEach((done) => {
-      // we need to add user before we can request our token
       usersRepository
         .destroy({ where: {},
           truncate : true,
@@ -61,7 +56,6 @@ describe('Routes: GET usersEntity', () => {
     it('should return create users', (done) => {
 
       const USER = {
-        user_id: 2,
         first_name: 'Thomas',
         last_name: 'David',
         password: 'test',
@@ -79,7 +73,7 @@ describe('Routes: GET usersEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { success: boolean; data: any; }; }) => {
           expect(res.body.success).toBeTruthy();
-          expect(res.body.data.user_id).toEqual(USER.user_id);
+          expect(res.body.data.user_id).toEqual(1);
           expect(res.body.data.first_name).toEqual(USER.first_name);
           expect(res.body.data.last_name).toEqual(USER.last_name);
           done();
@@ -91,7 +85,6 @@ describe('Routes: GET usersEntity', () => {
         .expect(401)
         .end((err: any, res: { text: any; }) => {
           const result = JSON.parse(res.text);
-
           expect(err).toEqual(null);
           expect(result.error.success).toBeFalsy();
           expect(result.error.message).toEqual('No token provided.');

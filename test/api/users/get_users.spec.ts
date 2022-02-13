@@ -9,14 +9,13 @@ const { usersRepository } = container.resolve('repository');
 const rqt: any = request(server.app);
 
 describe('Routes: GET usersEntity', () => {
-  const BASE_URI = `/api/users`;
+  const BASE_URI = '/api/users';
 
   // @ts-ignore
   const signIn = container.resolve('jwt').signin();
   let token: any;
 
   beforeEach( (done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -24,7 +23,6 @@ describe('Routes: GET usersEntity', () => {
         restartIdentity: true })
       .then(() =>
         usersRepository.create({
-          user_id: 1,
           first_name: 'John',
           last_name: 'Doe',
           password: 'test',
@@ -34,9 +32,7 @@ describe('Routes: GET usersEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
@@ -48,7 +44,6 @@ describe('Routes: GET usersEntity', () => {
   });
 
   const USER_1 = {
-    user_id: 1,
     first_name: 'John',
     last_name: 'Doe',
     password: 'test',
@@ -61,7 +56,6 @@ describe('Routes: GET usersEntity', () => {
   };
 
   const USER_2 = {
-    user_id: 2,
     first_name: 'Thomas',
     last_name: 'David',
     password: 'test',
@@ -73,6 +67,10 @@ describe('Routes: GET usersEntity', () => {
     updated_by: 11
   };
 
+  let userId1: any;
+
+  let userId2: any;
+
   describe('Should return users', () => {
     beforeEach((done) => {
       usersRepository
@@ -80,12 +78,15 @@ describe('Routes: GET usersEntity', () => {
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          usersRepository.create({ ...USER_1 })
-        .then(() => {
-          usersRepository.create({ ...USER_2 });
+        .then(() => usersRepository.create({ ...USER_1 }))
+        .then((res: any) => {
+          userId1 = res.user_id;
+        })
+        .then(() => usersRepository.create({ ...USER_2 }))
+        .then((res: any) => {
+          userId2 = res.user_id;
           done();
-        }));
+        });
     });
 
     it('should return all users', (done) => {
@@ -94,11 +95,11 @@ describe('Routes: GET usersEntity', () => {
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
          expect(res.body.data.length).toEqual(2);
-          expect(res.body.data[0].user_id).toEqual(USER_1.user_id);
+          expect(res.body.data[0].user_id).toEqual(userId1);
           expect(res.body.data[0].first_name).toEqual(USER_1.first_name);
           expect(res.body.data[0].last_name).toEqual(USER_1.last_name);
 
-          expect(res.body.data[1].user_id).toEqual(USER_2.user_id);
+          expect(res.body.data[1].user_id).toEqual(userId2);
           expect(res.body.data[1].first_name).toEqual(USER_2.first_name);
           expect(res.body.data[1].last_name).toEqual(USER_2.last_name);
          done();

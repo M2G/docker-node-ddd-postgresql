@@ -16,7 +16,6 @@ describe('Routes: GET saleEntity', () => {
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,
@@ -24,7 +23,6 @@ describe('Routes: GET saleEntity', () => {
         restartIdentity: true })
       .then(() =>
         usersRepository.create({
-          user_id: 1,
           first_name: 'John',
           last_name: 'Doe',
           password: 'test',
@@ -34,49 +32,42 @@ describe('Routes: GET saleEntity', () => {
           is_deleted: 0,
           created_by: 11,
           updated_by: 11
-        })
-      ).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
-
+        })).then((user: { user_id: any; first_name: any; last_name: any; email: any; }) => {
       token = signIn({
         user_id: user.user_id,
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email
-      })
-      done()
+      });
+      done();
     })
   });
-
-  const USER = {
-    user_id: 1,
-    first_name: 'Thomas',
-    last_name: 'David',
-    password: 'test',
-    role_id: 1,
-    verification_code: 'EB309B5A5079FEE895B20954A390910F5E3AB4B909',
-    is_verified: 1,
-    is_deleted: 0,
-    created_by: 11,
-    updated_by: 11
-  };
 
   describe('Should return users', () => {
 
     let userId: number | any;
 
-    beforeEach((done) => {
+    const USER = {
+      first_name: 'Thomas',
+      last_name: 'David',
+      password: 'test',
+      role_id: 1,
+      verification_code: 'EB309B5A5079FEE895B20954A390910F5E3AB4B909',
+      is_verified: 1,
+      is_deleted: 0,
+      created_by: 11,
+      updated_by: 11
+    };
 
+    beforeEach((done) => {
       usersRepository
         .destroy({ where: {},
           truncate : true,
           cascade: false,
           restartIdentity: true })
-        .then(() =>
-          rqt.post(BASE_URI)
-            .set('Authorization', `Bearer ${token}`)
-            .send(USER))
+        .then(() => usersRepository.create({ ...USER }))
         .then((res: any) => {
-          userId = res.body.data.user_id;
+          userId = res.user_id;
           done();
         });
     });
@@ -86,7 +77,7 @@ describe('Routes: GET saleEntity', () => {
         .set('Authorization', `Bearer ${token}`)
         .expect(200)
         .end((err: any, res: { body: { data: any; }; }) => {
-          expect(res.body.data.user_id).toEqual(USER.user_id);
+          expect(res.body.data.user_id).toEqual(userId);
           expect(res.body.data.first_name).toEqual(USER.first_name);
           expect(res.body.data.last_name).toEqual(USER.last_name);
           done();
