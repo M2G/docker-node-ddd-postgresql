@@ -25,7 +25,6 @@ describe('Routes: GET countryEntity', () => {
         restartIdentity: true })
       .then(() =>
         usersRepository.create({
-          user_id: 1,
           first_name: 'John',
           last_name: 'Doe',
           password: 'test',
