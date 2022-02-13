@@ -34,9 +34,7 @@ export default ({ model }: any) => {
 
   const update = async (...args: any[]): Promise<unknown> => {
     try {
-      console.log('-------> update update update', args)
       const updateData = await model.update(...args);
-      console.log('-------> updateData updateData updateData', updateData)
       const { dataValues } = updateData?.[1];
       return toEntity(dataValues);
     } catch {

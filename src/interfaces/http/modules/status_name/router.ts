@@ -53,9 +53,9 @@ export default ({
     .post('/', async (req: any, res: any) => {
 
       const { body } = req || {};
-      const { status_name_id, status_name } = body || {};
+      const { status_name } = body || {};
 
-      if (!status_name_id || !status_name)
+      if (!status_name)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {

@@ -63,8 +63,8 @@ describe('Routes: DELETE countryEntity', () => {
           cascade: false,
           restartIdentity: true })
         .then(() =>
-          countryRepository.create({ ...COUNTRY })
-        ).then((res: any) => {
+          countryRepository.create({ ...COUNTRY }))
+        .then((res: any) => {
         countryId = res.country_id;
         done();
       });

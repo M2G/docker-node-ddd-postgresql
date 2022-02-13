@@ -53,9 +53,9 @@ export default ({
     .post('/', async (req: any, res: any) => {
 
       const { body } = req || {};
-      const { city_id, city_name, country_id } = body || {};
+      const { city_name, country_id } = body || {};
 
-      if (!city_id || !city_name || !country_id)
+      if (!city_name || !country_id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {

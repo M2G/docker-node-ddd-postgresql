@@ -53,9 +53,9 @@ export default ({
     .post('/', async (req: any, res: any) => {
 
       const { body } = req || {};
-      const { country_id, country_name } = body || {};
+      const { country_name } = body || {};
 
-      if (!country_id || !country_name)
+      if (!country_name)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
@@ -73,13 +73,13 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
-      const { country_id, country_name } = body;
+      const { country_name } = body;
 
       if (!id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
 
-      if (!country_name || !country_id)
+      if (!country_name)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {

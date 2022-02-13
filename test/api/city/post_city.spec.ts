@@ -16,7 +16,6 @@ describe('Routes: GET cityEntity', () => {
   let token: any;
 
   beforeEach((done) => {
-    // we need to add user before we can request our token
     usersRepository
       .destroy({ where: {},
         truncate : true,

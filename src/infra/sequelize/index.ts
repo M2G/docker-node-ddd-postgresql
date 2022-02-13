@@ -3,8 +3,6 @@ import fs from 'fs';
 import path from 'path';
 import { Sequelize, DataTypes } from 'sequelize';
 
-const { DB_FORCE_RESTART } = process.env;
-
 export default ({ config, basePath }: any) => {
 
    /*const sequelize = new Sequelize(
@@ -14,7 +12,7 @@ export default ({ config, basePath }: any) => {
     { ...config.db })*/
 
      const sequelize = new Sequelize(
-     'test_db_test',
+     'test_db',
      'postgres',
      'postgres',
        { ...config.db });
@@ -54,14 +52,6 @@ export default ({ config, basePath }: any) => {
       db.models[key].associate(db.models)
     }
   });
-
-  // Removes all tables and recreates them (only available if env is not in production)
-  if (
-    DB_FORCE_RESTART === 'true' &&
-    process.env.ENV !== 'production'
-  ) {
-    sequelizeOptions.force = true;
-  }
 
   sequelize.sync(sequelizeOptions as object)
     .catch((err) => {

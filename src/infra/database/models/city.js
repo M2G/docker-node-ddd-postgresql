@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   const City = sequelize.define(table, {
    city_id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
       allowNull: false
     },

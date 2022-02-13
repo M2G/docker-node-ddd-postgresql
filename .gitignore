@@ -75,3 +75,6 @@ typings/
 dist/
 build/
 postgres-data/
+.DS_Store
+.idea/
+redis-data/

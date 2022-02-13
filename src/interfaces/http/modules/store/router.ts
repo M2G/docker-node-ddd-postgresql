@@ -53,9 +53,9 @@ export default ({
     .post('/', async (req: any, res: any) => {
 
       const { body } = req || {};
-      const { store_id, store_name, city_id } = body || {};
+      const { store_name, city_id } = body || {};
 
-      if (!store_id || !store_name || !city_id)
+      if (!store_name || !city_id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {
@@ -73,12 +73,12 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
-      const { store_id, store_name, city_id } = body || {};
+      const { store_name, city_id } = body || {};
 
       if (!id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
-      if (!store_id || !store_name || !city_id)
+      if (!store_name || !city_id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
 
       try {

@@ -53,10 +53,9 @@ export default ({
     .post('/', async (req: any, res: any) => {
 
       const { body } = req || {};
-      const { user_id, first_name, last_name, password } = body || {};
+      const { first_name, last_name, password } = body || {};
 
-      if (!user_id
-        || !first_name
+      if (!first_name
         || !last_name
         || !password)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
@@ -76,13 +75,12 @@ export default ({
 
       const { body = {}, params } = req || {};
       const { id = '' } = params || {};
-      const { user_id, first_name, last_name, password } = body || {};
+      const { first_name, last_name, password } = body || {};
 
       if (!id)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid id parameters in request.'));
 
-      if (!user_id
-        || !first_name
+      if (!first_name
         || !last_name
         || !password)
         return res.status(Status.UNPROCESSABLE_ENTITY).json(Fail('Invalid parameters in request.'));
