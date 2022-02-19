@@ -37,14 +37,15 @@
     "watch2": "NODE_ENV=test concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run build:watch\" \"npm run watch-node\"",
     "watch-test": "npm run test -- --watchAll",
     "test": "npm run test:integration && npm run test:unit",
-    "test:unit": "NODE_ENV=test jest unit",
-    "test:integration": "NODE_ENV=test jest",
+    "test:unit": "NODE_ENV=test jest unit --passWithNoTests",
+    "test:integration": "NODE_ENV=test jest --passWithNoTests",
     "build-ts": "tsc",
     "build:watch": "tsc -w",
     "tslint": "eslint -c tslint.json -p tsconfig.json",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect build/src/index.js",
-    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "prepare": "husky install"
   },
   "author": "M2G",
   "devDependencies": {
@@ -95,6 +96,7 @@
     "jest-resolve": "26.6.2",
     "jest-watch-typeahead": "0.6.5",
     "jsonwebtoken": "8.5.1",
+    "lint-staged": "^12.3.4",
     "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
@@ -112,6 +114,7 @@
     "ts-jest": "^26.5.6",
     "ts-node": "^5.0.1",
     "typescript": "^4.5.5",
+    "validate-branch-name": "^1.2.1",
     "winston": "3.6.0"
   },
   "dependencies": {
