@@ -45,6 +45,7 @@ module.exports = {
     "node"
   ],
   testPathIgnorePatterns: [
+    "<rootDir>/test/",
     "<rootDir>/(build|node_modules)/"
   ],
   testEnvironment: 'node',
