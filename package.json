@@ -126,10 +126,10 @@
   },
   "lint-staged": {
     "*.(ts|graphql|css)": [
-      "prettier --write"
+      "prettier --write  --ignore-path .eslintignore"
     ],
-    "*!(.d).(ts|tsx)": [
-      "eslint"
+    "*!(.d).(ts)": [
+      "eslint --fix"
     ]
   },
   "validate-branch-name": {
