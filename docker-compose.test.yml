@@ -54,7 +54,7 @@ services:
     ports:
       - ${HOST_PORT}:${CONTAINER_PORT}
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgresql-data:/var/lib/postgresql/data
       - ./postgresql-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
       - ./sql2/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
       # copy the sql script to fill tables
@@ -64,4 +64,4 @@ services:
     cap_add:
       - SYS_NICE
 volumes:
-  postgres-data:
+  postgresql-data:
