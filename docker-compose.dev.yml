@@ -23,7 +23,7 @@ services:
       - /app/node_modules/bcrypt
     command: npm run watch
     depends_on:
-      - postgres
+      - postgresql
       - redis
 
   redis:
@@ -34,12 +34,12 @@ services:
     volumes:
       - ./redis-data:/data
 
-  postgres:
+  postgresql:
     image: postgres:14.1
-    container_name: postgres
+    container_name: postgresql
     restart: always
     environment:
-      - POSTGRES_DB=test_db
+      - POSTGRES_DB=postgres_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - DB_SCHEMA=postgres
@@ -55,10 +55,10 @@ services:
       - ${HOST_PORT}:${CONTAINER_PORT}
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
-      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./postgresql-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./sql2/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
       # copy the sql script to fill tables
-      - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+      - ./sql2/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
     security_opt:
       - seccomp:unconfined
     cap_add:
