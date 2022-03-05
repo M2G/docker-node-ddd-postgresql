@@ -38,6 +38,13 @@ psql -U postgres YOUR_DATABASE
 SELECT * FROM YOUR_TABLE;
 
 ---
+## Connection with TablePlus
+* Host: 127.0.0.1
+* Port: 5433
+* User: postgres
+* Password: postgres
+* Database: postgres_db
+---
 ## Getting Started
 
 Run in development:
