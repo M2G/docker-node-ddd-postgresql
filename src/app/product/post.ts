@@ -5,22 +5,22 @@
 import Product from 'domain/product';
 import { cleanData } from 'interfaces/http/utils';
 /**
-  * function for create product.
-  */
+ * function for create product.
+ */
 export default ({ productRepository }: any) => {
   const create = ({ ...args }: any) => {
     try {
       const product = Product(args);
 
-      console.log('--------> product', product)
+      console.log('--------> product', product);
 
       return productRepository.create(cleanData(product));
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    create
-  }
-}
+    create,
+  };
+};

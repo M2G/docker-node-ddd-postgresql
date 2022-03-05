@@ -12,14 +12,14 @@ export default ({ usersRepository }: any) => {
       return usersRepository.update(cleanData(user), {
         where: { user_id: id },
         returning: true,
-        plain: true
+        plain: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    update
-  }
-}
+    update,
+  };
+};

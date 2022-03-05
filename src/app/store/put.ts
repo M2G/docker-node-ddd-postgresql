@@ -6,8 +6,8 @@ import Store from 'domain/store';
 import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for update store.
-  */
+ * function for update store.
+ */
 export default ({ storeRepository }: any) => {
   const update = ({ id, ...args }: any) => {
     try {
@@ -15,14 +15,14 @@ export default ({ storeRepository }: any) => {
       return storeRepository.update(cleanData(store), {
         where: { store_id: id },
         returning: true,
-        plain: true
+        plain: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    update
-  }
-}
+    update,
+  };
+};

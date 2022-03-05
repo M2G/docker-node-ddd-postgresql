@@ -6,19 +6,19 @@ import OrderStatus from 'domain/order_status';
 import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for create order_status.
-  */
+ * function for create order_status.
+ */
 export default ({ orderStatusRepository }: any) => {
   const create = ({ ...args }: any) => {
     try {
       const orderStatus = OrderStatus(args);
       return orderStatusRepository.create(cleanData(orderStatus));
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    create
-  }
-}
+    create,
+  };
+};

@@ -14,14 +14,14 @@ export default ({ cityRepository }: any) => {
       return cityRepository.update(cleanData(post), {
         where: { city_id: id },
         returning: true,
-        plain: true
+        plain: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    update
-  }
-}
+    update,
+  };
+};

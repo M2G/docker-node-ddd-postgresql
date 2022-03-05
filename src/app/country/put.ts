@@ -6,8 +6,8 @@ import Country from 'domain/country';
 import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for getter country.
-  */
+ * function for getter country.
+ */
 export default ({ countryRepository }: any) => {
   const update = ({ id, ...args }: any) => {
     try {
@@ -15,14 +15,14 @@ export default ({ countryRepository }: any) => {
       return countryRepository.update(cleanData(country), {
         where: { country_id: id },
         returning: true,
-        plain: true
+        plain: true,
       });
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    update
-  }
-}
+    update,
+  };
+};

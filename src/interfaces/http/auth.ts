@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import passport from 'passport';
 import BearerStrategy from 'passport-http-bearer';
-import Status from 'http-status';
+import Status from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 
 /**
@@ -9,11 +9,10 @@ import { Request, Response, NextFunction } from 'express';
  */
 
 export default ({
-                  repository: { usersRepository },
-                  response: { Fail },
-                  jwt,
-                }: any) => {
-
+  repository: { usersRepository },
+  response: { Fail },
+  jwt,
+}: any) => {
   // @ts-ignore
   const strategy = new BearerStrategy(
     'bearer',
@@ -24,22 +23,21 @@ export default ({
         arg1: { email: string; password: string } | null,
       ) => any,
     ) => {
-
       const { email }: any | string = jwt.decode()(token);
 
-      console.log('TOKEN ID BEARER', email)
+      console.log('TOKEN ID BEARER', email);
 
-        try {
-          const user: any = await usersRepository.findByOne({ email });
+      try {
+        const user: any = await usersRepository.findByOne({ email });
 
-          console.log('usersRepository.findByOne', user)
+        console.log('usersRepository.findByOne', user);
 
-          if (!user) return done(Status[Status.NOT_FOUND], null);
+        if (!user) return done(Status[Status.NOT_FOUND], null);
 
-          done(null, { email: user.email, password: user.password });
-        } catch (error) {
-          done(error, null);
-        }
+        done(null, { email: user.email, password: user.password });
+      } catch (error) {
+        done(error, null);
+      }
     },
   );
 

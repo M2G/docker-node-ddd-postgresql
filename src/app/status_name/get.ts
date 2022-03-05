@@ -3,8 +3,8 @@ const KEY = 'LIST_STATUS_NAME';
 const TTL = 0.6 * 60;
 
 /**
-  * function for get all status name.
-  */
+ * function for get all status name.
+ */
 export default ({ redis, statusNameRepository }: any) => {
   const all = async (params: any) => {
     try {
@@ -17,12 +17,12 @@ export default ({ redis, statusNameRepository }: any) => {
       await redis.set(KEY, JSON.stringify(statusNameList), TTL);
 
       return statusNameList;
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    all
-  }
-}
+    all,
+  };
+};

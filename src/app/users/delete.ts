@@ -9,12 +9,12 @@ export default ({ usersRepository }: any) => {
     try {
       const { user_id }: any = Users({ user_id: +id });
       return usersRepository.destroy({ where: { user_id } });
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
     remove,
   };
-}
+};

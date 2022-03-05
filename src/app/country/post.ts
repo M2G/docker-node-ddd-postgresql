@@ -6,19 +6,19 @@ import Country from 'domain/country';
 import { cleanData } from 'interfaces/http/utils';
 
 /**
-  * function for getter country.
-  */
+ * function for getter country.
+ */
 export default ({ countryRepository }: any) => {
   const create = ({ ...args }: any) => {
     try {
       const country = Country(args);
       return countryRepository.create(cleanData(country));
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
-  }
+  };
 
   return {
-    create
-  }
-}
+    create,
+  };
+};
